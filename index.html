@@ -592,6 +592,7 @@ val propStableFizz = forAll { (i: Int) =>
 propStableFizz.check()
 // ! Falsified after 0 passed tests.
 // > ARG_0: -1
+// > ARG_0_ORIGINAL: -2082871258
 ```
 
 ---
@@ -856,14 +857,22 @@ new FizzBuzzTest().execute()
 
 Decision tables are:
 * a good specification tool, when applicable
-* a good test tool, when available
+* a good property-based test tool, when available
 --
 
 * importantly, work that somebody else can do!
 
 ---
 
-There is one area where PBTs fail utterly: test cases too expensive to generate.
+class: center, middle
+
+# Metamorphic Testing
+
+---
+
+## Motivation
+
+
 
 ---
 
@@ -883,7 +892,36 @@ Can also be used to derive properties. For example, search.
 
 ---
 
-Here's a wild though: how about running these things in production?
+class: center, middle
+
+# Conclusions
+
+---
+
+## Sources: Property based testing
+* [Scott Wlaschin](https://twitter.com/ScottWlaschin) - [Choosing properties for property-based testing](https://fsharpforfunandprofit.com/posts/property-based-testing-2/)
+* [John Hughes](https://twitter.com/rjmh) - [Testing the Hard Stuff and Staying Sane](https://www.youtube.com/watch?v=zi0rHwfiX1Q)
+* Really, any talk by [John Hughes](https://twitter.com/rjmh)
+
+---
+
+## Sources: Metamorphic testing
+
+* [Hillel Wayne](https://twitter.com/hillelogram) - [Metamorphic Testing](https://www.hillelwayne.com/post/metamorphic-testing/)
+* [Metamorphic testing: A review of challenges and opportunities](http://www.cs.hku.hk/research/techreps/document/TR-2017-04.pdf)
+* [Compiler Validation via Equivalence Modulo Input](http://vuminhle.com/pdf/pldi14-emi.pdf)
+* [Metamorphic testing of RESTfull web apis](http://www.lsi.us.es/~segura/files/papers/segura17-tse.pdf)
+
+---
+
+## Where to go from here?
+
+PBT and MT do not need to know if a result is correct to work.
+
+Could we run them in production?
+
+* new _system sanity_ metric: `properties violated / properties evaluated`
+* rather than random inputs, _interesting_ inputs
 
 ---
 
