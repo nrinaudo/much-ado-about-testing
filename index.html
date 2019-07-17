@@ -400,8 +400,7 @@ val propSorted = forAll { (is: List[Int]) =>
 
 ## Test oracle - use cases
 
-* refactoring code
-* optimisation of bottlenecks
+Code refactoring / optimisation: use the old implementation as an oracle to prevent regressions
 
 ---
 
@@ -429,8 +428,11 @@ val propValidAbs = forAll { (i: Int) =>
 
 ## Validity - use cases
 
-* any system that is partial on its range
-* mostly a cheap safety net
+Sanity check against simple mistakes.
+
+Search results: do all results actually match the search query?
+
+Remember that errors are valid outputs too!
 
 ---
 
@@ -467,9 +469,9 @@ val propEncodeDecode = forAll { (i: Int) =>
 
 ## Invertibility - use cases
 
-.section[Use cases]
-* encoder / decoder pairs
-* creation / deletion of persistent data
+Encoder / decoder pairs
+
+Persistance: creation *should* have deletion as an inverse
 
 ---
 
@@ -508,8 +510,11 @@ val propSorted = forAll { (is: List[Int]) =>
 
 ## Idempotence - use cases
 
-.section[Use cases]
-* CRUD systems (setting a field, deleting an object...)
+A lot of CRUD operations are idempotent:
+* updating something to a given value
+* deleting a given object
+* reading a given object / field
+* ...
 
 ---
 
@@ -541,8 +546,9 @@ val propStableSorted = forAll { (is: List[Int]) =>
 
 ## Invariance - use cases
 
-.section[Use cases]
-* ???
+Mutable systems, where precise assertions are hard.
+
+[Concrete example](https://www.youtube.com/watch?v=zi0rHwfiX1Q): _for all sequences of valid operations on a DB, the DB should never be corrupt_.
 
 ---
 
@@ -566,11 +572,9 @@ val propSorted = forAll { (is: List[Int]) =>
 
 ## Metamorphic property - use cases
 
-.section[Use cases]
-* compiler debugging
-* search APIs
+Searches - for example, should results be different for a different sort order?
 
-More on that later.
+More on metamorphic properties in a few slides.
 
 ---
 
@@ -586,9 +590,8 @@ val propStableFizz = forAll { (i: Int) =>
 
 ```scala
 propStableFizz.check()
-// ! Falsified after 5 passed tests.
+// ! Falsified after 0 passed tests.
 // > ARG_0: -1
-// > ARG_0_ORIGINAL: -540773329
 ```
 
 ---
@@ -632,9 +635,18 @@ Once a property is identified, it's important to try and break it.
 
 Try and provide a simple, flawed implementation of the SUT that breaks it.
 
+Good candidates are properties with magic values, or SUTs that do the strict minimum.
+
+```scala
+def sillyFizzBuzz(i: Int): String = {
+  if(i % 3 == 0) "Fizz"
+  else           i.toString
+}
+```
+
 ---
 
-## Challenge helper
+## Challenging FizzBuzz properties
 
 ```scala
 class FizzBuzzSpecifications(sut: Int => String) extends
@@ -657,18 +669,8 @@ class FizzBuzzSpecifications(sut: Int => String) extends
 
 ---
 
-## Obvious violations
+## Challenging FizzBuzz properties .super[2]
 
-Often, obvious bad implementations yield interesting results.
-
-Good candidates are properties with magic values, or SUTs that do the strict minimum.
-
-```scala
-def sillyFizzBuzz(i: Int): String = {
-  if(i % 3 == 0) "Fizz"
-  else           i.toString
-}
-```
 
 ```scala
 new FizzBuzzSpecifications(sillyFizzBuzz).check()
@@ -677,9 +679,11 @@ new FizzBuzzSpecifications(sillyFizzBuzz).check()
 // + FizzBuzz.stability: OK, passed 100 tests.
 ```
 
+Our `stability` property is hard-coded on `Fizz`.
+
 ---
 
-## Challenge helper .super[2]
+## Challenging FizzBuzz properties .super[3]
 
 ```scala
 class FizzBuzzSpecifications(sut: Int => String) extends
@@ -703,7 +707,7 @@ class FizzBuzzSpecifications(sut: Int => String) extends
 
 ---
 
-## Obvious violations .super[2]
+## Challenging FizzBuzz properties .super[4]
 
 We're now detecting the flaw:
 
@@ -751,7 +755,7 @@ If you squint, aren't decision tables both specifications and oracle?
  F     | T     || Buzz
  F     | F     || n
 
-* _conditions_ are kind of an `Arbitrary[Input]`
+* _conditions_ are kind of a `Gen[Input]`
 * _outcomes_ are kind of an oracle in the shape of `Input => Output`
 
 ---
