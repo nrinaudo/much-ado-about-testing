@@ -332,7 +332,7 @@ Likely to reproduce the bad behaviours we implemented the first time around.
 
 ```scala
 propFizzBuzz.check()
-// + OK, passed 100 tests.
+// + OK, passed 100 tests.
 ```
 
 ---
@@ -371,7 +371,7 @@ val propFizzBuzz = forAll { (test: FizzBuzzTestCase) =>
 
 ```scala
 propFizzBuzz.check()
-// + OK, passed 100 tests.
+// + OK, passed 100 tests.
 ```
 
 ---
@@ -398,7 +398,14 @@ val propSorted = forAll { (is: List[Int]) =>
 
 ---
 
-## Test oracle .super[2]
+## Test oracle - use cases
+
+* refactoring code
+* optimisation of bottlenecks
+
+---
+
+## Test oracle - FizzBuzz
 
 Not really applicable for our `fizzBuzz` example.
 
@@ -420,7 +427,14 @@ val propValidAbs = forAll { (i: Int) =>
 
 ---
 
-## Validity .super[2]
+## Validity - use cases
+
+* any system that is partial on its range
+* mostly a cheap safety net
+
+---
+
+## Validity - FizzBuzz
 
 ```scala
 val propValidFizzBuzz = forAll { (i: Int) =>
@@ -431,7 +445,7 @@ val propValidFizzBuzz = forAll { (i: Int) =>
 
 ```scala
 propValidFizzBuzz.check()
-// + OK, passed 100 tests.
+// + OK, passed 100 tests.
 ```
 
 ---
@@ -451,7 +465,15 @@ val propEncodeDecode = forAll { (i: Int) =>
 
 ---
 
-## Invertibility .super[2]
+## Invertibility - use cases
+
+.section[Use cases]
+* encoder / decoder pairs
+* creation / deletion of persistent data
+
+---
+
+## Invertibility - FizzBuzz
 
 `fizzBuzz` has an inverse on part of its domain.
 
@@ -463,16 +485,12 @@ val propInvertibleFizzBuzz = forAll { (i: Int) =>
 
 ```scala
 propInvertibleFizzBuzz.check()
-// + OK, passed 100 tests.
+// + OK, passed 100 tests.
 ```
 
-???
+--
 
-Note that this is a bad way to test part of the domain.
-
-Either assert something for the `div3` and `div5` cases, or only generate interesting values.
-
-I'm allowing myself to get away with it here because we'll see the right way of doing things later.
+.section[Note] there are better ways of writing partial properties
 
 ---
 
@@ -488,7 +506,14 @@ val propSorted = forAll { (is: List[Int]) =>
 
 ---
 
-## Idempotence .super[2]
+## Idempotence - use cases
+
+.section[Use cases]
+* CRUD systems (setting a field, deleting an object...)
+
+---
+
+## Idempotence - FizzBuzz
 
 ```scala
 val propIdempotentFizzBuzz = forAll { (i: Int) =>
@@ -502,12 +527,6 @@ That's just invertibility in disguise though.
 
 ---
 
-## Induction
-
-Structural induction
-
----
-
 ## Invariance
 
 Does the SUT have a useful invariant?
@@ -517,9 +536,17 @@ val propStableSorted = forAll { (is: List[Int]) =>
   is.sorted.diff(is).isEmpty
 }
 ```
+
 ---
 
-## Invariance .super[2]
+## Invariance - use cases
+
+.section[Use cases]
+* ???
+
+---
+
+## Invariance - FizzBuzz
 
 `fizzBuzz` doesn't really have a useful invariant that I can think of.
 
@@ -537,7 +564,17 @@ val propSorted = forAll { (is: List[Int]) =>
 
 ---
 
-## Metamorphic property .super[2]
+## Metamorphic property - use cases
+
+.section[Use cases]
+* compiler debugging
+* search APIs
+
+More on that later.
+
+---
+
+## Metamorphic property - FizzBuzz
 
 ```scala
 import org.scalacheck.Prop.BooleanOperators
@@ -549,8 +586,9 @@ val propStableFizz = forAll { (i: Int) =>
 
 ```scala
 propStableFizz.check()
-// ! Falsified after 0 passed tests.
+// ! Falsified after 5 passed tests.
 // > ARG_0: -1
+// > ARG_0_ORIGINAL: -540773329
 ```
 
 ---
@@ -573,7 +611,7 @@ def fizzBuzz(i: Int): String = {
 
 ---
 
-## Metamorphic property .super[3]
+## Metamorphic property - FizzBuzz .super[2]
 
 ```scala
 val propStableFizz = forAll { (i: Int) =>
@@ -583,7 +621,7 @@ val propStableFizz = forAll { (i: Int) =>
 
 ```scala
 propStableFizz.check()
-// + OK, passed 100 tests.
+// + OK, passed 100 tests.
 ```
 
 ---
@@ -634,9 +672,9 @@ def sillyFizzBuzz(i: Int): String = {
 
 ```scala
 new FizzBuzzSpecifications(sillyFizzBuzz).check()
-// + FizzBuzz.validity: OK, passed 100 tests.
-// + FizzBuzz.invertibility: OK, passed 100 tests.
-// + FizzBuzz.stability: OK, passed 100 tests.
+// + FizzBuzz.validity: OK, passed 100 tests.
+// + FizzBuzz.invertibility: OK, passed 100 tests.
+// + FizzBuzz.stability: OK, passed 100 tests.
 ```
 
 ---
@@ -644,8 +682,6 @@ new FizzBuzzSpecifications(sillyFizzBuzz).check()
 ## Challenge helper .super[2]
 
 ```scala
-import org.scalacheck.Prop.all
-
 class FizzBuzzSpecifications(sut: Int => String) extends
       Properties("FizzBuzz") {
 
@@ -658,10 +694,10 @@ class FizzBuzzSpecifications(sut: Int => String) extends
     div3(i) || div5(i) || (sut(i).toInt == i)
   }
 
-  property("stability") = forAll { (i: Int) => all(
-    sut(i).contains("Fizz") ==> sut(-i).contains("Fizz"),
-    sut(i).contains("Buzz") ==> sut(-i).contains("Buzz")
-  )}
+  property("stability") = forAll { (i: Int) =>
+    (sut(i).contains("Fizz") ==> sut(-i).contains("Fizz")) &&
+    (sut(i).contains("Buzz") ==> sut(-i).contains("Buzz"))
+  }
 }
 ```
 
@@ -673,9 +709,9 @@ We're now detecting the flaw:
 
 ```scala
 new FizzBuzzSpecifications(sillyFizzBuzz).check()
-// + FizzBuzz.validity: OK, passed 100 tests.
-// + FizzBuzz.invertibility: OK, passed 100 tests.
-// ! FizzBuzz.stability: Gave up after only 0 passed tests. 501 tests were dis
+// + FizzBuzz.validity: OK, passed 100 tests.
+// + FizzBuzz.invertibility: OK, passed 100 tests.
+// ! FizzBuzz.stability: Gave up after only 0 passed tests. 501 tests were dis
 //   carded.
 ```
 
