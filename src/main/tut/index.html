@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Much ado about testing</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  </head>
+  <body>
+      <textarea id="source">
+class: center, middle
+
+# Much ado about testing
+
+Nicolas Rinaudo • [@NicolasRinaudo] • [Besedo]
+
+---
+
+class: center, middle
+
+# Software Quality Control
+
+---
+
+## Verification & Validation
+
+According to [Barry Boehm](https://en.wikipedia.org/wiki/Barry_Boehm):
+
+* _Verification_: are we building the product right?
+* _Validation_: are we building the right product?
+
+This talk is about verification only.
+
+---
+
+## Verification
+
+Two kinds of software verification:
+* _static_: doesn't involve running the software (formal verification, linting...)
+* _dynamic_: running the software and analysing its behaviour (tests)
+
+This talk is about dynamic verification only.
+
+---
+
+## Testing
+
+Tests are split into 3 phases:
+* test input creation (_test case generation problem_)
+* program evaluation
+* output analysis (_oracle problem_)
+
+---
+
+class: center, middle
+
+# System Under Test
+
+---
+
+## FizzBuzz
+
+Write a program that prints a given range of numbers.
+
+But for multiples of three print `Fizz` instead of the number and for the multiples of five print `Buzz`.
+
+---
+
+## Implementation
+
+```tut:silent
+def div3(i: Int): Boolean = !(i % 3 > 0)
+def div5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+  if(div3(i))      "Fizz"
+  else if(div5(i)) "Buzz"
+  else             i.toString
+}
+```
+
+---
+
+class: center, middle
+
+# Example-based testing
+
+---
+
+## Concept
+
+Known scenarios are played, making sure the output is the expected one.
+
+```tut:silent
+import org.scalatest.FunSuite
+
+class SortSuite extends FunSuite {
+  test("List.sorted sorts numbers") {
+    assert(List(3, 2, 1).sorted == List(1, 2, 3))
+  }
+}
+
+```
+
+---
+
+## FizzBuzz test suite
+
+```tut:silent
+class FizzBuzzSuite extends FunSuite {
+  test("n divisible by 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n divisible by 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n divisible by neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+}
+```
+
+---
+
+## FizzBuzz test suite .super[2]
+```tut:book
+new FizzBuzzSuite().execute()
+```
+
+---
+
+## Client Demo
+
+```tut:book
+fizzBuzz(15)
+```
+
+❌ _Expected `FizzBuzz`_
+
+---
+
+## Why did we fail?
+
+* Lack of clear specifications
+* Tester bias - we only tested what we implemented
+
+---
+
+## Clarifying specifications
+
+Decision tables remove the specification ambiguity:
+
+ n % 3 | n % 5 || Output
+-------|-------||----------
+ T     | T     || FizzBuzz
+ T     | F     || Fizz
+ F     | T     || Buzz
+ F     | F     || n
+
+* `n % 3` and `n % 5` are _conditions_
+* `Output` is an _outcome_
+
+---
+
+## Fixing the implementation
+
+```tut:silent
+def div3(i: Int): Boolean = !(i % 3 > 0)
+def div5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+  if(div3(i)) {
+    if(div5(i)) "FizzBuzz"
+    else        "Fizz"
+  }
+  else if(div5(i)) "Buzz"
+  else             i.toString
+}
+```
+
+---
+
+## Fixing the tests
+
+```tut:silent
+class FizzBuzzSuite extends FunSuite {
+  test("n divisible by 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n divisible by 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n divisible by neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+  test("n divisible by 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == "FizzBuzz")
+  }
+}
+```
+
+---
+
+## Fixing the tests .super[2]
+
+```tut:book
+new FizzBuzzSuite().execute()
+```
+
+---
+
+## Client Demo
+
+```tut:book
+fizzBuzz(-3)
+```
+
+❌ _Expected `Fizz`_
+
+---
+
+## Failure 1: bias
+
+Example-based tests are subject to their author's bias
+
+Nowhere does this say our numbers can't be negative:
+
+> Write a program that prints a given range of numbers.
+> But for multiples of three print `Fizz` instead of the number and for the multiples of five print `Buzz`.
+
+---
+
+## Failure 2: insufficient tests
+
+`fizzBuzz`'s domain contains 4 294 967 295 elements.
+
+We have tested *4*.
+
+If we wrote one test every 5 seconds, it'd take approximately 27 years to write complete tests for `fizzBuzz`.
+
+---
+
+## Conclusions
+
+Example-based testing is:
+
+* great at the oracle problem
+* about as bad as it gets for test case generation
+* clearly insufficient
+
+---
+
+class: center, middle
+
+# Generative Testing
+
+---
+
+## Concept
+
+Instead of running known scenarios, test on random data.
+
+.section[Problem] how do you validate that the evaluation of a random input is correct?
+
+---
+
+## Property Based Testing
+
+Test that the SUT's output doesn't violate important properties.
+
+```tut:silent
+import org.scalacheck.Prop.forAll
+
+val propAssociativity = forAll { (i: Int, j: Int, k: Int) =>
+  i + (j + k) == (i + j) + k
+}
+
+val propCommutativity = forAll { (i: Int, j: Int) =>
+  i + j == j + i
+}
+
+val propIdentity = forAll { (i: Int) =>
+  i + 0 == i
+}
+```
+
+---
+
+## Problem with PBT
+
+Most people come to PBT after years of experience with example-based testing.
+
+As a result, they fall into 2 main traps and come to the conclusion that PBT is overrated.
+
+.section[Notable examples]
+* [Dick Wall](https://twitter.com/dickwall), during an episode of Scalawags
+* Me, for many, many years
+
+---
+
+## Trap 1: rewriting the SUT
+
+```tut:silent
+val propFizzBuzz = forAll { (i: Int) =>
+  if(div3(i)) {
+    if(div5(i)) fizzBuzz(i) == "FizzBuzz"
+    else        fizzBuzz(i) == "Fizz"
+  }
+  else if(div5(i)) fizzBuzz(i) == "Buzz"
+  else             fizzBuzz(i) == i.toString
+}
+```
+
+Likely to reproduce the bad behaviours we implemented the first time around.
+
+---
+
+## Trap 1: rewriting the SUT .super[2]
+
+```tut:book
+propFizzBuzz.check()
+```
+
+---
+
+## Trap 2: forcing an oracle
+
+```tut:silent
+import org.scalacheck._, Arbitrary.arbitrary
+
+case class FizzBuzzTestCase(input: Int, expected: String)
+
+implicit val arbFb: Arbitrary[FizzBuzzTestCase] = Arbitrary(
+  arbitrary[Int].map { i =>
+    FizzBuzzTestCase(
+      i,
+      if(div3(i)) {
+        if(div5(i)) "FizzBuzz"
+        else        "Fizz"
+      }
+      else if(div5(i)) "Buzz"
+      else             i.toString
+    )
+  }
+)
+```
+
+---
+
+## Trap 2: forcing an oracle .super[2]
+
+```tut:silent
+val propFizzBuzz = forAll { (test: FizzBuzzTestCase) =>
+  fizzBuzz(test.input) == test.expected
+}
+```
+
+```tut:book
+propFizzBuzz.check()
+```
+
+---
+
+## Strategies for identifying properties
+
+Very often, SUTs will have properties that fall in a set of known categories.
+
+Considering each category carefully usually leads to some interesting insights and properties.
+
+---
+
+## Test oracle
+
+Do we have a correct but unsuitable implementation of the SUT?
+
+```tut:silent
+def mySort[A: Ordering](as: List[A]): List[A] = ???
+
+val propSorted = forAll { (is: List[Int]) =>
+  mySort(is) == is.sorted
+}
+```
+
+---
+
+## Test oracle - use cases
+
+Code refactoring / optimisation: use the old implementation as an oracle to prevent regressions
+
+---
+
+## Test oracle - FizzBuzz
+
+Not really applicable for our `fizzBuzz` example.
+
+--
+
+(Or is it?)
+
+---
+
+## Validity
+
+Is it easy to check whether the SUT's output is valid (but not necessarily correct)?
+
+```tut:silent
+val propValidAbs = forAll { (i: Int) =>
+  math.abs(i) >= 0
+}
+```
+
+---
+
+## Validity - use cases
+
+Sanity check against simple mistakes.
+
+Search results: do all results actually match the search query?
+
+Remember that errors are valid outputs too!
+
+---
+
+## Validity - FizzBuzz
+
+```tut:silent
+val propValidFizzBuzz = forAll { (i: Int) =>
+  Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
+    .contains(fizzBuzz(i))
+}
+```
+
+```tut:book
+propValidFizzBuzz.check()
+```
+
+---
+
+## Invertibility
+
+Does the SUT have an inverse?
+
+
+```tut:silent
+val propInverseSum = forAll { (i: Int, j: Int) =>
+  (i + j) - j == i
+}
+```
+
+---
+
+## Invertibility - use cases
+
+Encoder / decoder pairs
+
+Persistence: creation *should* have deletion as an inverse
+
+---
+
+## Invertibility - FizzBuzz
+
+`fizzBuzz` has an inverse on part of its domain.
+
+```tut:silent
+val propInvertibleFizzBuzz = forAll { (i: Int) =>
+  div3(i) || div5(i) || (fizzBuzz(i).toInt == i)
+}
+```
+
+```tut:book
+propInvertibleFizzBuzz.check()
+```
+
+--
+
+.section[Note] there are better ways of writing partial properties
+
+---
+
+## Idempotence
+
+Is the SUT idempotent?
+
+```tut:silent
+val propSortedIdempotent = forAll { (is: List[Int]) =>
+  is.sorted == is.sorted.sorted
+}
+```
+
+---
+
+## Idempotence - use cases
+
+A lot of CRUD operations are idempotent:
+* updating something to a given value
+* deleting a given object
+* reading a given object / field
+* ...
+
+---
+
+## Idempotence - FizzBuzz
+
+```tut:silent
+val propIdempotentFizzBuzz = forAll { (i: Int) =>
+  div3(i) ||
+  div5(i) ||
+  (fizzBuzz(fizzBuzz(i).toInt) == i.toString)
+}
+```
+
+That's just invertibility in disguise though.
+
+---
+
+## Invariance
+
+Does the SUT have a useful invariant?
+
+```tut:silent
+val propStableSorted = forAll { (is: List[Int]) =>
+  is.sorted.diff(is).isEmpty
+}
+```
+
+---
+
+## Invariance - use cases
+
+Mutable systems, where precise assertions are hard.
+
+[Real life example](https://www.youtube.com/watch?v=zi0rHwfiX1Q): _for all sequences of valid operations on a DB, the DB should never be corrupt_.
+
+---
+
+## Invariance - FizzBuzz
+
+`fizzBuzz` doesn't really have a useful invariant that I can think of.
+
+---
+
+## Metamorphic relation
+
+Is there a couple of transformations such that applying one before the SUT and the other after doesn't change the outcome?
+
+```tut:silent
+val propSortedReverse = forAll { (is: List[Int]) =>
+  is.sorted ==
+  is.map(x => -x)
+    .sorted
+    .reverse.map(x => -x)
+}
+```
+
+---
+
+## Metamorphic relation - use cases
+
+Searches - for example, should results be different for a different sort order?
+
+More on metamorphic relations in a few slides.
+
+---
+
+## Metamorphic relation - FizzBuzz
+
+```tut:silent
+import org.scalacheck.Prop.BooleanOperators
+
+val propStableFizz = forAll { (i: Int) =>
+  fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+}
+```
+
+```tut:book
+propStableFizz.check()
+```
+
+---
+
+## Fixing `fizzBuzz`
+
+```tut:silent
+// def div3(i: Int): Boolean = !(i % 3 > 0)
+def div3(i: Int): Boolean = i % 3 == 0
+
+// def div5(i: Int): Boolean = !(i % 5 > 0)
+def div5(i: Int): Boolean = i % 5 == 0
+
+def fizzBuzz(i: Int): String = {
+  if(div3(i)) {
+    if(div5(i)) "FizzBuzz"
+    else        "Fizz"
+  }
+  else if(div5(i)) "Buzz"
+  else             i.toString
+}
+```
+
+---
+
+## Metamorphic relation - FizzBuzz .super[2]
+
+```tut:silent
+val propStableFizz = forAll { (i: Int) =>
+  fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+}
+```
+
+```tut:book
+propStableFizz.check()
+```
+
+---
+
+## Challenge discovered properties
+
+Once a property is identified, it's important to try and break it.
+
+Try and provide a simple, flawed implementation of the SUT that breaks it.
+
+Good candidates are properties with magic values, or SUTs that do the strict minimum.
+
+```tut:silent
+def fizz(i: Int): String = {
+  if(i % 3 == 0) "Fizz"
+  else           i.toString
+}
+```
+
+---
+
+## Challenging FizzBuzz properties
+
+```tut:silent
+class FizzBuzzSpecifications(sut: Int => String) extends
+      Properties("FizzBuzz") {
+
+  property("validity") = forAll { (i: Int) =>
+    Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
+      .contains(sut(i))
+  }
+
+  property("invertibility") = forAll { (i: Int) =>
+    div3(i) || div5(i) || (sut(i).toInt == i)
+  }
+
+  property("stability") = forAll { (i: Int) =>
+    sut(i).contains("Fizz") ==> sut(-i).contains("Fizz")
+  }
+}
+```
+
+---
+
+## Challenging FizzBuzz properties .super[2]
+
+
+```tut:book
+new FizzBuzzSpecifications(fizz).check()
+```
+
+Our `stability` property is hard-coded on `Fizz`.
+
+---
+
+## Challenging FizzBuzz properties .super[3]
+
+```tut:silent
+class FizzBuzzSpecifications(sut: Int => String) extends
+      Properties("FizzBuzz") {
+
+  property("validity") = forAll { (i: Int) =>
+    Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
+      .contains(sut(i))
+  }
+
+  property("invertibility") = forAll { (i: Int) =>
+    div3(i) || div5(i) || (sut(i).toInt == i)
+  }
+
+  property("stability") = forAll { (i: Int) =>
+    (sut(i).contains("Fizz") ==> sut(-i).contains("Fizz")) &&
+    (sut(i).contains("Buzz") ==> sut(-i).contains("Buzz"))
+  }
+}
+```
+
+---
+
+## Challenging FizzBuzz properties .super[4]
+
+We're now detecting the flaw:
+
+```tut:book
+new FizzBuzzSpecifications(fizz).check()
+```
+
+---
+
+## Conclusions
+
+Property-based testing is:
+* pretty amazing at the test case generation problem
+* fairly good at the oracle problem
+* hard to get the hang of, at first
+
+---
+
+class: center, middle
+
+# PBT, the easy way
+
+---
+
+## Specifications as oracle
+
+We've seen that the easiest possible property was having an oracle.
+
+If you squint, aren't decision tables both specifications and oracle?
+
+---
+
+## Decision tables as properties
+
+ n % 3 | n % 5 || Output
+-------|-------||----------
+ T     | T     || FizzBuzz
+ T     | F     || Fizz
+ F     | T     || Buzz
+ F     | F     || n
+
+* _conditions_ are kind of a `Gen[Input]`
+* _outcomes_ are kind of an oracle in the shape of `Input => Output`
+
+---
+
+## Decision tables as properties .super[2]
+
+Stored as a CSV resource:
+
+```tut:silent
+import kantan.dtables._, csv._, properties._
+
+val spec: Specification =
+  csv.load(getClass.getResource("/fizzbuzz.csv")).
+    getOrElse(sys.error("Failed to load fizzbuzz specs"))
+```
+
+---
+
+## Test case generation
+
+We'll need a generator of FizzBuzz-relevant integers:
+
+```tut:silent
+import org.scalacheck.Gen, Gen.choose
+
+def makePrimish(i: Int): Int = {
+  if(i % 3 == 0)      makePrimish(i / 3)
+  else if(i % 5 == 0) makePrimish(i / 5)
+  else                 i
+}
+
+val genPrimish: Gen[Int] =
+  choose(Int.MinValue / 15, Int.MaxValue / 15).map(makePrimish)
+```
+
+---
+
+## Decoding conditions
+
+Conditions are loaded through a common decoding process:
+
+```tut:silent
+implicit val conditionsDecoder: ConditionsDecoder[Int] =
+  ConditionsDecoder.decoder("n % 3", "n % 5") {
+    (div3: Boolean, div5: Boolean) =>
+      genPrimish.map { i =>
+        if(div3 && div5) i * 3 * 5
+        else if(div3)    i * 3
+        else if(div5)    i * 5
+        else             i
+      }
+    }
+```
+
+---
+
+## Decoding outcomes
+
+So are outcomes:
+
+```tut:silent
+implicit val outcomeDecoder: OutcomeDecoder[Int => String] =
+  OutcomeDecoder.fromEntry[String]("Output").emap {
+    case "n"        => DecodeResult.success(_.toString)
+    case "Fizz"     => DecodeResult.success(_ => "Fizz")
+    case "FizzBuzz" => DecodeResult.success(_ => "FizzBuzz")
+    case "Buzz"     => DecodeResult.success(_ => "Buzz")
+    case s          => DecodeResult.error(s)
+  }
+```
+
+---
+
+## Writing the test
+
+```tut:silent
+import kantan.dtables.scalatest._
+
+class FizzBuzzTest extends FunSuite with DTables {
+  checkAll("FizzBuzz", spec) { (i: Int, f: Int => String) =>
+    fizzBuzz(i) == f(i)
+  }
+}
+```
+
+```tut:book
+new FizzBuzzTest().execute()
+```
+
+---
+
+## Conclusions
+
+Decision tables are:
+* a good specification tool, when applicable
+* a good property-based test tool, when available
+--
+
+* importantly, work that somebody else can do!
+
+---
+
+class: center, middle
+
+# Manual test case generation
+
+---
+
+## Hand-crafted test cases
+
+![Self](img/face-detect-1.jpg)
+
+.section[SUT] face detection ML model
+
+.section[Problem] test cases are hand-generated and expensive
+
+---
+
+## Mutations
+
+.fleft[![Self](img/face-detect-1.jpg)]
+
+--
+
+.fright[![Self](img/face-detect-2.jpg)]
+
+--
+
+.fleft[![Self](img/face-detect-3.jpg)]
+
+--
+
+.fright[![Self](img/face-detect-4.jpg)]
+
+---
+
+## Free test cases!
+
+If you have an annotated image, you can:
+* change its colour palette
+* flip it
+* rotate it
+* ...
+
+And still know what the output should be
+
+---
+
+## Free test cases! .super[2]
+
+All our test does is make sure bounding boxes match after transformation
+
+Do we really need to know the initial bounding box in advance?
+
+---
+
+## Free test cases! .super[3]
+
+If you have a *non annotated* image, you can:
+* change its colour palette
+* flip it
+* rotate it
+* ...
+
+And still know what the output should be
+
+--
+
+This is the basis for _metamorphic testing_.
+
+---
+
+## Metamorphic Testing: genesis
+
+T. Y. Chen's thought process (probably):
+
+> In software verification:
+> * failing tests are proof of flaw (in SUT or in the test)
+> * successful tests aren't proof of anything
+>
+> What if successful test cases could be made useful?
+
+---
+
+## Metamorphic Relation
+
+> A metamorphic relation is a pair of conditions such that if two inputs fulfill the first, then the result of their evaluations must fulfill the second.
+
+.section[Example] the shortest path between nodes `A` and `B` in a graph should have the same length as the shortest path between `B` and `A`
+
+.section[Example] the faces detected in an image should be the same regardless of the colour palette
+
+---
+
+## Metamorphic Testing
+
+Metamorphic testing is testing software by:
+* generating inputs that fulfill a metamorphic relation
+* confirming that their outputs fulfill that metamorphic relation
+
+---
+
+## Case study: EMI
+
+.section[Idea] a program's output shouldn't change if you mutate dead code paths
+
+.section[Results]
+* 79 new unique gcc bugs
+* 68 new unique LLVM bugs
+
+---
+
+## Case study: Search APIs
+
+.section[Idea] refining a search query should yield a subset of its original results
+
+.section[Results]
+* 3 new unique Spotify bugs
+* 8 new unique YouTube bugs
+
+---
+
+## Conclusions
+
+Metamorphic Testing is:
+* a lot simpler than the name would suggest
+* good for test case generation when PBT falls short
+* good for solving the oracle problem
+
+---
+
+class: center, middle
+
+# In closing
+
+---
+
+## Where to go from here?
+
+PBT and MT do not need to know if a result is correct to work.
+
+Could we run them in production?
+
+* new _sanity_ metric: `properties violated / properties evaluated`
+* rather than random inputs, _interesting_ inputs
+
+---
+
+## Sources: Property based testing
+* [Scott Wlaschin](https://twitter.com/ScottWlaschin) - [Choosing properties for property-based testing](https://fsharpforfunandprofit.com/posts/property-based-testing-2/)
+* [John Hughes](https://twitter.com/rjmh) - [Testing the Hard Stuff and Staying Sane](https://www.youtube.com/watch?v=zi0rHwfiX1Q)
+* Really, any talk by [John Hughes](https://twitter.com/rjmh)
+
+---
+
+## Sources: Metamorphic testing
+
+* [Hillel Wayne](https://twitter.com/hillelogram) - [Metamorphic Testing](https://www.hillelwayne.com/post/metamorphic-testing/)
+* [Metamorphic testing: A review of challenges and opportunities](http://www.cs.hku.hk/research/techreps/document/TR-2017-04.pdf)
+* [Compiler Validation via Equivalence Modulo Input](http://vuminhle.com/pdf/pldi14-emi.pdf)
+* [Metamorphic testing of RESTful web apis](http://www.lsi.us.es/~segura/files/papers/segura17-tse.pdf)
+
+---
+
+## More information
+
+Slides available on https://nrinaudo.github.io/much-ado-about-testing/
+
+Find me on Twitter ([@NicolasRinaudo])
+
+Get in touch with [Besedo], we're always on the lookout for Scala talent
+
+Slides backed by [remark.js] and the amazing [tut]
+
+---
+
+class: center, middle
+
+# Questions?
+
+
+
+[remark.js]:https://remarkjs.com
+[tut]:https://github.com/tpolecat/tut
+[Besedo]:https://twitter.com/besedo_official
+[@NicolasRinaudo]:https://twitter.com/NicolasRinaudo
+    </textarea>
+    <script src="js/remark.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        var slideshow = remark.create({
+        highlightStyle: 'github'
+      });
+    </script>
+  </body>
+</html>
