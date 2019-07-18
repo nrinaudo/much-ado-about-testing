@@ -28,8 +28,6 @@ According to [Barry Boehm](https://en.wikipedia.org/wiki/Barry_Boehm):
 * _Verification_: are we building the product right?
 * _Validation_: are we building the right product?
 
---
-
 This talk is about verification only.
 
 ---
@@ -39,8 +37,6 @@ This talk is about verification only.
 Two kinds of software verification:
 * _static_: doesn't involve running the software (formal verification, linting...)
 * _dynamic_: running the software and analysing its behaviour (tests)
-
---
 
 This talk is about dynamic verification only.
 
@@ -98,17 +94,11 @@ Known scenarios are played, making sure the output is the expected one.
 import org.scalatest.FunSuite
 
 class SortSuite extends FunSuite {
-  test("List.sort sorts numbers") {
+  test("List.sorted sorts numbers") {
     assert(List(3, 2, 1).sorted == List(1, 2, 3))
   }
 }
 
-```
-
-```scala
-new SortSuite().execute()
-// SortSuite:
-// - List.sort sorts numbers
 ```
 
 ---
@@ -148,7 +138,7 @@ new FizzBuzzSuite().execute()
 
 ```scala
 fizzBuzz(15)
-// res2: String = Fizz
+// res1: String = Fizz
 ```
 
 ❌ _Expected `FizzBuzz`_
@@ -199,16 +189,32 @@ def fizzBuzz(i: Int): String = {
 ## Fixing the tests
 
 ```scala
-class CompleteFizzBuzzSuite extends FizzBuzzSuite {
+class FizzBuzzSuite extends FunSuite {
+  test("n divisible by 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n divisible by 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n divisible by neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
   test("n divisible by 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
 }
 ```
 
+---
+
+## Fixing the tests .super[2]
+
 ```scala
-new CompleteFizzBuzzSuite().execute()
-// CompleteFizzBuzzSuite:
+new FizzBuzzSuite().execute()
+// FizzBuzzSuite:
 // - n divisible by 3 outputs Fizz
 // - n divisible by 5 outputs Buzz
 // - n divisible by neither 3 or 5 outputs n
@@ -221,7 +227,7 @@ new CompleteFizzBuzzSuite().execute()
 
 ```scala
 fizzBuzz(-3)
-// res4: String = FizzBuzz
+// res3: String = FizzBuzz
 ```
 
 ❌ _Expected `Fizz`_
@@ -244,8 +250,6 @@ Nowhere does this say our numbers can't be negative:
 `fizzBuzz`'s domain contains 4 294 967 295 elements.
 
 We have tested *4*.
-
---
 
 If we wrote one test every 5 seconds, it'd take approximately 27 years to write complete tests for `fizzBuzz`.
 
@@ -471,7 +475,7 @@ val propEncodeDecode = forAll { (i: Int) =>
 
 Encoder / decoder pairs
 
-Persistance: creation *should* have deletion as an inverse
+Persistence: creation *should* have deletion as an inverse
 
 ---
 
@@ -548,7 +552,7 @@ val propStableSorted = forAll { (is: List[Int]) =>
 
 Mutable systems, where precise assertions are hard.
 
-[Concrete example](https://www.youtube.com/watch?v=zi0rHwfiX1Q): _for all sequences of valid operations on a DB, the DB should never be corrupt_.
+[Real life example](https://www.youtube.com/watch?v=zi0rHwfiX1Q): _for all sequences of valid operations on a DB, the DB should never be corrupt_.
 
 ---
 
@@ -592,7 +596,7 @@ val propStableFizz = forAll { (i: Int) =>
 propStableFizz.check()
 // ! Falsified after 0 passed tests.
 // > ARG_0: -1
-// > ARG_0_ORIGINAL: -2082871258
+// > ARG_0_ORIGINAL: -1810041971
 ```
 
 ---
@@ -639,7 +643,7 @@ Try and provide a simple, flawed implementation of the SUT that breaks it.
 Good candidates are properties with magic values, or SUTs that do the strict minimum.
 
 ```scala
-def sillyFizzBuzz(i: Int): String = {
+def fizz(i: Int): String = {
   if(i % 3 == 0) "Fizz"
   else           i.toString
 }
@@ -674,7 +678,7 @@ class FizzBuzzSpecifications(sut: Int => String) extends
 
 
 ```scala
-new FizzBuzzSpecifications(sillyFizzBuzz).check()
+new FizzBuzzSpecifications(fizz).check()
 // + FizzBuzz.validity: OK, passed 100 tests.
 // + FizzBuzz.invertibility: OK, passed 100 tests.
 // + FizzBuzz.stability: OK, passed 100 tests.
@@ -713,7 +717,7 @@ class FizzBuzzSpecifications(sut: Int => String) extends
 We're now detecting the flaw:
 
 ```scala
-new FizzBuzzSpecifications(sillyFizzBuzz).check()
+new FizzBuzzSpecifications(fizz).check()
 // + FizzBuzz.validity: OK, passed 100 tests.
 // + FizzBuzz.invertibility: OK, passed 100 tests.
 // ! FizzBuzz.stability: Gave up after only 0 passed tests. 501 tests were dis
@@ -740,8 +744,6 @@ class: center, middle
 ## Specifications as oracle
 
 We've seen that the easiest possible property was having an oracle.
-
---
 
 If you squint, aren't decision tables both specifications and oracle?
 
@@ -894,7 +896,7 @@ Can also be used to derive properties. For example, search.
 
 class: center, middle
 
-# Conclusions
+# In closing
 
 ---
 
@@ -920,7 +922,7 @@ PBT and MT do not need to know if a result is correct to work.
 
 Could we run them in production?
 
-* new _system sanity_ metric: `properties violated / properties evaluated`
+* new _sanity_ metric: `properties violated / properties evaluated`
 * rather than random inputs, _interesting_ inputs
 
 ---
