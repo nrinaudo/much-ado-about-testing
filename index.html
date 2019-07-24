@@ -588,7 +588,7 @@ More on metamorphic properties in a few slides.
 import org.scalacheck.Prop.BooleanOperators
 
 val propStableFizz = forAll { (i: Int) =>
- fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+  fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
 }
 ```
 
@@ -596,7 +596,7 @@ val propStableFizz = forAll { (i: Int) =>
 propStableFizz.check()
 // ! Falsified after 0 passed tests.
 // > ARG_0: -1
-// > ARG_0_ORIGINAL: -1810041971
+// > ARG_0_ORIGINAL: -1519695904
 ```
 
 ---
@@ -623,7 +623,7 @@ def fizzBuzz(i: Int): String = {
 
 ```scala
 val propStableFizz = forAll { (i: Int) =>
- fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+  fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
 }
 ```
 
@@ -874,7 +874,17 @@ class: center, middle
 
 ## Motivation
 
+Failing test cases are proof of flaw (either in the tests or the SUT)
 
+Successful test cases carry very little information
+
+What if we could make successful test cases useful?
+
+---
+
+## Metamorphic Property
+
+Given inputs `i1` and `i2` and their respective evaluations `o1` and `o2`, a metamorphic property is a couple of functions `(f, g)` such that if `f(i1, i2)`, then `g(e1, e2)`.
 
 ---
 
