@@ -275,8 +275,6 @@ class: center, middle
 
 Instead of running known scenarios, test on random data.
 
---
-
 .section[Problem] how do you validate that the evaluation of a random input is correct?
 
 ---
@@ -594,8 +592,9 @@ val propStableFizz = forAll { (i: Int) =>
 
 ```scala
 propStableFizz.check()
-// ! Falsified after 1 passed tests.
+// ! Falsified after 0 passed tests.
 // > ARG_0: -1
+// > ARG_0_ORIGINAL: -1174151750
 ```
 
 ---
@@ -867,11 +866,13 @@ Decision tables are:
 
 class: center, middle
 
-# Metamorphic Testing
+# Manual test case generation
 
 ---
 
-## Expensive
+## Hand-crafted test cases
+
+![Self](img/face-detect-1.jpg)
 
 .section[SUT] face detection ML model
 
@@ -879,41 +880,75 @@ class: center, middle
 
 ---
 
-## Motivating example .super[2]
+## Mutations
+
+.fleft[![Self](img/face-detect-1.jpg)]
+
+--
+
+.fright[![Self](img/face-detect-2.jpg)]
+
+--
+
+.fleft[![Self](img/face-detect-3.jpg)]
+
+--
+
+.fright[![Self](img/face-detect-4.jpg)]
+
+---
+
+## Free test cases!
 
 If you have an annotated image, you can:
-* rotate it
 * change its colour palette
-* swap it around...
+* flip it
+* rotate it
+* ...
 
 And still know what the output should be
 
 ---
 
-## Motivating example .super[3]
+## Free test cases! .super[2]
+
+All our test does is make sure bounding boxes match after transformation
+
+Do we really need to know the initial bounding box in advance?
+
+---
+
+## Free test cases! .super[3]
 
 If you have a *non annotated* image, you can:
-* rotate it
 * change its colour palette
-* swap it around...
+* flip it
+* rotate it
+* ...
 
 And still know what the output should be
 
+--
+
+This is the basis for _metamorphic testing_.
+
 ---
 
-## Genesis
+## Metamorphic Testing: genesis
 
-In software validation:
-* failing tests are proof of flaw (in SUT or in the test)
-* successful tests aren't proof of anything
+T. Y. Chen's though process (possibly):
 
-What if successful test cases could be made useful?
+> In software verification:
+> * failing tests are proof of flaw (in SUT or in the test)
+> * successful tests aren't proof of anything
+>
+> What if successful test cases could be made useful?
 
 ---
 
 ## Metamorphic Relation
 
-> A metamorphic relation of a given SUT is a pair of conditions such that if two inputs fulfill the first, then their evaluations must fulfill the second.
+> A metamorphic relation is a pair of conditions such that if two inputs fulfill the first, then their evaluations must fulfill the second.
 
 .section[Example] the shortest path between nodes `A` and `B` in a graph should have the same length as the shortest path between `B` and `A`
 
@@ -931,7 +966,7 @@ Metamorphic testing is testing software by:
 
 ## Case study: EMI
 
-.section[Idea] A program's output shouldn't change if you mutate dead code paths
+.section[Idea] a program's output shouldn't change if you mutate dead code paths
 
 .section[Results]
 * 79 new unique gcc bugs

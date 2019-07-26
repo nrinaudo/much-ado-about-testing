@@ -116,3 +116,11 @@ th:empty, td:empty {
     padding:    0;
     width:      4px;
 }
+
+.fright {
+    float: right;
+}
+
+.fleft {
+    float: left;
+}
