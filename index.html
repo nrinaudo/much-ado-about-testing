@@ -562,7 +562,7 @@ Mutable systems, where precise assertions are hard.
 
 ---
 
-## Metamorphic property
+## Metamorphic relation
 
 Is there a couple of transformations such that applying one before the SUT and the other after doesn't change the outcome?
 
@@ -574,15 +574,15 @@ val propSorted = forAll { (is: List[Int]) =>
 
 ---
 
-## Metamorphic property - use cases
+## Metamorphic relation - use cases
 
 Searches - for example, should results be different for a different sort order?
 
-More on metamorphic properties in a few slides.
+More on metamorphic relations in a few slides.
 
 ---
 
-## Metamorphic property - FizzBuzz
+## Metamorphic relation - FizzBuzz
 
 ```scala
 import org.scalacheck.Prop.BooleanOperators
@@ -594,9 +594,8 @@ val propStableFizz = forAll { (i: Int) =>
 
 ```scala
 propStableFizz.check()
-// ! Falsified after 0 passed tests.
+// ! Falsified after 1 passed tests.
 // > ARG_0: -1
-// > ARG_0_ORIGINAL: -1519695904
 ```
 
 ---
@@ -619,7 +618,7 @@ def fizzBuzz(i: Int): String = {
 
 ---
 
-## Metamorphic property - FizzBuzz .super[2]
+## Metamorphic relation - FizzBuzz .super[2]
 
 ```scala
 val propStableFizz = forAll { (i: Int) =>
@@ -872,35 +871,90 @@ class: center, middle
 
 ---
 
-## Motivation
+## Expensive
 
-Failing test cases are proof of flaw (either in the tests or the SUT)
+.section[SUT] face detection ML model
 
-Successful test cases carry very little information
-
-What if we could make successful test cases useful?
+.section[Problem] test cases are hand-generated and expensive
 
 ---
 
-## Metamorphic Property
+## Motivating example .super[2]
 
-Given inputs `i1` and `i2` and their respective evaluations `o1` and `o2`, a metamorphic property is a couple of functions `(f, g)` such that if `f(i1, i2)`, then `g(e1, e2)`.
+If you have an annotated image, you can:
+* rotate it
+* change its colour palette
+* swap it around...
 
----
-
-MT!
-
----
-
-Hillel's example
+And still know what the output should be
 
 ---
 
-Equivalence Modulo Input
+## Motivating example .super[3]
+
+If you have a *non annotated* image, you can:
+* rotate it
+* change its colour palette
+* swap it around...
+
+And still know what the output should be
 
 ---
 
-Can also be used to derive properties. For example, search.
+## Genesis
+
+In software validation:
+* failing tests are proof of flaw (in SUT or in the test)
+* successful tests aren't proof of anything
+
+What if successful test cases could be made useful?
+
+---
+
+## Metamorphic Relation
+
+> A metamorphic relation of a given SUT is a pair of conditions such that if two inputs fulfill the first, then their evaluations must fulfill the second.
+
+.section[Example] the shortest path between nodes `A` and `B` in a graph should have the same length as the shortest path between `B` and `A`
+
+.section[Example] the faces detected in an image should be the same regardless of the colour palette
+
+---
+
+## Metamorphic Testing
+
+Metamorphic testing is testing software by:
+* generating inputs that fulfill a metamorphic relation
+* confirming that their outputs fulfill that metamorphic relation
+
+---
+
+## Case study: EMI
+
+.section[Idea] A program's output shouldn't change if you mutate dead code paths
+
+.section[Results]
+* 79 new unique gcc bugs
+* 68 new unique LLVM bugs
+
+---
+
+## Case study: Search APIs
+
+.section[Idea] refining a search query should yield a subset of its original results
+
+.section[Results]
+* 3 new unique Spotify bugs
+* 8 new unique YouTube bugs
+
+---
+
+## Conclusions
+
+Metamorphic Testing is:
+* a lot simpler than the name would suggest
+* good for test case generation when PBT falls short
+* good for solving the oracle problem
 
 ---
 
