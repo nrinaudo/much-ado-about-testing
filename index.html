@@ -460,10 +460,8 @@ Does the SUT have an inverse?
 
 
 ```scala
-import io.circe._, io.circe.syntax._
-
-val propEncodeDecode = forAll { (i: Int) =>
-  i.asJson.as[Int] == Right(i)
+val propInverseSum = forAll { (i: Int, j: Int) =>
+  (i + j) - j == i
 }
 ```
 
@@ -503,7 +501,7 @@ propInvertibleFizzBuzz.check()
 Is the SUT idempotent?
 
 ```scala
-val propSorted = forAll { (is: List[Int]) =>
+val propSortedIdempotent = forAll { (is: List[Int]) =>
   is.sorted == is.sorted.sorted
 }
 ```
@@ -565,7 +563,7 @@ Mutable systems, where precise assertions are hard.
 Is there a couple of transformations such that applying one before the SUT and the other after doesn't change the outcome?
 
 ```scala
-val propSorted = forAll { (is: List[Int]) =>
+val propSortedReverse = forAll { (is: List[Int]) =>
   is.map(x => -x).sorted.reverse == is.sorted.map(x => -x)
 }
 ```
@@ -592,9 +590,8 @@ val propStableFizz = forAll { (i: Int) =>
 
 ```scala
 propStableFizz.check()
-// ! Falsified after 0 passed tests.
+// ! Falsified after 3 passed tests.
 // > ARG_0: -1
-// > ARG_0_ORIGINAL: -1174151750
 ```
 
 ---
@@ -729,7 +726,7 @@ new FizzBuzzSpecifications(fizz).check()
 Property-based testing is:
 * pretty amazing at the test case generation problem
 * fairly good at the oracle problem
-* require some practice to get the hang of
+* hard to get the hang of, at first
 
 ---
 
@@ -936,7 +933,7 @@ This is the basis for _metamorphic testing_.
 
 ## Metamorphic Testing: genesis
 
-T. Y. Chen's though process (possibly):
+T. Y. Chen's though process (probably):
 
 > In software verification:
 > * failing tests are proof of flaw (in SUT or in the test)
@@ -999,6 +996,17 @@ class: center, middle
 
 ---
 
+## Where to go from here?
+
+PBT and MT do not need to know if a result is correct to work.
+
+Could we run them in production?
+
+* new _sanity_ metric: `properties violated / properties evaluated`
+* rather than random inputs, _interesting_ inputs
+
+---
+
 ## Sources: Property based testing
 * [Scott Wlaschin](https://twitter.com/ScottWlaschin) - [Choosing properties for property-based testing](https://fsharpforfunandprofit.com/posts/property-based-testing-2/)
 * [John Hughes](https://twitter.com/rjmh) - [Testing the Hard Stuff and Staying Sane](https://www.youtube.com/watch?v=zi0rHwfiX1Q)
@@ -1012,17 +1020,6 @@ class: center, middle
 * [Metamorphic testing: A review of challenges and opportunities](http://www.cs.hku.hk/research/techreps/document/TR-2017-04.pdf)
 * [Compiler Validation via Equivalence Modulo Input](http://vuminhle.com/pdf/pldi14-emi.pdf)
 * [Metamorphic testing of RESTfull web apis](http://www.lsi.us.es/~segura/files/papers/segura17-tse.pdf)
-
----
-
-## Where to go from here?
-
-PBT and MT do not need to know if a result is correct to work.
-
-Could we run them in production?
-
-* new _sanity_ metric: `properties violated / properties evaluated`
-* rather than random inputs, _interesting_ inputs
 
 ---
 
