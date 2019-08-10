@@ -564,7 +564,10 @@ Is there a couple of transformations such that applying one before the SUT and t
 
 ```scala
 val propSortedReverse = forAll { (is: List[Int]) =>
-  is.map(x => -x).sorted.reverse == is.sorted.map(x => -x)
+  is.sorted ==
+  is.map(x => -x)
+    .sorted
+    .reverse.map(x => -x)
 }
 ```
 
@@ -590,8 +593,9 @@ val propStableFizz = forAll { (i: Int) =>
 
 ```scala
 propStableFizz.check()
-// ! Falsified after 3 passed tests.
+// ! Falsified after 2 passed tests.
 // > ARG_0: -1
+// > ARG_0_ORIGINAL: -770442377
 ```
 
 ---
