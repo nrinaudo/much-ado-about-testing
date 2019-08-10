@@ -593,9 +593,8 @@ val propStableFizz = forAll { (i: Int) =>
 
 ```scala
 propStableFizz.check()
-// ! Falsified after 2 passed tests.
+// ! Falsified after 0 passed tests.
 // > ARG_0: -1
-// > ARG_0_ORIGINAL: -770442377
 ```
 
 ---
@@ -949,7 +948,7 @@ T. Y. Chen's though process (probably):
 
 ## Metamorphic Relation
 
-> A metamorphic relation is a pair of conditions such that if two inputs fulfill the first, then their evaluations must fulfill the second.
+> A metamorphic relation is a pair of conditions such that if two inputs fulfill the first, then the result of their evaluations must fulfill the second.
 
 .section[Example] the shortest path between nodes `A` and `B` in a graph should have the same length as the shortest path between `B` and `A`
 
