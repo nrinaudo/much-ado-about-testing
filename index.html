@@ -307,7 +307,7 @@ Most people come to PBT after years of experience with example-based testing.
 
 As a result, they fall into 2 main traps and come to the conclusion that PBT is overrated.
 
-Notable examples :
+.section[Notable examples]
 * [Dick Wall](https://twitter.com/dickwall), during an episode of Scalawags
 * Me, for many, many years
 
@@ -418,7 +418,7 @@ Not really applicable for our `fizzBuzz` example.
 
 ## Validity
 
-Is is it easy to check whether the SUT's output is valid (but not necessarily correct)?
+Is it easy to check whether the SUT's output is valid (but not necessarily correct)?
 
 ```scala
 val propValidAbs = forAll { (i: Int) =>
@@ -602,7 +602,10 @@ propStableFizz.check()
 ## Fixing `fizzBuzz`
 
 ```scala
+// def div3(i: Int): Boolean = !(i % 3 > 0)
 def div3(i: Int): Boolean = i % 3 == 0
+
+// def div5(i: Int): Boolean = !(i % 5 > 0)
 def div5(i: Int): Boolean = i % 5 == 0
 
 def fizzBuzz(i: Int): String = {
@@ -936,7 +939,7 @@ This is the basis for _metamorphic testing_.
 
 ## Metamorphic Testing: genesis
 
-T. Y. Chen's though process (probably):
+T. Y. Chen's thought process (probably):
 
 > In software verification:
 > * failing tests are proof of flaw (in SUT or in the test)
@@ -1022,7 +1025,7 @@ Could we run them in production?
 * [Hillel Wayne](https://twitter.com/hillelogram) - [Metamorphic Testing](https://www.hillelwayne.com/post/metamorphic-testing/)
 * [Metamorphic testing: A review of challenges and opportunities](http://www.cs.hku.hk/research/techreps/document/TR-2017-04.pdf)
 * [Compiler Validation via Equivalence Modulo Input](http://vuminhle.com/pdf/pldi14-emi.pdf)
-* [Metamorphic testing of RESTfull web apis](http://www.lsi.us.es/~segura/files/papers/segura17-tse.pdf)
+* [Metamorphic testing of RESTful web apis](http://www.lsi.us.es/~segura/files/papers/segura17-tse.pdf)
 
 ---
 
