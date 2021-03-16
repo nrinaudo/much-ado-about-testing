@@ -17,63 +17,167 @@ Nicolas Rinaudo • [@NicolasRinaudo] • [Besedo]
 
 class: center, middle
 
-# Software Quality Control
-
----
-
-## Verification & Validation
-
-According to [Barry Boehm](https://en.wikipedia.org/wiki/Barry_Boehm):
-
-* _Verification_: are we building the product right?
-* _Validation_: are we building the right product?
-
-This talk is about verification only.
-
----
-
-## Verification
-
-Two kinds of software verification:
-* _static_: doesn't involve running the software (formal verification, linting...)
-* _dynamic_: running the software and analysing its behaviour (tests)
-
-This talk is about dynamic verification only.
+# Software testing
 
 ---
 
 ## Testing
 
-Tests are split into 3 phases:
-* test input creation (_test case generation problem_)
-* program evaluation
-* output analysis (_oracle problem_)
+.center[![Testing](img/testing.svg)]
 
 ---
 
-class: center, middle
+## Testing
 
-# System Under Test
-
----
-
-## FizzBuzz
-
-Write a program that prints a given range of numbers.
-
-But for multiples of three print `Fizz` instead of the number and for the multiples of five print `Buzz`.
+.center[![Testing](img/testing_input.svg)]
 
 ---
 
-## Implementation
+## Testing
+
+.center[![Testing](img/testing_evaluation.svg)]
+
+---
+
+## Testing
+
+.center[![Testing](img/testing_analysis.svg)]
+
+---
+
+## Testing
+
+.center[![Testing](img/testing_evaluation.svg)]
+
+---
+
+## System Under Test
+
+> Write a program that, given a number, prints it.
+>
+> But for multiples of three print `Fizz` instead of the number and for the multiples of  five print `Buzz`.
 
 ```scala
-def div3(i: Int): Boolean = !(i % 3 > 0)
-def div5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
 
 def fizzBuzz(i: Int): String = {
-  if(div3(i))      "Fizz"
-  else if(div5(i)) "Buzz"
+  if(mult3(i))      "Fizz"
+  else if(mult5(i)) "Buzz"
+  else             i.toString
+}
+```
+
+---
+
+## System Under Test
+
+> Write a program that, .highlight[given a number], prints it.
+>
+> But for multiples of three print `Fizz` instead of the number and for the multiples of five print `Buzz`.
+
+```scala
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(`i: Int`): String = {
+  if(mult3(i))      "Fizz"
+  else if(mult5(i)) "Buzz"
+  else             i.toString
+}
+```
+
+---
+
+## System Under Test
+
+> Write a program that, given a number, .highlight[prints it].
+>
+> But for multiples of three print `Fizz` instead of the number and for the multiples of five print `Buzz`.
+
+```scala
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i))      "Fizz"
+  else if(mult5(i)) "Buzz"
+  else             `i.toString`
+}
+```
+
+---
+
+## System Under Test
+
+> Write a program that, given a number, prints it.
+>
+> But for .highlight[multiples of three] print `Fizz` instead of the number and for the multiples of five print `Buzz`.
+
+```scala
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+  if(`mult3(i)`)      "Fizz"
+  else if(mult5(i)) "Buzz"
+  else             i.toString
+}
+```
+
+---
+
+## System Under Test
+
+> Write a program that, given a number, prints it.
+>
+> But for multiples of three print .highlight[`Fizz`] instead of the number and for the multiples of five print `Buzz`.
+
+```scala
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i))      `"Fizz"`
+  else if(mult5(i)) "Buzz"
+  else             i.toString
+}
+```
+
+---
+
+## System Under Test
+
+> Write a program that, given a number, prints it.
+>
+> But for multiples of three print `Fizz` instead of the number and for the .highlight[multiples of five] print `Buzz`.
+
+```scala
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i))      "Fizz"
+  else if(`mult5(i)`) "Buzz"
+  else             i.toString
+}
+```
+
+---
+
+## System Under Test
+
+> Write a program that, given a number, prints it.
+>
+> But for multiples of three print `Fizz` instead of the number and for the multiples of five print .highlight[`Buzz`].
+
+```scala
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i))      "Fizz"
+  else if(mult5(i)) `"Buzz"`
   else             i.toString
 }
 ```
@@ -86,19 +190,97 @@ class: center, middle
 
 ---
 
-## Concept
+## Overview
 
-Known scenarios are played, making sure the output is the expected one.
+.center[![Testing](img/testing.svg)]
+
+---
+
+## Overview
+
+.center[![Testing](img/testing_input.svg)]
+
+---
+
+## Overview
+
+.center[![Testing](img/ebt_input.svg)]
+
+---
+
+## Overview
+
+.center[![Testing](img/ebt_evaluation.svg)]
+
+---
+
+## Overview
+
+.center[![Testing](img/ebt_output.svg)]
+
+---
+
+## Overview
+
+.center[![Testing](img/ebt_output_2.svg)]
+
+---
+
+## Overview
+
+
+
+
+.center[![Testing](img/ebt.svg)]
 
 ```scala
-import org.scalatest.FunSuite
-
-class SortSuite extends FunSuite {
-  test("List.sorted sorts numbers") {
+class ListTests extends AnyFunSuite {
+  test("List(3, 2, 1) should sort to List(1, 2, 3)") {
     assert(List(3, 2, 1).sorted == List(1, 2, 3))
   }
 }
+```
 
+---
+
+## Overview
+
+.center[![Testing](img/ebt_input_focus.svg)]
+
+```scala
+class ListTests extends AnyFunSuite {
+  test("List(3, 2, 1) should sort to List(1, 2, 3)") {
+    assert(`List(3, 2, 1)`.sorted == List(1, 2, 3))
+  }
+}
+```
+
+---
+
+## Overview
+
+.center[![Testing](img/ebt_eval_focus.svg)]
+
+```scala
+class ListTests extends AnyFunSuite {
+  test("List(3, 2, 1) should sort to List(1, 2, 3)") {
+    assert(List(3, 2, 1)`.sorted` == List(1, 2, 3))
+  }
+}
+```
+
+---
+
+## Overview
+
+.center[![Testing](img/ebt_output_focus.svg)]
+
+```scala
+class ListTests extends AnyFunSuite {
+  test("List(3, 2, 1) should sort to List(1, 2, 3)") {
+    assert(List(3, 2, 1).sorted == `List(1, 2, 3)`)
+  }
+}
 ```
 
 ---
@@ -106,16 +288,16 @@ class SortSuite extends FunSuite {
 ## FizzBuzz test suite
 
 ```scala
-class FizzBuzzSuite extends FunSuite {
-  test("n divisible by 3 outputs Fizz") {
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
 
-  test("n divisible by 5 outputs Buzz") {
+  test("n multiple of 5 outputs Buzz") {
     assert(fizzBuzz(5) == "Buzz")
   }
 
-  test("n divisible by neither 3 or 5 outputs n") {
+  test("n multiple of neither 3 or 5 outputs n") {
     assert(fizzBuzz(7) == "7")
   }
 }
@@ -123,13 +305,170 @@ class FizzBuzzSuite extends FunSuite {
 
 ---
 
-## FizzBuzz test suite .super[2]
+## FizzBuzz test suite
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test(`"n multiple of 3 outputs Fizz"`) {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test(`"n multiple of 5 outputs Buzz"`) {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test(`"n multiple of neither 3 or 5 outputs n"`) {
+    assert(fizzBuzz(7) == "7")
+  }
+}
+```
+
+---
+
+## FizzBuzz test suite
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(`3`) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(`5`) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(`7`) == "7")
+  }
+}
+```
+
+---
+
+## FizzBuzz test suite
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(`fizzBuzz`(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(`fizzBuzz`(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(`fizzBuzz`(7) == "7")
+  }
+}
+```
+
+---
+
+## FizzBuzz test suite
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == `"Fizz"`)
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == `"Buzz"`)
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == `"7"`)
+  }
+}
+```
+
+---
+
+## FizzBuzz test suite
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test(`"n multiple of 3 outputs Fizz"`) {
+    assert(`fizzBuzz(3) == "Fizz"`)
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+}
+```
+
+---
+
+## FizzBuzz test suite
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test(`"n multiple of 5 outputs Buzz"`) {
+    assert(`fizzBuzz(5) == "Buzz"`)
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+}
+```
+
+---
+
+## FizzBuzz test suite
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test(`"n multiple of neither 3 or 5 outputs n"`) {
+    assert(`fizzBuzz(7) == "7"`)
+  }
+}
+```
+
+---
+
+## FizzBuzz test suite
+
+```scala
+new FizzBuzzSuite().execute()
+```
+
+---
+
+## FizzBuzz test suite
+
 ```scala
 new FizzBuzzSuite().execute()
 // FizzBuzzSuite:
-// - n divisible by 3 outputs Fizz
-// - n divisible by 5 outputs Buzz
-// - n divisible by neither 3 or 5 outputs n
+// - n multiple of 3 outputs Fizz
+// - n multiple of 5 outputs Buzz
+// - n multiple of neither 3 or 5 outputs n
+```
+
+---
+
+## Client Demo
+
+```scala
+fizzBuzz(15)
 ```
 
 ---
@@ -141,20 +480,13 @@ fizzBuzz(15)
 // res1: String = Fizz
 ```
 
-❌ _Expected `FizzBuzz`_
+--
 
----
-
-## Why did we fail?
-
-* Lack of clear specifications
-* Tester bias - we only tested what we implemented
+.foreground[![Fail](img/fail.png)]
 
 ---
 
 ## Clarifying specifications
-
-Decision tables remove the specification ambiguity:
 
  n % 3 | n % 5 || Output
 -------|-------||----------
@@ -163,46 +495,315 @@ Decision tables remove the specification ambiguity:
  F     | T     || Buzz
  F     | F     || n
 
-* `n % 3` and `n % 5` are _conditions_
-* `Output` is an _outcome_
+---
+
+## Clarifying specifications
+
+ .highlight[n % 3] | n % 5 || Output
+-------|-------||----------
+ T     | T     || FizzBuzz
+ T     | F     || Fizz
+ F     | T     || Buzz
+ F     | F     || n
 
 ---
 
-## Fixing the implementation
+## Clarifying specifications
+
+ n % 3 | .highlight[n % 5] || Output
+-------|-------||----------
+ T     | T     || FizzBuzz
+ T     | F     || Fizz
+ F     | T     || Buzz
+ F     | F     || n
+
+---
+
+## Clarifying specifications
+
+ n % 3 | n % 5 || .highlight[Output]
+-------|-------||----------
+ T     | T     || FizzBuzz
+ T     | F     || Fizz
+ F     | T     || Buzz
+ F     | F     || n
+
+---
+
+## Clarifying specifications
+
+ n % 3 | n % 5 || Output
+-------|-------||----------
+ .highlight[T]     | T     || FizzBuzz
+ T     | F     || Fizz
+ F     | T     || Buzz
+ F     | F     || n
+
+---
+
+## Clarifying specifications
+
+ n % 3 | n % 5 || Output
+-------|-------||----------
+ T     | .highlight[T]     || FizzBuzz
+ T     | F     || Fizz
+ F     | T     || Buzz
+ F     | F     || n
+
+---
+
+## Clarifying specifications
+
+ n % 3 | n % 5 || Output
+-------|-------||----------
+ T     | T     || .highlight[FizzBuzz]
+ T     | F     || Fizz
+ F     | T     || Buzz
+ F     | F     || n
+
+---
+
+## Fixing FizzBuzz
 
 ```scala
-def div3(i: Int): Boolean = !(i % 3 > 0)
-def div5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
 
 def fizzBuzz(i: Int): String = {
-  if(div3(i)) {
-    if(div5(i)) "FizzBuzz"
-    else        "Fizz"
-  }
-  else if(div5(i)) "Buzz"
+  if(mult3(i))      "Fizz"
+  else if(mult5(i)) "Buzz"
   else             i.toString
 }
 ```
 
 ---
 
-## Fixing the tests
+## Fixing FizzBuzz
+
+.diff-rm[
+```scala
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+* if(mult3(i))`      "Fizz"`
+  else if(mult5(i)) "Buzz"
+  else             i.toString
+}
+```
+]
+
+---
+
+## Fixing FizzBuzz
+
+.diff-add[
+```scala
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+* if(mult3(i)) `{`
+* `  if(mult5(i)) "FizzBuzz"`
+* `  else         "Fizz"`
+* `}`
+  else if(mult5(i)) "Buzz"
+  else             i.toString
+}
+```
+]
+
+---
+
+## Fixing FizzBuzz
 
 ```scala
-class FizzBuzzSuite extends FunSuite {
-  test("n divisible by 3 outputs Fizz") {
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+  if(`mult3(i)`) {
+    if(`mult5(i)`) `"FizzBuzz"`
+    else         "Fizz"
+  }
+  else if(mult5(i)) "Buzz"
+  else             i.toString
+}
+```
+
+---
+
+## Fixing FizzBuzz
+
+```scala
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+  if(`mult3(i)`) {
+    if(mult5(i)) "FizzBuzz"
+    else         `"Fizz"`
+  }
+  else if(mult5(i)) "Buzz"
+  else             i.toString
+}
+```
+
+---
+
+## Fixing FizzBuzz
+
+```scala
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+    else         "Fizz"
+  }
+  else if(mult5(i)) "Buzz"
+  else             i.toString
+}
+```
+
+---
+
+## Fixing tests
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
 
-  test("n divisible by 5 outputs Buzz") {
+  test("n multiple of 5 outputs Buzz") {
     assert(fizzBuzz(5) == "Buzz")
   }
 
-  test("n divisible by neither 3 or 5 outputs n") {
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+}
+```
+
+---
+
+## Fixing tests
+
+.diff-add[
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+*
+* `test("n multiple of 3 and 5 outputs FizzBuzz") {`
+* `  assert(fizzBuzz(15) == "FizzBuzz")`
+* `}`
+}
+```
+]
+
+---
+
+## Fixing tests
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
     assert(fizzBuzz(7) == "7")
   }
 
-  test("n divisible by 3 and 5 outputs FizzBuzz") {
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(`15`) == "FizzBuzz")
+  }
+}
+```
+
+---
+
+## Fixing tests
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(`fizzBuzz`(15) == "FizzBuzz")
+  }
+}
+```
+
+---
+
+## Fixing tests
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == `"FizzBuzz"`)
+  }
+}
+```
+
+---
+
+## Fixing tests
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
 }
@@ -210,15 +811,31 @@ class FizzBuzzSuite extends FunSuite {
 
 ---
 
-## Fixing the tests .super[2]
+## Fixing tests
+
+```scala
+new FizzBuzzSuite().execute()
+```
+
+---
+
+## Fixing tests
 
 ```scala
 new FizzBuzzSuite().execute()
 // FizzBuzzSuite:
-// - n divisible by 3 outputs Fizz
-// - n divisible by 5 outputs Buzz
-// - n divisible by neither 3 or 5 outputs n
-// - n divisible by 3 and 5 outputs FizzBuzz
+// - n multiple of 3 outputs Fizz
+// - n multiple of 5 outputs Buzz
+// - n multiple of neither 3 or 5 outputs n
+// - n multiple of 3 and 5 outputs FizzBuzz
+```
+
+---
+
+## Client Demo
+
+```scala
+fizzBuzz(-3)
 ```
 
 ---
@@ -230,38 +847,27 @@ fizzBuzz(-3)
 // res3: String = FizzBuzz
 ```
 
-❌ _Expected `Fizz`_
+--
+
+.foreground[![Fail](img/fail.png)]
 
 ---
 
-## Failure 1: bias
-
-Example-based tests are subject to their author's bias
-
-Nowhere does this say our numbers can't be negative:
-
-> Write a program that prints a given range of numbers.
-> But for multiples of three print `Fizz` instead of the number and for the multiples of five print `Buzz`.
-
----
-
-## Failure 2: insufficient tests
-
-`fizzBuzz`'s domain contains 4 294 967 295 elements.
-
-We have tested *4*.
-
-If we wrote one test every 5 seconds, it'd take approximately 27 years to write complete tests for `fizzBuzz`.
-
----
-
-## Conclusions
+## Key takeaways
 
 Example-based testing is:
 
-* great at the oracle problem
-* about as bad as it gets for test case generation
-* clearly insufficient
+--
+
+* very good at the _oracle problem_.
+
+--
+
+* very bad at the _test case generation problem_.
+
+--
+
+* a little bit discouraging...
 
 ---
 
@@ -271,66 +877,198 @@ class: center, middle
 
 ---
 
-## Concept
+## Overview
 
-Instead of running known scenarios, test on random data.
-
-.section[Problem] how do you validate that the evaluation of a random input is correct?
+.center[![Testing](img/ebt.svg)]
 
 ---
 
-## Property Based Testing
+## Overview
 
-Test that the SUT's output doesn't violate important properties.
+.center[![Testing](img/generative_input.svg)]
+
+---
+
+## Overview
+
+.center[![Testing](img/generative_input_2.svg)]
+
+---
+
+## Overview
+
+.center[![Testing](img/generative_evaluation.svg)]
+
+---
+
+## Overview
+
+.center[![Testing](img/generative_analysis.svg)]
+
+---
+
+## Overview
+
+.center[![Testing](img/generative_analysis_2.svg)]
+
+---
+
+## Property-Based Testing
+
+.center[![Testing](img/pbt_analysis.svg)]
+
+---
+
+## Property-Based Testing
+
+
+
+
+.center[![Testing](img/pbt.svg)]
 
 ```scala
-import org.scalacheck.Prop.forAll
-
-val propAssociativity = forAll { (i: Int, j: Int, k: Int) =>
-  i + (j + k) == (i + j) + k
-}
-
-val propCommutativity = forAll { (i: Int, j: Int) =>
-  i + j == j + i
-}
-
-val propIdentity = forAll { (i: Int) =>
-  i + 0 == i
+forAll { (is: List[Int]) =>
+  is.sorted.diff(is).isEmpty
 }
 ```
 
 ---
 
-## Problem with PBT
+## Property-Based Testing
 
-Most people come to PBT after years of experience with example-based testing.
+.center[![Testing](img/pbt_input_focus.svg)]
 
-As a result, they fall into 2 main traps and come to the conclusion that PBT is overrated.
-
-.section[Notable examples]
-* [Dick Wall](https://twitter.com/dickwall), during an episode of Scalawags
-* Me, for many, many years
+```scala
+&#x200B`forAll { (is: List[Int])` =>
+  is.sorted.diff(is).isEmpty
+}
+```
 
 ---
 
-## Trap 1: rewriting the SUT
+## Property-Based Testing
+
+.center[![Testing](img/pbt_eval_focus.svg)]
+
+```scala
+forAll { (is: List[Int]) =>
+  `is.sorted`.diff(is).isEmpty
+}
+```
+
+---
+
+## Property-Based Testing
+
+.center[![Testing](img/pbt_output_focus.svg)]
+
+```scala
+forAll { (is: List[Int]) =>
+  is.sorted.`diff(is).isEmpty`
+}
+```
+
+---
+
+## Property-Based Testing
 
 ```scala
 val propFizzBuzz = forAll { (i: Int) =>
-  if(div3(i)) {
-    if(div5(i)) fizzBuzz(i) == "FizzBuzz"
-    else        fizzBuzz(i) == "Fizz"
+  if(mult3(i)) {
+    if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
+    else         fizzBuzz(i) == "Fizz"
   }
-  else if(div5(i)) fizzBuzz(i) == "Buzz"
-  else             fizzBuzz(i) == i.toString
+  else if(mult5(i)) fizzBuzz(i) == "Buzz"
+  else              fizzBuzz(i) == i.toString
 }
 ```
 
-Likely to reproduce the bad behaviours we implemented the first time around.
+---
+
+## Property-Based Testing
+
+```scala
+val propFizzBuzz = `forAll { (i: Int)` =>
+  if(mult3(i)) {
+    if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
+    else         fizzBuzz(i) == "Fizz"
+  }
+  else if(mult5(i)) fizzBuzz(i) == "Buzz"
+  else              fizzBuzz(i) == i.toString
+}
+```
 
 ---
 
-## Trap 1: rewriting the SUT .super[2]
+## Property-Based Testing
+
+```scala
+val propFizzBuzz = forAll { (i: Int) =>
+  if(`mult3(i)`) {
+    if(`mult5(i)`) fizzBuzz(i) == `"FizzBuzz"`
+    else         fizzBuzz(i) == "Fizz"
+  }
+  else if(mult5(i)) fizzBuzz(i) == "Buzz"
+  else              fizzBuzz(i) == i.toString
+}
+```
+
+---
+
+## Property-Based Testing
+
+```scala
+val propFizzBuzz = forAll { (i: Int) =>
+  if(`mult3(i)`) {
+    if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
+    else         fizzBuzz(i) == `"Fizz"`
+  }
+  else if(mult5(i)) fizzBuzz(i) == "Buzz"
+  else              fizzBuzz(i) == i.toString
+}
+```
+
+---
+
+## Property-Based Testing
+
+```scala
+val propFizzBuzz = forAll { (i: Int) =>
+  if(mult3(i)) {
+    if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
+    else         fizzBuzz(i) == "Fizz"
+  }
+  else if(`mult5(i)`) fizzBuzz(i) == `"Buzz"`
+  else              fizzBuzz(i) == i.toString
+}
+```
+
+---
+
+## Property-Based Testing
+
+```scala
+val propFizzBuzz = forAll { (i: Int) =>
+  if(mult3(i)) {
+    if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
+    else         fizzBuzz(i) == "Fizz"
+  }
+  else if(mult5(i)) fizzBuzz(i) == "Buzz"
+  else              fizzBuzz(i) == `i.toString`
+}
+```
+
+---
+
+## Property-Based Testing
+
+```scala
+propFizzBuzz.check()
+```
+
+---
+
+## Property-Based Testing
 
 ```scala
 propFizzBuzz.check()
@@ -339,113 +1077,319 @@ propFizzBuzz.check()
 
 ---
 
-## Trap 2: forcing an oracle
+## Property-Based Testing
 
 ```scala
-import org.scalacheck._, Arbitrary.arbitrary
-
-case class FizzBuzzTestCase(input: Int, expected: String)
-
-implicit val arbFb: Arbitrary[FizzBuzzTestCase] = Arbitrary(
-  arbitrary[Int].map { i =>
-    FizzBuzzTestCase(
-      i,
-      if(div3(i)) {
-        if(div5(i)) "FizzBuzz"
-        else        "Fizz"
-      }
-      else if(div5(i)) "Buzz"
-      else             i.toString
-    )
-  }
-)
-```
-
----
-
-## Trap 2: forcing an oracle .super[2]
-
-```scala
-val propFizzBuzz = forAll { (test: FizzBuzzTestCase) =>
-  fizzBuzz(test.input) == test.expected
+val propFizzBuzz = forAll { (i: Int) =>
+* if(mult3(i)) {
+*   if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
+*   else         fizzBuzz(i) == "Fizz"
+* }
+* else if(mult5(i)) fizzBuzz(i) == "Buzz"
+* else              fizzBuzz(i) == i.toString
 }
 ```
-
-```scala
-propFizzBuzz.check()
-// + OK, passed 100 tests.
-```
-
----
-
-## Strategies for identifying properties
-
-Very often, SUTs will have properties that fall in a set of known categories.
-
-Considering each category carefully usually leads to some interesting insights and properties.
 
 ---
 
 ## Test oracle
 
-Do we have a correct but unsuitable implementation of the SUT?
+.center[![Oracle](img/oracle_noreference.svg)]
+
+---
+
+## Test oracle
+
+.center[![Oracle](img/oracle_reference.svg)]
+
+---
+
+## Test oracle
+
+.center[![Oracle](img/oracle_reference_eval.svg)]
+
+---
+
+## Test oracle
+
+.center[![Oracle](img/oracle_reference_property.svg)]
+
+---
+
+## Test oracle
+
+.center[![Oracle](img/oracle_reference_property_2.svg)]
+
+---
+
+## Test oracle
+
+.center[![Oracle](img/oracle_equality_2.svg)]
+
+---
+
+## Test oracle
+
+.center[![Oracle](img/oracle_equality.svg)]
+
+
+
 
 ```scala
-def mySort[A: Ordering](as: List[A]): List[A] = ???
-
-val propSorted = forAll { (is: List[Int]) =>
-  mySort(is) == is.sorted
+forAll { (is: List[Int]) =>
+  fastSort(is) == is.sorted
 }
 ```
 
 ---
 
-## Test oracle - use cases
+## Test oracle
 
-Code refactoring / optimisation: use the old implementation as an oracle to prevent regressions
+.center[![Oracle](img/oracle_input.svg)]
+
+```scala
+&#x200B`forAll { (is: List[Int])` =>
+  fastSort(is) == is.sorted
+}
+```
 
 ---
 
-## Test oracle - FizzBuzz
+## Test oracle
 
-Not really applicable for our `fizzBuzz` example.
+.center[![Oracle](img/oracle_evaluation.svg)]
+
+```scala
+forAll { (is: List[Int]) =>
+  `fastSort(is)` == is.sorted
+}
+```
+
+---
+
+## Test oracle
+
+.center[![Oracle](img/oracle_reference_focus.svg)]
+
+```scala
+forAll { (is: List[Int]) =>
+  fastSort(is) == `is.sorted`
+}
+```
+
+---
+
+## Test oracle
+
+.center[![Oracle](img/oracle_equality_2.svg)]
+
+```scala
+forAll { (is: List[Int]) =>
+  fastSort(is) `==` is.sorted
+}
+```
+
+---
+
+## Test oracle: use case
+
+.center[![Oracle](img/oracle_use_case_init.svg)]
+
+---
+
+## Test oracle: use case
+
+.center[![Oracle](img/oracle_use_case_to_test.svg)]
+
+---
+
+## Test oracle: use case
+
+.center[![Oracle](img/oracle_use_case_query.svg)]
+
+---
+
+## Test oracle: use case
+
+.center[![Oracle](img/oracle_use_case_results.svg)]
+
+---
+
+## Test oracle: use case
+
+.center[![Oracle](img/oracle_use_case_equal.svg)]
+
+---
+
+## Test oracle: use case
+
+.center[![Oracle](img/oracle_use_case.svg)]
+
+---
+
+## Test oracle: use case
+
+.center[![Oracle](img/oracle_use_case_diff.svg)]
 
 --
 
-(Or is it?)
+.foreground[![Fail](img/fail.png)]
+
+---
+
+## Test oracle: fizzBuzz
+
+.center[![Fail](img/empty.svg)]
 
 ---
 
 ## Validity
 
-Is it easy to check whether the SUT's output is valid (but not necessarily correct)?
+.center[![Validity](img/pbt.svg)]
+
+---
+
+## Validity
+
+.center[![Validity](img/pbt_property.svg)]
+
+---
+
+## Validity
+
+.center[![Validity](img/validity_property.svg)]
+
+---
+
+## Validity
+
+.center[![Validity](img/validity.svg)]
 
 ```scala
-val propValidAbs = forAll { (i: Int) =>
+forAll { (i: Int) =>
   math.abs(i) >= 0
 }
 ```
 
 ---
 
-## Validity - use cases
+## Validity
 
-Sanity check against simple mistakes.
+.center[![Validity](img/validity_input.svg)]
 
-Search results: do all results actually match the search query?
-
-Remember that errors are valid outputs too!
+```scala
+&#x200B`forAll { (i: Int)` =>
+  math.abs(i) >= 0
+}
+```
 
 ---
 
-## Validity - FizzBuzz
+## Validity
+
+.center[![Validity](img/validity_evaluation.svg)]
+
+```scala
+forAll { (i: Int) =>
+  `math.abs(i)` >= 0
+}
+```
+
+---
+
+## Validity
+
+.center[![Validity](img/validity_property.svg)]
+
+```scala
+forAll { (i: Int) =>
+  math.abs(i) `>= 0`
+}
+```
+
+---
+
+## Validity: use case
+
+.center[![Validity](img/spotify_validity_query.svg)]
+
+
+---
+
+## Validity: use case
+
+.center[![Validity](img/spotify_validity_search.svg)]
+
+---
+
+## Validity: use case
+
+.center[![Validity](img/spotify_validity.svg)]
+
+---
+
+## Validity: use case
+
+.center[![Validity](img/spotify_validity_error.svg)]
+
+--
+
+.foreground[![Fail](img/fail.png)]
+
+---
+
+## Validity: fizzBuzz
+
+
+
 
 ```scala
 val propValidFizzBuzz = forAll { (i: Int) =>
-  Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
-    .contains(fizzBuzz(i))
+  fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
 }
 ```
+
+---
+
+## Validity: fizzBuzz
+
+```scala
+val propValidFizzBuzz = `forAll { (i: Int)` =>
+  fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
+}
+```
+
+---
+
+## Validity: fizzBuzz
+
+```scala
+val propValidFizzBuzz = forAll { (i: Int) =>
+  `fizzBuzz(i)` in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
+}
+```
+
+---
+
+## Validity: fizzBuzz
+
+```scala
+val propValidFizzBuzz = forAll { (i: Int) =>
+  fizzBuzz(i) `in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")`
+}
+```
+
+---
+
+## Validity: fizzBuzz
+
+```scala
+propValidFizzBuzz.check()
+```
+
+---
+
+## Validity: fizzBuzz
 
 ```scala
 propValidFizzBuzz.check()
@@ -454,147 +1398,894 @@ propValidFizzBuzz.check()
 
 ---
 
-## Invertibility
+## Involutivity
 
-Does the SUT have an inverse?
+.center[![Involutivity](img/invertibility_before.svg)]
 
+---
+
+## Involutivity
+
+.center[![Involutivity](img/invertibility_inverse.svg)]
+
+---
+
+## Involutivity
+
+.center[![Involutivity](img/invertibility_evaluation.svg)]
+
+---
+
+## Involutivity
+
+.center[![Involutivity](img/invertibility_evaluation_2.svg)]
+
+---
+
+## Involutivity
+
+.center[![Involutivity](img/invertibility_evaluation_3.svg)]
+
+---
+
+## Involutivity
+
+.center[![Involutivity](img/invertibility_property.svg)]
+
+---
+
+## Involutivity
+
+.center[![Involutivity](img/invertibility_equality.svg)]
+
+---
+
+## Involutivity
+
+.center[![Involutivity](img/invertibility.svg)]
 
 ```scala
-val propInverseSum = forAll { (i: Int, j: Int) =>
-  (i + j) - j == i
+forAll { (i: Int) =>
+  i.toString.toInt == i
 }
 ```
 
 ---
 
-## Invertibility - use cases
+## Involutivity
 
-Encoder / decoder pairs
+.center[![Involutivity](img/invertibility_input.svg)]
 
-Persistence: creation *should* have deletion as an inverse
+```scala
+&#x200B`forAll { (i: Int)` =>
+  i.toString.toInt == i
+}
+```
 
 ---
 
-## Invertibility - FizzBuzz
+## Involutivity
 
-`fizzBuzz` has an inverse on part of its domain.
+.center[![Involutivity](img/invertibility_evaluation_focus.svg)]
+
+```scala
+forAll { (i: Int) =>
+  i.`toString`.toInt == i
+}
+```
+
+---
+
+## Involutivity
+
+.center[![Involutivity](img/invertibility_inverse_focus.svg)]
+
+```scala
+forAll { (i: Int) =>
+  i.toString.`toInt` == i
+}
+```
+
+---
+
+## Involutivity
+
+.center[![Involutivity](img/invertibility_equality_to_input.svg)]
+
+```scala
+forAll { (i: Int) =>
+  i.toString.toInt `== i`
+}
+```
+
+---
+
+## Involutivity: use case
+
+
+
+
+```scala
+Track(
+   artist  = "Iron Maiden",
+   year    = 1982,
+   album   = "The Number of the Beast",
+   name    = "Children of the Damned"
+)
+```
+
+---
+
+## Involutivity: use case
+
+```json
+{
+  "artist" : "Iron Maiden",
+  "year"   : 1982,
+  "album"  : "The Number of the Beast",
+  "name"   : "Children of the Damned"
+}
+```
+
+---
+
+## Involutivity: use case
+
+```scala
+Track(
+   artist  = "Iron Maiden",
+   year    = 1970,
+   album   = "The Number of the Beast",
+   name    = "Children of the Damned"
+)
+```
+
+---
+
+## Involutivity: use case
+
+```scala
+Track(
+   artist  = "Iron Maiden",
+   year    = `1970`,
+   album   = "The Number of the Beast",
+   name    = "Children of the Damned"
+)
+```
+
+--
+
+.foreground[![Fail](img/fail.png)]
+
+---
+
+## Involutivity: fizzBuzz
 
 ```scala
 val propInvertibleFizzBuzz = forAll { (i: Int) =>
-  div3(i) || div5(i) || (fizzBuzz(i).toInt == i)
+  !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
 }
 ```
+
+---
+
+## Involutivity: fizzBuzz
+
+```scala
+val propInvertibleFizzBuzz = `forAll { (i: Int)` =>
+  !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
+}
+```
+
+---
+
+## Involutivity: fizzBuzz
+
+```scala
+val propInvertibleFizzBuzz = forAll { (i: Int) =>
+  `!(mult3(i) || mult5(i))` ==> (fizzBuzz(i).toInt == i)
+}
+```
+
+---
+
+## Involutivity: fizzBuzz
+
+```scala
+val propInvertibleFizzBuzz = forAll { (i: Int) =>
+  !(mult3(i) || mult5(i)) `==>` (fizzBuzz(i).toInt == i)
+}
+```
+
+---
+
+## Involutivity: fizzBuzz
+
+```scala
+val propInvertibleFizzBuzz = forAll { (i: Int) =>
+  !(mult3(i) || mult5(i)) ==> (`fizzBuzz(i)`.toInt == i)
+}
+```
+---
+
+## Involutivity: fizzBuzz
+
+```scala
+val propInvertibleFizzBuzz = forAll { (i: Int) =>
+  !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).`toInt` == i)
+}
+```
+
+---
+
+## Involutivity: fizzBuzz
+
+```scala
+val propInvertibleFizzBuzz = forAll { (i: Int) =>
+  !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt `== i`)
+}
+```
+
+---
+
+## Involutivity: fizzBuzz
+
+```scala
+propInvertibleFizzBuzz.check()
+```
+
+---
+
+## Involutivity: fizzBuzz
 
 ```scala
 propInvertibleFizzBuzz.check()
 // + OK, passed 100 tests.
 ```
 
---
+---
 
-.section[Note] there are better ways of writing partial properties
+## Idempotence
+
+.center[![Idempotence](img/idempotence_before.svg)]
 
 ---
 
 ## Idempotence
 
-Is the SUT idempotent?
+.center[![Idempotence](img/idempotence_eval.svg)]
+
+
+---
+
+## Idempotence
+
+.center[![Idempotence](img/idempotence_eval_eval.svg)]
+
+---
+
+## Idempotence
+
+.center[![Idempotence](img/idempotence_property.svg)]
+
+---
+
+## Idempotence
+
+.center[![Idempotence](img/idempotence_equality.svg)]
+
+---
+
+## Idempotence
+
+.center[![Idempotence](img/idempotence.svg)]
 
 ```scala
-val propSortedIdempotent = forAll { (is: List[Int]) =>
+forAll { (is: List[Int]) =>
   is.sorted == is.sorted.sorted
 }
 ```
 
 ---
 
-## Idempotence - use cases
+## Idempotence
 
-A lot of CRUD operations are idempotent:
-* updating something to a given value
-* deleting a given object
-* reading a given object / field
-* ...
-
----
-
-## Idempotence - FizzBuzz
+.center[![Idempotence](img/idempotence_input.svg)]
 
 ```scala
-val propIdempotentFizzBuzz = forAll { (i: Int) =>
-  div3(i) ||
-  div5(i) ||
-  (fizzBuzz(fizzBuzz(i).toInt) == i.toString)
+&#x200B`forAll { (is: List[Int])` =>
+  is.sorted == is.sorted.sorted
 }
 ```
 
-That's just invertibility in disguise though.
+---
+
+## Idempotence
+
+.center[![Idempotence](img/idempotence_evaluation.svg)]
+
+```scala
+forAll { (is: List[Int]) =>
+  `is.sorted` == is.sorted.sorted
+}
+```
+
+---
+
+## Idempotence
+
+.center[![Idempotence](img/idempotence_eval_twice.svg)]
+
+```scala
+forAll { (is: List[Int]) =>
+  is.sorted == `is.sorted.sorted`
+}
+```
+
+---
+
+## Idempotence
+
+.center[![Idempotence](img/idempotence_equality.svg)]
+
+```scala
+forAll { (is: List[Int]) =>
+  is.sorted `==` is.sorted.sorted
+}
+```
+
+---
+
+## Idempotence: use case
+
+`artist`     | `year`     | `album`                 | `name`
+--------------|-------------|--------------------------------------------------
+Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
+Iron Maiden   | 1982        | The Number of the Beast | Invaders
+Iron Maiden   | 1982        | The Number of the Beast | Gangland
+
+
+```scala
+db.delete(
+  artist  = "Iron Maiden",
+  name    = "Gangland"
+)
+```
+
+---
+
+## Idempotence: use case
+
+`artist`     | `year`     | `album`                 | `name`
+--------------|-------------|--------------------------------------------------
+Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
+Iron Maiden   | 1982        | The Number of the Beast | Invaders
+&nbsp;      | &nbsp;        | &nbsp;                  | &nbsp;
+
+
+```scala
+db.delete(
+  artist  = "Iron Maiden",
+  name    = "Gangland"
+)
+```
+
+---
+
+## Idempotence: use case
+
+`artist`     | `year`     | `album`                 | `name`
+--------------|-------------|--------------------------------------------------
+Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
+&nbsp;      | &nbsp;        | &nbsp;                  | &nbsp;
+&nbsp;      | &nbsp;        | &nbsp;                  | &nbsp;
+
+```scala
+db.delete(
+  artist  = "Iron Maiden",
+  name    = "Gangland"
+)
+```
+
+--
+
+.foreground[![Fail](img/fail.png)]
+
+---
+
+## Idempotence: fizzBuzz
+
+.center[![Fail](img/empty.svg)]
 
 ---
 
 ## Invariance
 
-Does the SUT have a useful invariant?
+.center[![Invariance](img/pbt.svg)]
+
+---
+
+## Invariance
+
+.center[![Invariance](img/invariance_property.svg)]
+
+---
+
+## Invariance
+
+.center[![Invariance](img/invariance_invariant.svg)]
+
+---
+
+## Invariance
+
+.center[![Invariance](img/invariance.svg)]
 
 ```scala
-val propStableSorted = forAll { (is: List[Int]) =>
+forAll { (is: List[Int]) =>
   is.sorted.diff(is).isEmpty
 }
 ```
 
 ---
 
-## Invariance - use cases
+## Invariance
 
-Mutable systems, where precise assertions are hard.
+.center[![Invariance](img/invariance_input.svg)]
 
-[Real life example](https://www.youtube.com/watch?v=zi0rHwfiX1Q): _for all sequences of valid operations on a DB, the DB should never be corrupt_.
+```scala
+&#x200B`forAll { (is: List[Int])` =>
+  is.sorted.diff(is).isEmpty
+}
+```
 
 ---
 
-## Invariance - FizzBuzz
+## Invariance
 
-`fizzBuzz` doesn't really have a useful invariant that I can think of.
+.center[![Invariance](img/invariance_evaluation.svg)]
+
+```scala
+forAll { (is: List[Int]) =>
+  `is.sorted`.diff(is).isEmpty
+}
+```
+
+---
+
+## Invariance
+
+.center[![Invariance](img/invariance_invariant.svg)]
+
+```scala
+forAll { (is: List[Int]) =>
+  is.sorted.`diff(is).isEmpty`
+}
+```
+
+---
+
+## Invariance: use case
+
+`artist`     | `year`     | `album`                 | `name`
+--------------|-------------|--------------------------------------------------
+Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
+Iron Maiden   | 1982        | The Number of the Beast | Invaders
+
+---
+
+## Invariance: use case
+
+`artist`     | `year`     | `album`                 | `name`
+--------------|-------------|--------------------------------------------------
+İ̵̺͝ṛ̸̣͕̐͜o̴̢̎̿̓̌n̸̥͙̬̣̾́͛̾̌͘ͅ ̶̻͂M̷̗̣̠̠̎̀ȧ̸̛͔͇̐͘į̵̗̞̩̯̫̇̔̾̋̕͝d̵̟͓͆̅̇̋̐̚ͅe̷̯̪̙̼̩̩͐n̴̛̗̟͈͇̖̎̈̕   | 1̶͍͓̣̔̍́̒̒̅͘͜9̷̬̖̹̗̻͍̋͗̈́͠8̶͓̫̹̹̍2̸̨̲̝̏͌        | T̸̜̟͕̩̘̃̇͂͠h̶̦̓͋̇͝e̴̢̝̱̦͎͗͂̅̓͜ͅ ̶̝̬͠͝Ǹ̵̛̘̺̯̃̈́̍ù̷̱̖m̷̗͙̱̥͇̹͑̎̂͊̈́́̌b̸̢̦̪̽̅̂̑e̴̤̫̝̎̈́̇r̵͇̥̃̃̈͋̎̋͗͜ ̴͇̖̼͙̥̲̹̄̀ò̷͉̠̒f̶̲͇̳͛̔̃̽ ̸͍̉̚͝t̶̼̗̬̞̣̂͗͠͠͝h̴̰͒̾̑͐́͝ě̷̠̤͎̳͍̿͆́̕͝ ̸̭̬̊̐̾̍B̷̨̑é̴̡̟͔͖̏̃̔̓͝͠ą̷͉̫͇̫̈́̍̄́̃s̵͍̀̅͂͂͑̌ẗ̷̡̪̙͉͔́͑͗̇̋̑ | C̵͚̣̬̠̞̝̰̐̍̃h̷̥͛͂͋̚̚ï̴̤l̴͉̳̘̝͖̤͋͝d̴̢̲̫̯͙̺̮́̈́̕r̸̢̗̥͇̻͓͗̋̆́ȇ̸̲̉̆n̵̞̙͎̠̲͕̭̅̃̉̂ ̵͔̦͙̯̎͂̑̚͝õ̷̳̱͈̻̤̠̫̽̓̑̊͒f̸̦͋ͅ ̴̹̖̌ṫ̷̻̼͖͗̉̀̑h̴̹͎̰̬̟͊̍ͅe̸̤̱͛́͑ ̸̞̾͊͠D̵̢̜̬̳̍̑͛̄͆̀̅a̴͙̼̤̤͓͇̟̒̈́͋m̷̡̞̬̞̬͆̔̿n̴̨̢̖͉͓̥̂̄͘ë̴̬͚͎̭̭ͅd̸̢͕̼̗̠̂
+Ì̷̧̺͓͕̘͓̯̗̬͈̤̗̝̰͜ȓ̵̨̜̟̱̘̟̬̙̯̱͍̩̭̈̆̅̍̌̿́̈́́̚͜͝ͅo̴̡͗͗͛̑̿̾͒͂̎̆n̶͖̳͖͉̗͕̱͔̱̖̫̽̎͜ͅ ̸̢̨̛͇͚͔̘̦̘̱̮̖̿͑̒̉̽̎́̑̚̚̕M̷̜͖̊͗̅̆̏̈́͛̍̂̉́̃̚̕͝ả̷̡̛̫͔̳̞̻͔͉̜̍̅̈́̆͛͒̋̑͠i̵̢̡͎̯̙͇͍̇͊̃̓̚͜ͅd̸̟̤̼̲̈́̎̑͜ͅȩ̸͓̝̘̙͉̼̺̖̳͓̩̽̕ͅn̴͈̈̃̿͝   | 1̴̛͈̣̲̹͗̾͂͆̒̓͛̋͝9̵̨̢̨̻̲̬͕̲͔͖̘̀̿͝ͅ8̷̩̹̣̦̙͖͚̞̮́̉̑̓̉͑̈̾́͊̀̽͛͘̚2̵̡̘̠̼͙̅̇͛̽͒̀̄̾́̋̎͐͛͝        | T̷̢̟̙̥̬̰͎͚͈͕̬͆̋͊͛̂̓̈́͊̌̀͆̅̐͘͝ȟ̴̛̹̝͕͒͗è̵̛̩͇͎̤̪͍͎̳̺͔̖̝͖͊̏̀̽͝ ̵͕͇͌͌́͛̑̏͊̈̔̿̚̕͠͝N̴̤̥̖̠͍̻̤̣͈̩̞̾̍̉͐͋̇̈̈́̓̈́̚ͅu̵̲̹̙̦̞̎̏͗͋̌͐̈́͘͜͝͝m̶̡̙̖̳̖͇̻̰̼̝̖̎̈̈̄́̀̽̈́͘͜͝b̸̡̙͚̙̮̀̀̅́̔́̿̑͆̂͒̕è̷̫͕̗̰̌̈́̏͗͆͂r̶̡̢̨̛̛̙̖̲͔̥̲͕̈́̀͆̀̅̀̔̃̿̉̽͝͝ ̵̨͍͎͈̹̺̟̠̪̼̟̟͔̜̆̈́̈́o̶̡̧̯̠̜̤͊̒̀͆̒̀̋̅̽̕͜͝ͅf̸͓̥̻͚̘̹͈͉̱̆̅̊̿͑͛́͆̽̋͘͜͜ ̶̣̭͙̯͇̦͂̋͆͆̕ţ̴̡̨̭̭̺̣̲̤͎̩̮̮̥̿́̔́̂͂h̵͉̤͛͊͛͐͒͒ė̶̜̰͓̤̼̖̜̣͎̫̑̍̌́̂̈̌͆̍ ̴̘̞̖̳͕̳͑̀̆̑͜B̷̨͈̹̣̘̰͕͉̰̹͗̔ȩ̷̡̠̙̖̱̜̲̤͚̼͓̠͛̾̓͆̅̒͂̅̀̿͘͘ạ̶̢̨̮̩͇͚͓̀̄̐̈́̇̇͊̄̾̕͝͝s̵̡̛͚̭̞͌̋̐̑͑̓̒̋͊͊͌̈̎̚ṱ̴̫̤̩͂͒̅̋̓̓̿̅̈́̎ | I̴̢̦̠͈̊̆͌͝͝ͅn̶̛͈̺̜͇̲̭͓͉̎̽̓̊̈̈́̾̔́̽̇͘v̷͈̘̞̬̼̲̍͊͊̋̓̕ą̷̰͙͙̖̖̤̬͙̃d̷̠̀́̓͆̽̽̽̓͘ȩ̵̤̱͓̫̻̫̯̪̎͌̇̆̄̓ͅr̴̗̹̪̬̘̪̝̰͆̒͆̋̃̃̏̈͑̅͝ş̴͎̭̻͔̘͈͉̟̻͈̯̩͓̔̐
+---
+
+## Invariance: use case
+
+`artist`     | `year`     | `album`                 | `name`
+--------------|-------------|--------------------------------------------------
+Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
+Iron Maiden   | 1982        | The Number of the Beast | Invaders
+
+```scala
+forAll { (cmds: List[Command]) =>
+  cmds.exists { cmd =>
+    db.execute(cmd)
+    notCorrupt(db)
+  }
+}
+```
+
+---
+
+## Invariance: use case
+
+`artist`     | `year`     | `album`                 | `name`
+--------------|-------------|--------------------------------------------------
+Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
+Iron Maiden   | 1982        | The Number of the Beast | Invaders
+
+```scala
+&#x200B`forAll { (cmds: List[Command])` =>
+  cmds.exists { cmd =>
+    db.execute(cmd)
+    notCorrupt(db)
+  }
+}
+```
+
+---
+
+## Invariance: use case
+
+`artist`     | `year`     | `album`                 | `name`
+--------------|-------------|--------------------------------------------------
+Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
+Iron Maiden   | 1982        | The Number of the Beast | Invaders
+
+```scala
+forAll { (cmds: List[Command]) =>
+  cmds.exists { cmd =>
+    `db.execute(cmd)`
+    notCorrupt(db)
+  }
+}
+```
+
+---
+
+## Invariance: use case
+
+`artist`     | `year`     | `album`                 | `name`
+--------------|-------------|--------------------------------------------------
+Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
+Iron Maiden   | 1982        | The Number of the Beast | Invaders
+
+```scala
+forAll { (cmds: List[Command]) =>
+  cmds.exists { cmd =>
+    db.execute(cmd)
+    `notCorrupt(db)`
+  }
+}
+```
+
+---
+
+## Invariance: use case
+
+`artist`     | `year`     | `album`                 | `name`
+--------------|-------------|--------------------------------------------------
+İ̵̺͝ṛ̸̣͕̐͜o̴̢̎̿̓̌n̸̥͙̬̣̾́͛̾̌͘ͅ ̶̻͂M̷̗̣̠̠̎̀ȧ̸̛͔͇̐͘į̵̗̞̩̯̫̇̔̾̋̕͝d̵̟͓͆̅̇̋̐̚ͅe̷̯̪̙̼̩̩͐n̴̛̗̟͈͇̖̎̈̕   | 1̶͍͓̣̔̍́̒̒̅͘͜9̷̬̖̹̗̻͍̋͗̈́͠8̶͓̫̹̹̍2̸̨̲̝̏͌        | T̸̜̟͕̩̘̃̇͂͠h̶̦̓͋̇͝e̴̢̝̱̦͎͗͂̅̓͜ͅ ̶̝̬͠͝Ǹ̵̛̘̺̯̃̈́̍ù̷̱̖m̷̗͙̱̥͇̹͑̎̂͊̈́́̌b̸̢̦̪̽̅̂̑e̴̤̫̝̎̈́̇r̵͇̥̃̃̈͋̎̋͗͜ ̴͇̖̼͙̥̲̹̄̀ò̷͉̠̒f̶̲͇̳͛̔̃̽ ̸͍̉̚͝t̶̼̗̬̞̣̂͗͠͠͝h̴̰͒̾̑͐́͝ě̷̠̤͎̳͍̿͆́̕͝ ̸̭̬̊̐̾̍B̷̨̑é̴̡̟͔͖̏̃̔̓͝͠ą̷͉̫͇̫̈́̍̄́̃s̵͍̀̅͂͂͑̌ẗ̷̡̪̙͉͔́͑͗̇̋̑ | C̵͚̣̬̠̞̝̰̐̍̃h̷̥͛͂͋̚̚ï̴̤l̴͉̳̘̝͖̤͋͝d̴̢̲̫̯͙̺̮́̈́̕r̸̢̗̥͇̻͓͗̋̆́ȇ̸̲̉̆n̵̞̙͎̠̲͕̭̅̃̉̂ ̵͔̦͙̯̎͂̑̚͝õ̷̳̱͈̻̤̠̫̽̓̑̊͒f̸̦͋ͅ ̴̹̖̌ṫ̷̻̼͖͗̉̀̑h̴̹͎̰̬̟͊̍ͅe̸̤̱͛́͑ ̸̞̾͊͠D̵̢̜̬̳̍̑͛̄͆̀̅a̴͙̼̤̤͓͇̟̒̈́͋m̷̡̞̬̞̬͆̔̿n̴̨̢̖͉͓̥̂̄͘ë̴̬͚͎̭̭ͅd̸̢͕̼̗̠̂
+Ì̷̧̺͓͕̘͓̯̗̬͈̤̗̝̰͜ȓ̵̨̜̟̱̘̟̬̙̯̱͍̩̭̈̆̅̍̌̿́̈́́̚͜͝ͅo̴̡͗͗͛̑̿̾͒͂̎̆n̶͖̳͖͉̗͕̱͔̱̖̫̽̎͜ͅ ̸̢̨̛͇͚͔̘̦̘̱̮̖̿͑̒̉̽̎́̑̚̚̕M̷̜͖̊͗̅̆̏̈́͛̍̂̉́̃̚̕͝ả̷̡̛̫͔̳̞̻͔͉̜̍̅̈́̆͛͒̋̑͠i̵̢̡͎̯̙͇͍̇͊̃̓̚͜ͅd̸̟̤̼̲̈́̎̑͜ͅȩ̸͓̝̘̙͉̼̺̖̳͓̩̽̕ͅn̴͈̈̃̿͝   | 1̴̛͈̣̲̹͗̾͂͆̒̓͛̋͝9̵̨̢̨̻̲̬͕̲͔͖̘̀̿͝ͅ8̷̩̹̣̦̙͖͚̞̮́̉̑̓̉͑̈̾́͊̀̽͛͘̚2̵̡̘̠̼͙̅̇͛̽͒̀̄̾́̋̎͐͛͝        | T̷̢̟̙̥̬̰͎͚͈͕̬͆̋͊͛̂̓̈́͊̌̀͆̅̐͘͝ȟ̴̛̹̝͕͒͗è̵̛̩͇͎̤̪͍͎̳̺͔̖̝͖͊̏̀̽͝ ̵͕͇͌͌́͛̑̏͊̈̔̿̚̕͠͝N̴̤̥̖̠͍̻̤̣͈̩̞̾̍̉͐͋̇̈̈́̓̈́̚ͅu̵̲̹̙̦̞̎̏͗͋̌͐̈́͘͜͝͝m̶̡̙̖̳̖͇̻̰̼̝̖̎̈̈̄́̀̽̈́͘͜͝b̸̡̙͚̙̮̀̀̅́̔́̿̑͆̂͒̕è̷̫͕̗̰̌̈́̏͗͆͂r̶̡̢̨̛̛̙̖̲͔̥̲͕̈́̀͆̀̅̀̔̃̿̉̽͝͝ ̵̨͍͎͈̹̺̟̠̪̼̟̟͔̜̆̈́̈́o̶̡̧̯̠̜̤͊̒̀͆̒̀̋̅̽̕͜͝ͅf̸͓̥̻͚̘̹͈͉̱̆̅̊̿͑͛́͆̽̋͘͜͜ ̶̣̭͙̯͇̦͂̋͆͆̕ţ̴̡̨̭̭̺̣̲̤͎̩̮̮̥̿́̔́̂͂h̵͉̤͛͊͛͐͒͒ė̶̜̰͓̤̼̖̜̣͎̫̑̍̌́̂̈̌͆̍ ̴̘̞̖̳͕̳͑̀̆̑͜B̷̨͈̹̣̘̰͕͉̰̹͗̔ȩ̷̡̠̙̖̱̜̲̤͚̼͓̠͛̾̓͆̅̒͂̅̀̿͘͘ạ̶̢̨̮̩͇͚͓̀̄̐̈́̇̇͊̄̾̕͝͝s̵̡̛͚̭̞͌̋̐̑͑̓̒̋͊͊͌̈̎̚ṱ̴̫̤̩͂͒̅̋̓̓̿̅̈́̎ | I̴̢̦̠͈̊̆͌͝͝ͅn̶̛͈̺̜͇̲̭͓͉̎̽̓̊̈̈́̾̔́̽̇͘v̷͈̘̞̬̼̲̍͊͊̋̓̕ą̷̰͙͙̖̖̤̬͙̃d̷̠̀́̓͆̽̽̽̓͘ȩ̵̤̱͓̫̻̫̯̪̎͌̇̆̄̓ͅr̴̗̹̪̬̘̪̝̰͆̒͆̋̃̃̏̈͑̅͝ş̴͎̭̻͔̘͈͉̟̻͈̯̩͓̔̐
+```scala
+forAll { (cmds: List[Command]) =>
+  cmds.exists { cmd =>
+    db.execute(cmd)
+    `notCorrupt(db)`
+  }
+}
+```
+
+--
+
+.foreground[![Fail](img/fail.png)]
+
+---
+
+
+## Invariance: fizzBuzz
+
+```scala
+val propSafeFizzBuzz = forAll { (i: Int) =>
+  Try(fizzBuzz(i)).isSuccess
+}
+```
+
+---
+
+## Invariance: fizzBuzz
+
+```scala
+val propSafeFizzBuzz = `forAll { (i: Int)` =>
+  Try(fizzBuzz(i)).isSuccess
+}
+```
+
+---
+
+## Invariance: fizzBuzz
+
+```scala
+val propSafeFizzBuzz = forAll { (i: Int) =>
+  Try(`fizzBuzz(i)`).isSuccess
+}
+```
+
+---
+
+## Invariance: fizzBuzz
+
+```scala
+val propSafeFizzBuzz = forAll { (i: Int) =>
+  `Try`(fizzBuzz(i))`.isSuccess`
+}
+```
+
+---
+
+## Invariance: fizzBuzz
+
+```scala
+propSafeFizzBuzz.check()
+```
+
+---
+
+## Invariance: fizzBuzz
+
+```scala
+propSafeFizzBuzz.check()
+// + OK, passed 100 tests.
+```
 
 ---
 
 ## Metamorphic relation
 
-Is there a couple of transformations such that applying one before the SUT and the other after doesn't change the outcome?
+.center[![Metamorphic Relation](img/metamorphic_before.svg)]
+
+---
+
+## Metamorphic relation
+
+.center[![Metamorphic Relation](img/metamorphic_transform.svg)]
+
+---
+
+## Metamorphic relation
+
+.center[![Metamorphic Relation](img/metamorphic_transform_eval.svg)]
+
+---
+
+## Metamorphic relation
+
+.center[![Metamorphic Relation](img/metamorphic_transform_eval_property.svg)]
+
+---
+
+## Metamorphic relation
+
+.center[![Metamorphic Relation](img/metamorphic_property.svg)]
+
+---
+
+## Metamorphic relation
+
+.center[![Metamorphic Relation](img/metamorphic_relation.svg)]
+
+---
+
+## Metamorphic relation
+
+.center[![Metamorphic Relation](img/metamorphic.svg)]
 
 ```scala
-val propSortedReverse = forAll { (is: List[Int]) =>
-  is.sorted ==
-  is.map(x => -x)
-    .sorted
-    .reverse.map(x => -x)
+forAll { (i: Int) =>
+  mult3(i) == mult3(-i)
 }
 ```
 
 ---
 
-## Metamorphic relation - use cases
+## Metamorphic relation
 
-Searches - for example, should results be different for a different sort order?
+.center[![Metamorphic Relation](img/metamorphic_input.svg)]
 
-More on metamorphic relations in a few slides.
+```scala
+&#x200B`forAll { (i: Int)` =>
+  mult3(i) == mult3(-i)
+}
+```
 
 ---
 
-## Metamorphic relation - FizzBuzz
+## Metamorphic relation
+
+.center[![Metamorphic Relation](img/metamorphic_evaluate.svg)]
 
 ```scala
-import org.scalacheck.Prop.BooleanOperators
+forAll { (i: Int) =>
+  `mult3(i)` == mult3(-i)
+}
+```
 
+---
+
+## Metamorphic relation
+
+.center[![Metamorphic Relation](img/metamorphic_transform_focus.svg)]
+
+```scala
+forAll { (i: Int) =>
+  mult3(i) == mult3(`-i`)
+}
+```
+
+---
+
+## Metamorphic relation
+
+.center[![Metamorphic Relation](img/metamorphic_evaluate_transform.svg)]
+
+```scala
+forAll { (i: Int) =>
+  mult3(i) == `mult3`(-i)
+}
+```
+
+---
+
+## Metamorphic relation
+
+.center[![Metamorphic Relation](img/metamorphic_relation.svg)]
+
+```scala
+forAll { (i: Int) =>
+  mult3(i) `==` mult3(-i)
+}
+```
+
+---
+
+## Metamorphic relation: use case
+
+.center[![Metamorphic Relation](img/spotify_metamorphic_init.svg)]
+
+---
+
+## Metamorphic relation: use case
+
+.center[![Metamorphic Relation](img/spotify_metamorphic_query1.svg)]
+
+---
+
+## Metamorphic relation: use case
+
+.center[![Metamorphic Relation](img/spotify_metamorphic_query2.svg)]
+
+---
+
+## Metamorphic relation: use case
+
+.center[![Metamorphic Relation](img/spotify_metamorphic_less.svg)]
+
+---
+
+## Metamorphic relation: use case
+
+.center[![Metamorphic Relation](img/spotify_metamorphic.svg)]
+
+---
+
+## Metamorphic relation: use case
+
+.center[![Metamorphic Relation](img/spotify_metamorphic_more.svg)]
+
+--
+
+.foreground[![Fail](img/fail.png)]
+
+---
+
+## Metamorphic relation: use case
+
+_[Metamorphic testing of RESTful web apis](http://www.lsi.us.es/~segura/files/papers/segura17-tse.pdf)_:
+
+* 3 new unique Spotify bugs.
+
+* 8 new unique YouTube bugs.
+
+---
+
+## Metamorphic relation: fizzBuzz
+
+```scala
 val propStableFizz = forAll { (i: Int) =>
   fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
 }
 ```
 
+---
+
+## Metamorphic relation: fizzBuzz
+
+```scala
+val propStableFizz = `forAll { (i: Int)` =>
+  fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+}
+```
+
+---
+
+## Metamorphic relation: fizzBuzz
+
+```scala
+val propStableFizz = forAll { (i: Int) =>
+  `fizzBuzz(i)`.contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+}
+```
+
+---
+
+## Metamorphic relation: fizzBuzz
+
+```scala
+val propStableFizz = forAll { (i: Int) =>
+  fizzBuzz(i).contains("Fizz") ==> fizzBuzz(`-i`).contains("Fizz")
+}
+```
+
+---
+
+## Metamorphic relation: fizzBuzz
+
+```scala
+val propStableFizz = forAll { (i: Int) =>
+  fizzBuzz(i).contains("Fizz") ==> `fizzBuzz(-i)`.contains("Fizz")
+}
+```
+
+---
+
+## Metamorphic relation: fizzBuzz
+
+```scala
+val propStableFizz = forAll { (i: Int) =>
+  fizzBuzz(i)`.contains("Fizz")` ==> fizzBuzz(-i).contains("Fizz")
+}
+```
+
+---
+
+## Metamorphic relation: fizzBuzz
+
+```scala
+val propStableFizz = forAll { (i: Int) =>
+  fizzBuzz(i).contains("Fizz") `==>` fizzBuzz(-i).contains("Fizz")
+}
+```
+
+---
+
+## Metamorphic relation: fizzBuzz
+
+```scala
+val propStableFizz = forAll { (i: Int) =>
+  fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i)`.contains("Fizz")`
+}
+```
+
+---
+
+## Metamorphic relation: fizzBuzz
+
 ```scala
 propStableFizz.check()
-// ! Falsified after 0 passed tests.
+```
+
+---
+
+## Metamorphic relation: fizzBuzz
+
+```scala
+propStableFizz.check()
+// ! Falsified after 2 passed tests.
 // > ARG_0: -1
+// > ARG_0_ORIGINAL: -5
 ```
 
 ---
@@ -602,25 +2293,172 @@ propStableFizz.check()
 ## Fixing `fizzBuzz`
 
 ```scala
-// def div3(i: Int): Boolean = !(i % 3 > 0)
-def div3(i: Int): Boolean = i % 3 == 0
-
-// def div5(i: Int): Boolean = !(i % 5 > 0)
-def div5(i: Int): Boolean = i % 5 == 0
+def mult3(i: Int): Boolean = !(i % 3 > 0)
+def mult5(i: Int): Boolean = !(i % 5 > 0)
 
 def fizzBuzz(i: Int): String = {
-  if(div3(i)) {
-    if(div5(i)) "FizzBuzz"
-    else        "Fizz"
+  if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+    else         "Fizz"
   }
-  else if(div5(i)) "Buzz"
-  else             i.toString
+  else if(mult5(i)) "Buzz"
+  else              i.toString
 }
 ```
 
 ---
 
-## Metamorphic relation - FizzBuzz .super[2]
+## Fixing `fizzBuzz`
+
+```scala
+def mult3(i: Int): Boolean = `!(i % 3 > 0)`
+def mult5(i: Int): Boolean = `!(i % 5 > 0)`
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+    else         "Fizz"
+  }
+  else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+
+---
+
+## Fixing `fizzBuzz`
+
+```scala
+val propMult3 = forAll { (i: Int) =>
+  mult3(i) == mult3(-i)
+}
+```
+
+```scala
+propMult3.check()
+```
+
+---
+
+## Fixing `fizzBuzz`
+
+```scala
+val propMult3 = forAll { (i: Int) =>
+  mult3(i) == mult3(-i)
+}
+```
+
+```scala
+propMult3.check()
+// ! Falsified after 1 passed tests.
+// > ARG_0: -1
+// > ARG_0_ORIGINAL: -20
+```
+
+---
+
+## Fixing `fizzBuzz`
+
+.diff-rm[
+```scala
+*def mult3(i: Int): Boolean = `!(i % 3 > 0)`
+*def mult5(i: Int): Boolean = `!(i % 5 > 0)`
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+    else         "Fizz"
+  }
+  else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+]
+
+---
+
+## Fixing `fizzBuzz`
+
+.diff-add[
+```scala
+*def mult3(i: Int): Boolean = `i % 3 == 0`
+*def mult5(i: Int): Boolean = `i % 5 == 0`
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+    else         "Fizz"
+  }
+  else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+]
+
+---
+
+## Fixing `fizzBuzz`
+
+```scala
+def mult3(i: Int): Boolean = i % 3 == 0
+def mult5(i: Int): Boolean = i % 5 == 0
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+    else         "Fizz"
+  }
+  else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+
+---
+
+## Fixing `fizzBuzz`
+
+```scala
+val propMult3 = forAll { (i: Int) =>
+  mult3(i) == mult3(-i)
+}
+```
+
+```scala
+propMult3.check()
+```
+
+---
+
+## Fixing `fizzBuzz`
+
+```scala
+val propMult3 = forAll { (i: Int) =>
+  mult3(i) == mult3(-i)
+}
+```
+
+```scala
+propMult3.check()
+// + OK, passed 100 tests.
+```
+
+---
+
+## Fixing `fizzBuzz`
+
+```scala
+val propStableFizz = forAll { (i: Int) =>
+  fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+}
+```
+
+```scala
+propStableFizz.check()
+```
+
+---
+
+## Fixing `fizzBuzz`
 
 ```scala
 val propStableFizz = forAll { (i: Int) =>
@@ -635,420 +2473,1722 @@ propStableFizz.check()
 
 ---
 
-## Challenge discovered properties
-
-Once a property is identified, it's important to try and break it.
-
-Try and provide a simple, flawed implementation of the SUT that breaks it.
-
-Good candidates are properties with magic values, or SUTs that do the strict minimum.
+## Challenging properties
 
 ```scala
-def fizz(i: Int): String = {
-  if(i % 3 == 0) "Fizz"
-  else           i.toString
-}
-```
-
----
-
-## Challenging FizzBuzz properties
-
-```scala
-class FizzBuzzSpecifications(sut: Int => String) extends
-      Properties("FizzBuzz") {
+class FizzBuzzProps extends Properties("FizzBuzz") {
 
   property("validity") = forAll { (i: Int) =>
-    Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
-      .contains(sut(i))
+    fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
   }
 
   property("invertibility") = forAll { (i: Int) =>
-    div3(i) || div5(i) || (sut(i).toInt == i)
+    !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
   }
 
-  property("stability") = forAll { (i: Int) =>
-    sut(i).contains("Fizz") ==> sut(-i).contains("Fizz")
+  property("metamorphic") = forAll { (i: Int) =>
+    fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+  }
+
+  property("invariant") = forAll { (i: Int) =>
+    Try(fizzBuzz(i)).isSuccess
   }
 }
 ```
 
 ---
 
-## Challenging FizzBuzz properties .super[2]
-
+## Challenging properties
 
 ```scala
-new FizzBuzzSpecifications(fizz).check()
-// + FizzBuzz.validity: OK, passed 100 tests.
-// + FizzBuzz.invertibility: OK, passed 100 tests.
-// + FizzBuzz.stability: OK, passed 100 tests.
-```
+class FizzBuzzProps extends Properties("FizzBuzz") {
 
-Our `stability` property is hard-coded on `Fizz`.
+* property("validity") = forAll { (i: Int) =>
+*   fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
+* }
+
+  property("invertibility") = forAll { (i: Int) =>
+    !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
+  }
+
+  property("metamorphic") = forAll { (i: Int) =>
+    fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+  }
+
+  property("invariant") = forAll { (i: Int) =>
+    Try(fizzBuzz(i)).isSuccess
+  }
+}
+```
 
 ---
 
-## Challenging FizzBuzz properties .super[3]
+## Challenging properties
 
 ```scala
-class FizzBuzzSpecifications(sut: Int => String) extends
-      Properties("FizzBuzz") {
+class FizzBuzzProps extends Properties("FizzBuzz") {
 
   property("validity") = forAll { (i: Int) =>
-    Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
-      .contains(sut(i))
+    fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
+  }
+
+* property("invertibility") = forAll { (i: Int) =>
+*   !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
+* }
+
+  property("metamorphic") = forAll { (i: Int) =>
+    fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+  }
+
+  property("invariant") = forAll { (i: Int) =>
+    Try(fizzBuzz(i)).isSuccess
+  }
+}
+```
+
+---
+
+## Challenging properties
+
+```scala
+class FizzBuzzProps extends Properties("FizzBuzz") {
+
+  property("validity") = forAll { (i: Int) =>
+    fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
   }
 
   property("invertibility") = forAll { (i: Int) =>
-    div3(i) || div5(i) || (sut(i).toInt == i)
+    !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
   }
 
-  property("stability") = forAll { (i: Int) =>
-    (sut(i).contains("Fizz") ==> sut(-i).contains("Fizz")) &&
-    (sut(i).contains("Buzz") ==> sut(-i).contains("Buzz"))
+* property("metamorphic") = forAll { (i: Int) =>
+*   fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+* }
+
+  property("invariant") = forAll { (i: Int) =>
+    Try(fizzBuzz(i)).isSuccess
   }
 }
 ```
 
 ---
 
-## Challenging FizzBuzz properties .super[4]
-
-We're now detecting the flaw:
+## Challenging properties
 
 ```scala
-new FizzBuzzSpecifications(fizz).check()
-// + FizzBuzz.validity: OK, passed 100 tests.
-// + FizzBuzz.invertibility: OK, passed 100 tests.
-// ! FizzBuzz.stability: Gave up after only 0 passed tests. 501 tests were dis
-//   carded.
+class FizzBuzzProps extends Properties("FizzBuzz") {
+
+  property("validity") = forAll { (i: Int) =>
+    fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
+  }
+
+  property("invertibility") = forAll { (i: Int) =>
+    !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
+  }
+
+  property("metamorphic") = forAll { (i: Int) =>
+    fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
+  }
+
+* property("invariant") = forAll { (i: Int) =>
+*   Try(fizzBuzz(i)).isSuccess
+* }
+}
 ```
 
 ---
 
-## Conclusions
+## Challenging properties
+
+```scala
+new FizzBuzzProps().check()
+```
+
+---
+
+## Challenging properties
+
+```scala
+new FizzBuzzProps().check()
+// + FizzBuzz.validity: OK, passed 100 tests.
+// + FizzBuzz.invertibility: OK, passed 100 tests.
+// + FizzBuzz.metamorphic: OK, passed 100 tests.
+// + FizzBuzz.invariant: OK, passed 100 tests.
+```
+
+---
+
+## Challenging properties
+
+```scala
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+    else         "Fizz"
+  }
+  else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+
+---
+
+## Challenging properties
+
+.diff-rm[
+```scala
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+*   else         `"Fizz"`
+  }
+* else if(mult5(i)) `"Buzz"`
+  else              i.toString
+}
+```
+]
+
+---
+
+## Challenging properties
+
+.diff-add[
+```scala
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+*   else         `"Buzz"`
+  }
+* else if(mult5(i)) `"Fizz"`
+  else              i.toString
+}
+```
+]
+
+---
+
+## Challenging properties
+
+```scala
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+    else         "Buzz"
+  }
+  else if(mult5(i)) "Fizz"
+  else              i.toString
+}
+```
+
+---
+
+## Challenging properties
+
+
+
+
+```scala
+new FizzBuzzProps().check()
+```
+
+---
+
+## Challenging properties
+
+```scala
+new FizzBuzzProps().check()
+// + FizzBuzz.validity: OK, passed 100 tests.
+// + FizzBuzz.invertibility: OK, passed 100 tests.
+// + FizzBuzz.metamorphic: OK, passed 100 tests.
+// + FizzBuzz.invariant: OK, passed 100 tests.
+```
+
+--
+
+.foreground[![Fail](img/fail.png)]
+
+---
+
+## Challenging properties
+
+```scala
+val propFizz = forAll { (i: Int) =>
+  fizzBuzz(i * 3).contains("Fizz")
+}
+```
+
+---
+
+## Challenging properties
+
+```scala
+val propFizz = `forAll { (i: Int)` =>
+  fizzBuzz(i * 3).contains("Fizz")
+}
+```
+
+---
+
+## Challenging properties
+
+```scala
+val propFizz = forAll { (i: Int) =>
+  fizzBuzz(`i * 3`).contains("Fizz")
+}
+```
+
+---
+
+## Challenging properties
+
+```scala
+val propFizz = forAll { (i: Int) =>
+  `fizzBuzz`(i * 3).contains("Fizz")
+}
+```
+
+---
+
+## Challenging properties
+
+```scala
+val propFizz = forAll { (i: Int) =>
+  fizzBuzz(i * 3).`contains("Fizz")`
+}
+```
+
+---
+
+## Challenging properties
+
+```scala
+propFizz.check()
+```
+
+---
+
+## Challenging properties
+
+```scala
+propFizz.check()
+// ! Falsified after 0 passed tests.
+// > ARG_0: 1
+// > ARG_0_ORIGINAL: 76
+```
+
+
+
+
+---
+
+## Key takeaways
 
 Property-based testing is:
-* pretty amazing at the test case generation problem
-* fairly good at the oracle problem
-* hard to get the hang of, at first
+
+--
+
+* very good at the _test case generation problem_.
+
+--
+
+* good at the _oracle problem_.
+
+--
+
+* hard to get the hang of.
 
 ---
 
 class: center, middle
 
-# PBT, the easy way
+# Generative Example-Based Tests
 
 ---
 
-## Specifications as oracle
-
-We've seen that the easiest possible property was having an oracle.
-
-If you squint, aren't decision tables both specifications and oracle?
-
----
-
-## Decision tables as properties
-
- n % 3 | n % 5 || Output
--------|-------||----------
- T     | T     || FizzBuzz
- T     | F     || Fizz
- F     | T     || Buzz
- F     | F     || n
-
-* _conditions_ are kind of a `Gen[Input]`
-* _outcomes_ are kind of an oracle in the shape of `Input => Output`
-
----
-
-## Decision tables as properties .super[2]
-
-Stored as a CSV resource:
+## Example-Based Tests
 
 ```scala
-import kantan.dtables._, csv._, properties._
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
 
-val spec: Specification =
-  csv.load(getClass.getResource("/fizzbuzz.csv")).
-    getOrElse(sys.error("Failed to load fizzbuzz specs"))
-```
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
 
----
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
 
-## Test case generation
-
-We'll need a generator of FizzBuzz-relevant integers:
-
-```scala
-import org.scalacheck.Gen, Gen.choose
-
-def makePrimish(i: Int): Int = {
-  if(i % 3 == 0)      makePrimish(i / 3)
-  else if(i % 5 == 0) makePrimish(i / 5)
-  else                 i
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == "FizzBuzz")
+  }
 }
-
-val genPrimish: Gen[Int] =
-  choose(Int.MinValue / 15, Int.MaxValue / 15).map(makePrimish)
 ```
 
 ---
 
-## Decoding conditions
-
-Conditions are loaded through a common decoding process:
+## Example-Based Tests
 
 ```scala
-implicit val conditionsDecoder: ConditionsDecoder[Int] =
-  ConditionsDecoder.decoder("n % 3", "n % 5") {
-    (div3: Boolean, div5: Boolean) =>
-      genPrimish.map { i =>
-        if(div3 && div5) i * 3 * 5
-        else if(div3)    i * 3
-        else if(div5)    i * 5
-        else             i
-      }
-    }
+class FizzBuzzSuite extends AnyFunSuite {
+* test("n multiple of 3 outputs Fizz") {
+*   assert(fizzBuzz(3) == "Fizz")
+* }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == "FizzBuzz")
+  }
+}
 ```
 
 ---
 
-## Decoding outcomes
-
-So are outcomes:
+## Example-Based Tests
 
 ```scala
-implicit val outcomeDecoder: OutcomeDecoder[Int => String] =
-  OutcomeDecoder.fromEntry[String]("Output").emap {
-    case "n"        => DecodeResult.success(_.toString)
-    case "Fizz"     => DecodeResult.success(_ => "Fizz")
-    case "FizzBuzz" => DecodeResult.success(_ => "FizzBuzz")
-    case "Buzz"     => DecodeResult.success(_ => "Buzz")
-    case s          => DecodeResult.error(s)
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(`fizzBuzz(3) == "Fizz"`)
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == "FizzBuzz")
+  }
+}
+```
+
+---
+
+## Naive property
+
+```scala
+val propFizzBuzz3 =
+  fizzBuzz(3) == "Fizz"
+```
+
+---
+
+## Naive property
+
+```scala
+val propFizzBuzz3 =
+  fizzBuzz(`3`) == "Fizz"
+```
+
+---
+
+## Naive property
+
+.diff-add[
+```scala
+val propFizzBuzz3 =
+* `forAll(const(3)) { i =>`
+* `  `fizzBuzz(3) == "Fizz"
+* `}`
+```
+]
+
+---
+
+## Naive property
+
+```scala
+val propFizzBuzz3 =
+  forAll(const(3)) { `i` =>
+    fizzBuzz(3) == "Fizz"
   }
 ```
 
 ---
 
-## Writing the test
+## Naive property
 
 ```scala
-import kantan.dtables.scalatest._
+val propFizzBuzz3 =
+  forAll(`const(3)`) { i =>
+    fizzBuzz(3) == "Fizz"
+  }
+```
 
-class FizzBuzzTest extends FunSuite with DTables {
-  checkAll("FizzBuzz", spec) { (i: Int, f: Int => String) =>
-    fizzBuzz(i) == f(i)
+---
+
+## Naive property
+
+.diff-rm[
+```scala
+val propFizzBuzz3 =
+  forAll(const(3)) { i =>
+*   fizzBuzz(`3`) == "Fizz"
+  }
+```
+]
+
+---
+
+## Naive property
+
+.diff-add[
+```scala
+val propFizzBuzz3 =
+  forAll(const(3)) { i =>
+*   fizzBuzz(`i`) == "Fizz"
+  }
+```
+]
+
+---
+
+## Naive property
+
+```scala
+val propFizzBuzz3 =
+  forAll(const(3)) { i =>
+    fizzBuzz(i) == `"Fizz"`
+  }
+```
+
+---
+
+## Naive property
+
+```scala
+val propFizzBuzz3 =
+  forAll(const(3)) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+
+---
+
+## Naive property
+
+```scala
+val propFizzBuzz3 =
+  forAll(`const(3)`) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+
+---
+
+## Multiples of 3
+
+```scala
+val genMult3: Gen[Int] =
+  arbitrary[Int].
+    map(_ * 3).
+    filter(_ % 5 != 0)
+```
+
+---
+
+## Multiples of 3
+
+```scala
+val genMult3: Gen[Int] =
+  `arbitrary[Int]`.
+    map(_ * 3).
+    filter(_ % 5 != 0)
+```
+
+---
+
+## Multiples of 3
+
+```scala
+val genMult3: Gen[Int] =
+  arbitrary[Int].
+    `map(_ * 3)`.
+    filter(_ % 5 != 0)
+```
+
+---
+
+## Multiples of 3
+
+```scala
+val genMult3: Gen[Int] =
+  arbitrary[Int].
+    map(_ * 3).
+    `filter(_ % 5 != 0)`
+```
+
+---
+
+## Multiples of 3
+
+.diff-rm[
+```scala
+val propFizzBuzz3 =
+* forAll(`const(3)`) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+]
+
+---
+
+## Multiples of 3
+
+.diff-add[
+```scala
+val propFizzBuzz3 =
+* forAll(`genMult3`) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+]
+
+---
+
+## Multiples of 3
+
+```scala
+val propFizzBuzz3 =
+  forAll(genMult3) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+
+---
+
+## Generic property
+
+```scala
+val propFizzBuzz3 =
+  forAll(`genMult3`) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+
+---
+
+## Generic property
+
+```scala
+val propFizzBuzz3 =
+  forAll(genMult3) { i =>
+    fizzBuzz(i) == `"Fizz"`
+  }
+```
+
+---
+
+## Generic property
+
+.diff-rm[
+```scala
+*&#x200B;`val propFizzBuzz3` =
+  forAll(genMult3) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+]
+
+---
+
+## Generic property
+
+.diff-add[
+```scala
+*&#x200B;`def propFizzBuzz(gen: Gen[Int])` =
+  forAll(genMult3) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+]
+
+---
+
+## Generic property
+
+.diff-rm[
+```scala
+def propFizzBuzz(gen: Gen[Int]) =
+* forAll(`genMult3`) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+]
+
+---
+
+## Generic property
+
+.diff-add[
+```scala
+def propFizzBuzz(gen: Gen[Int]) =
+* forAll(`gen`) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+]
+
+---
+
+## Generic property
+
+.diff-add[
+```scala
+*def propFizzBuzz(gen: Gen[Int]`, expected: String`) =
+  forAll(gen) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+]
+
+---
+
+## Generic property
+
+.diff-rm[
+```scala
+def propFizzBuzz(gen: Gen[Int], expected: String) =
+  forAll(gen) { i =>
+*   fizzBuzz(i) == `"Fizz"`
+  }
+```
+]
+
+---
+
+## Generic property
+
+.diff-add[
+```scala
+def propFizzBuzz(gen: Gen[Int], expected: String) =
+  forAll(gen) { i =>
+*   fizzBuzz(i) == `expected`
+  }
+```
+]
+
+---
+
+## Generic property
+
+```scala
+def propFizzBuzz(gen: Gen[Int], expected: String) =
+  forAll(gen) { i =>
+    fizzBuzz(i) == expected
+  }
+```
+
+---
+
+## Generic property
+
+```scala
+val propFizzBuzz3 =
+  forAll(genMult3) { i =>
+    fizzBuzz(i) == "Fizz"
+  }
+```
+
+---
+
+## Generic property
+
+.diff-rm[
+```scala
+val propFizzBuzz3 =
+*&#x200B;`  forAll(genMult3) { i =>`
+*&#x200B;`    fizzBuzz(i) == "Fizz"`
+*&#x200B;`  }`
+```
+]
+
+---
+
+## Generic property
+
+.diff-add[
+```scala
+val propFizzBuzz3 =
+*&#x200B;`  propFizzBuzz(`
+*&#x200B;`    gen      = genMult3,`
+*&#x200B;`    expected = "Fizz"`
+*&#x200B;`  )`
+```
+]
+
+---
+
+## Generic property
+
+```scala
+val propFizzBuzz3 =
+  propFizzBuzz(
+    `gen      = genMult3`,
+    expected = "Fizz"
+  )
+```
+
+---
+
+## Generic property
+
+```scala
+val propFizzBuzz3 =
+  propFizzBuzz(
+    gen      = genMult3,
+    `expected = "Fizz"`
+  )
+```
+
+---
+
+## Generic property
+
+```scala
+val propFizzBuzz3 =
+  propFizzBuzz(
+    gen      = genMult3,
+    expected = "Fizz"
+  )
+```
+
+---
+
+## Multiples of 5
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+* test("n multiple of 5 outputs Buzz") {
+*   assert(fizzBuzz(5) == "Buzz")
+* }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == "FizzBuzz")
   }
 }
 ```
 
+---
+
+## Multiples of 5
+
 ```scala
-new FizzBuzzTest().execute()
-// FizzBuzzTest:
-// - FizzBuzz.{n % 3: T, n % 5: T} => {Output: FizzBuzz}
-// - FizzBuzz.{n % 3: T, n % 5: F} => {Output: Fizz}
-// - FizzBuzz.{n % 3: F, n % 5: T} => {Output: Buzz}
-// - FizzBuzz.{n % 3: F, n % 5: F} => {Output: n}
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(`5`) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == "FizzBuzz")
+  }
+}
 ```
 
 ---
 
-## Conclusions
+## Multiples of 5
 
-Decision tables are:
-* a good specification tool, when applicable
-* a good property-based test tool, when available
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == `"Buzz"`)
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == "FizzBuzz")
+  }
+}
+```
+
+---
+
+## Multiples of 5
+
+```scala
+val genMult5: Gen[Int] =
+  arbitrary[Int].
+    map(_ * 5).
+    filter(_ % 3 != 0)
+```
+
+---
+
+## Multiples of 5
+
+```scala
+val genMult5: Gen[Int] =
+  `arbitrary[Int]`.
+    map(_ * 5).
+    filter(_ % 3 != 0)
+```
+
+---
+
+## Multiples of 5
+
+```scala
+val genMult5: Gen[Int] =
+  arbitrary[Int].
+    `map(_ * 5)`.
+    filter(_ % 3 != 0)
+```
+
+---
+
+## Multiples of 5
+
+```scala
+val genMult5: Gen[Int] =
+  arbitrary[Int].
+    map(_ * 5).
+    `filter(_ % 3 != 0)`
+```
+
+---
+
+## Multiples of 5
+
+```scala
+val propFizzBuzz5 =
+  propFizzBuzz(
+    gen      = genMult5,
+    expected = "Buzz"
+  )
+```
+
+---
+
+## Multiples of 5
+
+```scala
+val propFizzBuzz5 =
+  propFizzBuzz(
+    `gen      = genMult5`,
+    expected = "Buzz"
+  )
+```
+
+---
+
+## Multiples of 5
+
+```scala
+val propFizzBuzz5 =
+  propFizzBuzz(
+    gen      = genMult5,
+    `expected = "Buzz"`
+  )
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+* test("n multiple of neither 3 or 5 outputs n") {
+*   assert(fizzBuzz(7) == "7")
+* }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == "FizzBuzz")
+  }
+}
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(`7`) == "7")
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == "FizzBuzz")
+  }
+}
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == `"7"`)
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == "FizzBuzz")
+  }
+}
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+val genMultNone: Gen[Int] =
+  arbitrary[Int].
+    filter(_ % 5 != 0).
+    filter(_ % 3 != 0)
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+val genMultNone: Gen[Int] =
+  `arbitrary[Int]`.
+    filter(_ % 5 != 0).
+    filter(_ % 3 != 0)
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+val genMultNone: Gen[Int] =
+  arbitrary[Int].
+    `filter(_ % 5 != 0)`.
+    filter(_ % 3 != 0)
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+val genMultNone: Gen[Int] =
+  arbitrary[Int].
+    filter(_ % 5 != 0).
+    `filter(_ % 3 != 0)`
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+val propFizzBuzzNone =
+  propFizzBuzz(
+    gen      = genMultNone,
+    expected = ???
+  )
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+val propFizzBuzzNone =
+  propFizzBuzz(
+    `gen      = genMultNone`,
+    expected = ???
+  )
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+val propFizzBuzzNone =
+  propFizzBuzz(
+    gen      = genMultNone,
+    `expected = ???`
+  )
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+def propFizzBuzz(gen: Gen[Int], expected: String) =
+  forAll(gen) { i =>
+    fizzBuzz(i) == expected
+  }
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+.diff-rm[
+```scala
+*def propFizzBuzz(gen: Gen[Int], `expected: String`) =
+  forAll(gen) { i =>
+*   fizzBuzz(i) == `expected`
+  }
+```
+]
+
+---
+
+## Multiples of neither 3 nor 5
+
+.diff-add[
+```scala
+*def propFizzBuzz(gen: Gen[Int], `oracle: Int => String`) =
+  forAll(gen) { i =>
+*   fizzBuzz(i) == `oracle(i)`
+  }
+```
+]
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+def propFizzBuzz(gen: Gen[Int], oracle: Int => String) =
+  forAll(gen) { i =>
+    fizzBuzz(i) == oracle(i)
+  }
+```
+
+---
+
+## Multiples of neither 3 nor 5
+
+.diff-rm[
+```scala
+val propFizzBuzzNone =
+  propFizzBuzz(
+    gen      = genMultNone,
+*   `expected = ???`
+  )
+```
+]
+
+---
+
+## Multiples of neither 3 nor 5
+
+.diff-add[
+```scala
+val propFizzBuzzNone =
+  propFizzBuzz(
+    gen      = genMultNone,
+*   `oracle   = _.toString`
+  )
+```
+]
+
+---
+
+## Multiples of neither 3 nor 5
+
+```scala
+val propFizzBuzzNone =
+  propFizzBuzz(
+    gen      = genMultNone,
+    oracle   = _.toString
+  )
+```
+
+---
+
+## Multiples of 3 and 5
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+* test("n multiple of 3 and 5 outputs FizzBuzz") {
+*   assert(fizzBuzz(15) == "FizzBuzz")
+* }
+}
+```
+
+---
+
+## Multiples of 3 and 5
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(`15`) == "FizzBuzz")
+  }
+}
+```
+
+---
+
+## Multiples of 3 and 5
+
+```scala
+class FizzBuzzSuite extends AnyFunSuite {
+  test("n multiple of 3 outputs Fizz") {
+    assert(fizzBuzz(3) == "Fizz")
+  }
+
+  test("n multiple of 5 outputs Buzz") {
+    assert(fizzBuzz(5) == "Buzz")
+  }
+
+  test("n multiple of neither 3 or 5 outputs n") {
+    assert(fizzBuzz(7) == "7")
+  }
+
+  test("n multiple of 3 and 5 outputs FizzBuzz") {
+    assert(fizzBuzz(15) == `"FizzBuzz"`)
+  }
+}
+```
+
+---
+
+## Multiples of 3 and 5
+
+```scala
+val genMult15: Gen[Int] =
+  arbitrary[Int].
+    map(_ * 3 * 5)
+```
+
+---
+
+## Multiples of 3 and 5
+
+```scala
+val genMult15: Gen[Int] =
+  `arbitrary[Int]`.
+    map(_ * 3 * 5)
+```
+
+---
+
+## Multiples of 3 and 5
+
+```scala
+val genMult15: Gen[Int] =
+  arbitrary[Int].
+    `map(_ * 3 * 5)`
+```
+
+---
+
+## Multiples of 3 and 5
+
+```scala
+val propFizzBuzz15 =
+  propFizzBuzz(
+    gen    = genMult15,
+    oracle = _ => "FizzBuzz"
+  )
+```
+
+---
+
+## Multiples of 3 and 5
+
+```scala
+val propFizzBuzz15 =
+  propFizzBuzz(
+    `gen    = genMult15`,
+    oracle = _ => "FizzBuzz"
+  )
+```
+
+---
+
+## Multiples of 3 and 5
+
+```scala
+val propFizzBuzz15 =
+  propFizzBuzz(
+    gen    = genMult15,
+    `oracle = _ => "FizzBuzz"`
+  )
+```
+
+---
+
+## Key takeaways
+
 --
 
-* importantly, work that somebody else can do!
+* you don't need to learn a new way to write tests (right away).
+
+--
+
+* you can adapt existing tests with little work.
+
+--
+
+* you will acquire the skills you need as you do so.
 
 ---
 
 class: center, middle
-
-# Manual test case generation
-
----
-
-## Hand-crafted test cases
-
-![Self](img/face-detect-1.jpg)
-
-.section[SUT] face detection ML model
-
-.section[Problem] test cases are hand-generated and expensive
-
----
-
-## Mutations
-
-.fleft[![Self](img/face-detect-1.jpg)]
-
---
-
-.fright[![Self](img/face-detect-2.jpg)]
-
---
-
-.fleft[![Self](img/face-detect-3.jpg)]
-
---
-
-.fright[![Self](img/face-detect-4.jpg)]
-
----
-
-## Free test cases!
-
-If you have an annotated image, you can:
-* change its colour palette
-* flip it
-* rotate it
-* ...
-
-And still know what the output should be
-
----
-
-## Free test cases! .super[2]
-
-All our test does is make sure bounding boxes match after transformation
-
-Do we really need to know the initial bounding box in advance?
-
----
-
-## Free test cases! .super[3]
-
-If you have a *non annotated* image, you can:
-* change its colour palette
-* flip it
-* rotate it
-* ...
-
-And still know what the output should be
-
---
-
-This is the basis for _metamorphic testing_.
-
----
-
-## Metamorphic Testing: genesis
-
-T. Y. Chen's thought process (probably):
-
-> In software verification:
-> * failing tests are proof of flaw (in SUT or in the test)
-> * successful tests aren't proof of anything
->
-> What if successful test cases could be made useful?
-
----
-
-## Metamorphic Relation
-
-> A metamorphic relation is a pair of conditions such that if two inputs fulfill the first, then the result of their evaluations must fulfill the second.
-
-.section[Example] the shortest path between nodes `A` and `B` in a graph should have the same length as the shortest path between `B` and `A`
-
-.section[Example] the faces detected in an image should be the same regardless of the colour palette
-
----
-
-## Metamorphic Testing
-
-Metamorphic testing is testing software by:
-* generating inputs that fulfill a metamorphic relation
-* confirming that their outputs fulfill that metamorphic relation
-
----
-
-## Case study: EMI
-
-.section[Idea] a program's output shouldn't change if you mutate dead code paths
-
-.section[Results]
-* 79 new unique gcc bugs
-* 68 new unique LLVM bugs
-
----
-
-## Case study: Search APIs
-
-.section[Idea] refining a search query should yield a subset of its original results
-
-.section[Results]
-* 3 new unique Spotify bugs
-* 8 new unique YouTube bugs
-
----
-
-## Conclusions
-
-Metamorphic Testing is:
-* a lot simpler than the name would suggest
-* good for test case generation when PBT falls short
-* good for solving the oracle problem
-
----
-
-class: center, middle
+name: closing
 
 # In closing
 
 ---
 
-## Where to go from here?
+## If you only remember 1 slide...
 
-PBT and MT do not need to know if a result is correct to work.
+--
 
-Could we run them in production?
+Property-based testing:
 
-* new _sanity_ metric: `properties violated / properties evaluated`
-* rather than random inputs, _interesting_ inputs
+* finds more flaws than example-based testing.
 
----
+--
 
-## Sources: Property based testing
-* [Scott Wlaschin](https://twitter.com/ScottWlaschin) - [Choosing properties for property-based testing](https://fsharpforfunandprofit.com/posts/property-based-testing-2/)
-* [John Hughes](https://twitter.com/rjmh) - [Testing the Hard Stuff and Staying Sane](https://www.youtube.com/watch?v=zi0rHwfiX1Q)
-* Really, any talk by [John Hughes](https://twitter.com/rjmh)
+* doesn't need to be harder than example-based testing.
 
----
+--
 
-## Sources: Metamorphic testing
-
-* [Hillel Wayne](https://twitter.com/hillelogram) - [Metamorphic Testing](https://www.hillelwayne.com/post/metamorphic-testing/)
-* [Metamorphic testing: A review of challenges and opportunities](http://www.cs.hku.hk/research/techreps/document/TR-2017-04.pdf)
-* [Compiler Validation via Equivalence Modulo Input](http://vuminhle.com/pdf/pldi14-emi.pdf)
-* [Metamorphic testing of RESTful web apis](http://www.lsi.us.es/~segura/files/papers/segura17-tse.pdf)
-
----
-
-## More information
-
-Slides available on https://nrinaudo.github.io/much-ado-about-testing/
-
-Find me on Twitter ([@NicolasRinaudo])
-
-Get in touch with [Besedo], we're always on the lookout for Scala talent
-
-Slides backed by [remark.js] and the amazing [tut]
+* importantly, is a lot of fun!
 
 ---
 
 class: center, middle
+name: questions
 
 # Questions?
 
+Nicolas Rinaudo • [@NicolasRinaudo] • [Besedo]
+
+---
+
+class: center, middle
+name: metamorphic
+
+# Metamorphic testing
+
+---
+
+## Profile moderation
+
+.center[![Self](img/face-detect.jpg)]
+
+---
+
+## Profile moderation
+
+.center[![Self](img/face-detect-selection.jpg)]
+
+---
+
+## Profile moderation
+
+.center[![Self](img/face-detect-flip.jpg)]
+
+---
+
+## Profile moderation
+
+.center[![Self](img/face-detect-rotate.jpg)]
+
+---
+
+## Profile moderation
+
+.center[![Self](img/face-detect-all.jpg)]
 
 
-[remark.js]:https://remarkjs.com
-[tut]:https://github.com/tpolecat/tut
+---
+
+## Profile moderation
+
+.center[![Self](img/face-detect-error.jpg)]
+
+--
+
+.foreground[![Fail](img/fail.png)]
+
+---
+
+## Metamorphic testing
+
+.center[![Metamorphic Testing](img/metamorphic_testing_test_case.svg)]
+
+---
+
+## Metamorphic testing
+
+.center[![Metamorphic Testing](img/metamorphic_testing_transform.svg)]
+
+---
+
+## Metamorphic testing
+
+.center[![Metamorphic Testing](img/metamorphic_testing_evaluate.svg)]
+
+---
+
+## Metamorphic testing
+
+.center[![Metamorphic Testing](img/metamorphic_testing.svg)]
+
+---
+
+## Metamorphic testing
+
+.center[![Metamorphic Testing](img/metamorphic_testing_input.svg)]
+
+---
+
+## Compiler validation
+
+```scala
+def mult3(i: Int): Boolean = i % 3 == 0
+def mult5(i: Int): Boolean = i % 5 == 0
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+    else         "Fizz"
+  }
+  else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+
+---
+
+## Compiler validation
+
+```scala
+println(fizzBuzz(5))
+```
+
+---
+
+## Compiler validation
+
+```scala
+println(fizzBuzz(`5`))
+```
+
+---
+
+## Compiler validation
+
+```scala
+println(fizzBuzz(5))
+// Buzz
+```
+
+---
+
+## Compiler validation
+
+```scala
+println(fizzBuzz(5))
+// `Buzz`
+```
+
+---
+
+## Compiler validation
+
+.coverage-on[
+```scala
+*def mult3(i: Int): Boolean = i % 3 == 0
+*def mult5(i: Int): Boolean = i % 5 == 0
+
+def fizzBuzz(i: Int): String = {
+* if(mult3(i)) {
+    if(mult5(i)) "FizzBuzz"
+    else         "Fizz"
+  }
+* else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+]
+
+---
+
+## Compiler validation
+
+.coverage-off[
+```scala
+def mult3(i: Int): Boolean = i % 3 == 0
+def mult5(i: Int): Boolean = i % 5 == 0
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+*   if(mult5(i)) "FizzBuzz"
+*   else         "Fizz"
+  }
+  else if(mult5(i)) "Buzz"
+* else              i.toString
+}
+```
+]
+
+---
+
+## Compiler validation
+
+.diff-rm[
+```scala
+def mult3(i: Int): Boolean = i % 3 == 0
+def mult5(i: Int): Boolean = i % 5 == 0
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+*   `if(mult5(i)) "FizzBuzz"`
+*   `else         "Fizz"`
+  }
+  else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+]
+
+---
+
+## Compiler validation
+
+.diff-add[
+```scala
+def mult3(i: Int): Boolean = i % 3 == 0
+def mult5(i: Int): Boolean = i % 5 == 0
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+*   `"Fizz"`
+  }
+  else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+]
+---
+
+## Compiler validation
+
+.diff-rm[
+```scala
+def mult3(i: Int): Boolean = i % 3 == 0
+def mult5(i: Int): Boolean = i % 5 == 0
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+*   `"Fizz"`
+  }
+  else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+]
+
+---
+
+## Compiler validation
+
+.diff-add[
+```scala
+def mult3(i: Int): Boolean = i % 3 == 0
+def mult5(i: Int): Boolean = i % 5 == 0
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+*   `"Zzif"`
+  }
+  else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+]
+
+---
+
+## Compiler validation
+
+```scala
+def mult3(i: Int): Boolean = i % 3 == 0
+def mult5(i: Int): Boolean = i % 5 == 0
+
+def fizzBuzz(i: Int): String = {
+  if(mult3(i)) {
+    "Zzif"
+  }
+  else if(mult5(i)) "Buzz"
+  else              i.toString
+}
+```
+
+---
+
+## Compiler validation
+
+```scala
+println(fizzBuzz(5))
+```
+
+---
+
+## Compiler validation
+
+```scala
+println(fizzBuzz(`5`))
+```
+
+
+---
+
+## Compiler validation
+
+```scala
+println(fizzBuzz(5))
+// Buzz
+```
+
+---
+
+## Compiler validation
+
+```scala
+println(fizzBuzz(5))
+// `Buzz`
+```
+
+---
+
+## Compiler validation
+
+```scala
+println(fizzBuzz(5))
+// `Zzif`
+```
+
+--
+
+.foreground[![Fail](img/fail.png)]
+
+---
+
+## Compiler validation
+
+_[Compiler Validation via Equivalence Modulo Inputs](http://vuminhle.com/pdf/pldi14-emi.pdf)_:
+
+* 79 new unique gcc bugs
+
+* 68 new unique LLVM bugs
+
+--
+
+* 42 new unique scalac bugs.
+
+---
+
+## Key takeaways
+
+Metamorphic Testing is:
+
+--
+
+* useful when test case generation is too expensive.
+
+--
+
+* weird and fun.
+
+--
+
+* a great word to use when you want to sound smart.
+
 [Besedo]:https://twitter.com/besedo_official
 [@NicolasRinaudo]:https://twitter.com/NicolasRinaudo
     </textarea>
@@ -1056,8 +4196,11 @@ class: center, middle
     </script>
     <script type="text/javascript">
         var slideshow = remark.create({
-        highlightStyle: 'github'
+        highlightStyle: 'github',
+        highlightSpans: true,
+        highlightLines: true
       });
     </script>
   </body>
-</html>
+</html
+>
