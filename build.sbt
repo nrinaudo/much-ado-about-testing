@@ -38,8 +38,9 @@ SitePlugin.autoImport.makeSite / includeFilter :=
 git.remoteRepo := "git@github.com:nrinaudo/much-ado-about-testing.git"
 
 libraryDependencies ++= Seq(
-  "org.scalatest"  %% "scalatest"  % Versions.scalatest,
-  "org.scalacheck" %% "scalacheck" % Versions.scalacheck
+  "org.scalatest"      %% "scalatest"       % Versions.scalatest,
+  "org.scalatestplus"  %% "scalacheck-1-15" % Versions.scalatestplus,
+  "org.scalacheck"     %% "scalacheck"      % Versions.scalacheck
 )
 
 // Bit of a hack to work around scalacheckout adding odd \r characters to its output, which are translated to unwanted
