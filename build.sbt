@@ -1,23 +1,45 @@
 enablePlugins(TutPlugin, GhpagesPlugin)
 
 organization := "com.nrinaudo"
-scalaVersion := "2.12.8"
+scalaVersion := "2.13.0"
 
 val tutDirName = settingKey[String]("tut output directory")
 tutDirName := "./"
 
+val graphvizDirName = settingKey[String]("graphviz output directory")
+graphvizDirName := "./img"
+
+val graphviz = taskKey[Seq[(File, String)]]("compile all dot files")
+graphviz := {
+  import scala.sys.process._
+
+  val files = (sourceDirectory.value / "graphviz") ** "*.dot"
+  val outDir = target.value / "graphviz"
+
+  outDir.mkdirs
+
+  files.get.map { file =>
+    val outFile = file.getName().replace(".dot", ".svg")
+    val outPath = outDir / outFile
+
+    s"dot -Tsvg $file -o $outPath" !
+
+    (outPath, outFile)
+  }
+}
+
 addMappingsToSiteDir(tut, tutDirName)
-includeFilter in SitePlugin.autoImport.makeSite :=
+addMappingsToSiteDir(graphviz, graphvizDirName)
+
+SitePlugin.autoImport.makeSite / includeFilter :=
     "*.yml" | "*.md" | "*.html" | "*.css" | "*.png" | "*.jpg" | "*.gif" | "*.js" | "*.eot" | "*.svg" | "*.ttf" |
     "*.woff" | "*.woff2" | "*.otf"
 
 git.remoteRepo := "git@github.com:nrinaudo/much-ado-about-testing.git"
 
 libraryDependencies ++= Seq(
-  "org.scalatest"  %% "scalatest"                % Versions.scalatest,
-  "org.scalacheck" %% "scalacheck"               % Versions.scalacheck,
-  "com.nrinaudo"   %% "kantan.dtables-scalatest" % Versions.kantanDTables,
-  "com.nrinaudo"   %% "kantan.dtables-csv"       % Versions.kantanDTables
+  "org.scalatest"  %% "scalatest"  % Versions.scalatest,
+  "org.scalacheck" %% "scalacheck" % Versions.scalacheck
 )
 
 // Bit of a hack to work around scalacheckout adding odd \r characters to its output, which are translated to unwanted
