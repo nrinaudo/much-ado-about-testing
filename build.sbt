@@ -3,8 +3,7 @@ enablePlugins(TutPlugin, GhpagesPlugin)
 organization := "com.nrinaudo"
 scalaVersion := "2.13.0"
 
-val tutDirName = settingKey[String]("tut output directory")
-tutDirName := "./"
+Tut / siteSubdirName := "./"
 
 val graphvizDirName = settingKey[String]("graphviz output directory")
 graphvizDirName := "./img"
@@ -28,7 +27,7 @@ graphviz := {
   }
 }
 
-addMappingsToSiteDir(tut, tutDirName)
+addMappingsToSiteDir(tut, Tut / siteSubdirName)
 addMappingsToSiteDir(graphviz, graphvizDirName)
 
 SitePlugin.autoImport.makeSite / includeFilter :=
@@ -38,8 +37,9 @@ SitePlugin.autoImport.makeSite / includeFilter :=
 git.remoteRepo := "git@github.com:nrinaudo/much-ado-about-testing.git"
 
 libraryDependencies ++= Seq(
-  "org.scalatest"  %% "scalatest"  % Versions.scalatest,
-  "org.scalacheck" %% "scalacheck" % Versions.scalacheck
+  "org.scalatest"      %% "scalatest"       % Versions.scalatest,
+  "org.scalatestplus"  %% "scalacheck-1-15" % Versions.scalatestplus,
+  "org.scalacheck"     %% "scalacheck"      % Versions.scalacheck
 )
 
 // Bit of a hack to work around scalacheckout adding odd \r characters to its output, which are translated to unwanted

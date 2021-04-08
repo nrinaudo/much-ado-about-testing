@@ -1,0 +1,47 @@
+digraph {
+    compound=true
+    bgcolor=transparent
+    rankdir=LR
+
+    // Default theme: enabled
+    node[shape="rectangle" style="rounded,filled" color="#586E75" fillcolor="#ffffff" fontcolor="#586E75" fontname="Inter,Arial"]
+    edge[color="#586E75" fontcolor="#586E75" fontname="Inter,Arial" fontsize=11]
+
+    subgraph cluster_0 {
+        color="#586E75"
+        style=rounded
+        fontcolor="#586E75"
+        fontname="Inter,Arial"
+        fontsize=10
+        labeljust=l
+        label=main
+
+        System[label="findTracks"]
+        Result[label="Results"]
+    }
+
+    subgraph cluster_1 {
+        color="#586E75"
+        style=rounded
+        fontcolor="#586E75"
+        fontname="Inter,Arial"
+        fontsize=10
+        labeljust=l
+        label=test
+
+        System2[label="findTracks"]
+        Result2[label="Results"]
+    }
+
+    Input[label=Query color="#dddddd" fontcolor="#eeeeee"]
+    Relation[label="≠" style=invis]
+
+    Input -> System[color="#dddddd"]
+    Input -> System2[color="#dddddd"]
+    System -> Result
+    System2 -> Result2
+
+    Result -> Relation[style=invis]
+    Result2 -> Relation[style=invis]
+
+}
