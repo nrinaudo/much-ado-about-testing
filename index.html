@@ -1313,7 +1313,6 @@ forAll { (i: Int) =>
 
 .center[![Validity](img/spotify_validity_query.svg)]
 
-
 ---
 
 ## Validity: use case
@@ -1562,7 +1561,7 @@ Track(
 ## Involutivity: fizzBuzz
 
 ```scala
-val propInvertibleFizzBuzz = forAll { (i: Int) =>
+val propInvolutiveFizzBuzz = forAll { (i: Int) =>
   !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
 }
 ```
@@ -1572,7 +1571,7 @@ val propInvertibleFizzBuzz = forAll { (i: Int) =>
 ## Involutivity: fizzBuzz
 
 ```scala
-val propInvertibleFizzBuzz = `forAll { (i: Int)` =>
+val propInvolutiveFizzBuzz = `forAll { (i: Int)` =>
   !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
 }
 ```
@@ -1582,7 +1581,7 @@ val propInvertibleFizzBuzz = `forAll { (i: Int)` =>
 ## Involutivity: fizzBuzz
 
 ```scala
-val propInvertibleFizzBuzz = forAll { (i: Int) =>
+val propInvolutiveFizzBuzz = forAll { (i: Int) =>
   `!(mult3(i) || mult5(i))` ==> (fizzBuzz(i).toInt == i)
 }
 ```
@@ -1592,7 +1591,7 @@ val propInvertibleFizzBuzz = forAll { (i: Int) =>
 ## Involutivity: fizzBuzz
 
 ```scala
-val propInvertibleFizzBuzz = forAll { (i: Int) =>
+val propInvolutiveFizzBuzz = forAll { (i: Int) =>
   !(mult3(i) || mult5(i)) `==>` (fizzBuzz(i).toInt == i)
 }
 ```
@@ -1602,7 +1601,7 @@ val propInvertibleFizzBuzz = forAll { (i: Int) =>
 ## Involutivity: fizzBuzz
 
 ```scala
-val propInvertibleFizzBuzz = forAll { (i: Int) =>
+val propInvolutiveFizzBuzz = forAll { (i: Int) =>
   !(mult3(i) || mult5(i)) ==> (`fizzBuzz(i)`.toInt == i)
 }
 ```
@@ -1611,7 +1610,7 @@ val propInvertibleFizzBuzz = forAll { (i: Int) =>
 ## Involutivity: fizzBuzz
 
 ```scala
-val propInvertibleFizzBuzz = forAll { (i: Int) =>
+val propInvolutiveFizzBuzz = forAll { (i: Int) =>
   !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).`toInt` == i)
 }
 ```
@@ -1621,7 +1620,7 @@ val propInvertibleFizzBuzz = forAll { (i: Int) =>
 ## Involutivity: fizzBuzz
 
 ```scala
-val propInvertibleFizzBuzz = forAll { (i: Int) =>
+val propInvolutiveFizzBuzz = forAll { (i: Int) =>
   !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt `== i`)
 }
 ```
@@ -1631,7 +1630,7 @@ val propInvertibleFizzBuzz = forAll { (i: Int) =>
 ## Involutivity: fizzBuzz
 
 ```scala
-propInvertibleFizzBuzz.check()
+propInvolutiveFizzBuzz.check()
 ```
 
 ---
@@ -1639,7 +1638,7 @@ propInvertibleFizzBuzz.check()
 ## Involutivity: fizzBuzz
 
 ```scala
-propInvertibleFizzBuzz.check()
+propInvolutiveFizzBuzz.check()
 // + OK, passed 100 tests.
 ```
 
@@ -1654,7 +1653,6 @@ propInvertibleFizzBuzz.check()
 ## Idempotence
 
 .center[![Idempotence](img/idempotence_eval.svg)]
-
 
 ---
 
@@ -1744,7 +1742,6 @@ Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
 Iron Maiden   | 1982        | The Number of the Beast | Invaders
 Iron Maiden   | 1982        | The Number of the Beast | Gangland
 
-
 ```scala
 db.delete(
   artist  = "Iron Maiden",
@@ -1761,7 +1758,6 @@ db.delete(
 Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
 Iron Maiden   | 1982        | The Number of the Beast | Invaders
 &nbsp;      | &nbsp;        | &nbsp;                  | &nbsp;
-
 
 ```scala
 db.delete(
@@ -1974,7 +1970,6 @@ forAll { (cmds: List[Command]) =>
 .foreground[![Fail](img/fail.png)]
 
 ---
-
 
 ## Invariance: fizzBuzz
 
@@ -2283,9 +2278,9 @@ propStableFizz.check()
 
 ```scala
 propStableFizz.check()
-// ! Falsified after 2 passed tests.
+// ! Falsified after 0 passed tests.
 // > ARG_0: -1
-// > ARG_0_ORIGINAL: -5
+// > ARG_0_ORIGINAL: -92
 ```
 
 ---
@@ -2350,9 +2345,9 @@ val propMult3 = forAll { (i: Int) =>
 
 ```scala
 propMult3.check()
-// ! Falsified after 1 passed tests.
+// ! Falsified after 0 passed tests.
 // > ARG_0: -1
-// > ARG_0_ORIGINAL: -20
+// > ARG_0_ORIGINAL: -95
 ```
 
 ---
@@ -2482,7 +2477,7 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
     fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
   }
 
-  property("invertibility") = forAll { (i: Int) =>
+  property("involutivity") = forAll { (i: Int) =>
     !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
   }
 
@@ -2507,7 +2502,7 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
 *   fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
 * }
 
-  property("invertibility") = forAll { (i: Int) =>
+  property("involutivity") = forAll { (i: Int) =>
     !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
   }
 
@@ -2532,7 +2527,7 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
     fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
   }
 
-* property("invertibility") = forAll { (i: Int) =>
+* property("involutivity") = forAll { (i: Int) =>
 *   !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
 * }
 
@@ -2557,7 +2552,7 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
     fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
   }
 
-  property("invertibility") = forAll { (i: Int) =>
+  property("involutivity") = forAll { (i: Int) =>
     !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
   }
 
@@ -2582,7 +2577,7 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
     fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
   }
 
-  property("invertibility") = forAll { (i: Int) =>
+  property("involutivity") = forAll { (i: Int) =>
     !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
   }
 
@@ -2611,7 +2606,7 @@ new FizzBuzzProps().check()
 ```scala
 new FizzBuzzProps().check()
 // + FizzBuzz.validity: OK, passed 100 tests.
-// + FizzBuzz.invertibility: OK, passed 100 tests.
+// + FizzBuzz.involutivity: OK, passed 100 tests.
 // + FizzBuzz.metamorphic: OK, passed 100 tests.
 // + FizzBuzz.invariant: OK, passed 100 tests.
 ```
@@ -2698,7 +2693,7 @@ new FizzBuzzProps().check()
 ```scala
 new FizzBuzzProps().check()
 // + FizzBuzz.validity: OK, passed 100 tests.
-// + FizzBuzz.invertibility: OK, passed 100 tests.
+// + FizzBuzz.involutivity: OK, passed 100 tests.
 // + FizzBuzz.metamorphic: OK, passed 100 tests.
 // + FizzBuzz.invariant: OK, passed 100 tests.
 ```
@@ -2772,8 +2767,8 @@ propFizz.check()
 ```scala
 propFizz.check()
 // ! Falsified after 0 passed tests.
-// > ARG_0: 1
-// > ARG_0_ORIGINAL: 76
+// > ARG_0: -1
+// > ARG_0_ORIGINAL: -53
 ```
 
 
@@ -3883,7 +3878,6 @@ name: metamorphic
 
 .center[![Self](img/face-detect-all.jpg)]
 
-
 ---
 
 ## Profile moderation
@@ -4125,7 +4119,6 @@ println(fizzBuzz(5))
 println(fizzBuzz(`5`))
 ```
 
-
 ---
 
 ## Compiler validation
@@ -4163,9 +4156,9 @@ println(fizzBuzz(5))
 
 _[Compiler Validation via Equivalence Modulo Inputs](http://vuminhle.com/pdf/pldi14-emi.pdf)_:
 
-* 79 new unique gcc bugs
+* 79 new unique gcc bugs.
 
-* 68 new unique LLVM bugs
+* 68 new unique LLVM bugs.
 
 --
 
@@ -4175,19 +4168,19 @@ _[Compiler Validation via Equivalence Modulo Inputs](http://vuminhle.com/pdf/pld
 
 ## Key takeaways
 
-Metamorphic Testing is:
+Metamorphic Testing:
 
 --
 
-* useful when test case generation is too expensive.
+* helps generating test cases when it's too expensive.
 
 --
 
-* weird and fun.
+* helps with the oracle problem.
 
 --
 
-* a great word to use when you want to sound smart.
+* a good word to use when you want to sound smart.
 
 [Besedo]:https://twitter.com/besedo_official
 [@NicolasRinaudo]:https://twitter.com/NicolasRinaudo

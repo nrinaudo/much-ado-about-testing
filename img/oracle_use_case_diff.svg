@@ -39,8 +39,8 @@
 <!-- Relation -->
 <g id="node6" class="node">
 <title>Relation</title>
-<path fill="#ffffff" stroke="#586e75" d="M357,-91C357,-91 327,-91 327,-91 321,-91 315,-85 315,-79 315,-79 315,-67 315,-67 315,-61 321,-55 327,-55 327,-55 357,-55 357,-55 363,-55 369,-61 369,-67 369,-67 369,-79 369,-79 369,-85 363,-91 357,-91"/>
-<text text-anchor="middle" x="342" y="-69.3" font-family="Inter,Arial" font-size="14.00" fill="#586e75">≠</text>
+<path fill="#ffffff" stroke="#d52029" d="M357,-91C357,-91 327,-91 327,-91 321,-91 315,-85 315,-79 315,-79 315,-67 315,-67 315,-61 321,-55 327,-55 327,-55 357,-55 357,-55 363,-55 369,-61 369,-67 369,-67 369,-79 369,-79 369,-85 363,-91 357,-91"/>
+<text text-anchor="middle" x="342" y="-69.3" font-family="Inter,Arial" font-size="14.00" fill="#d52029">≠</text>
 </g>
 <!-- Result&#45;&gt;Relation -->
 <g id="edge5" class="edge">
