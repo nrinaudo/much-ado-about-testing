@@ -1,0 +1,15 @@
+digraph {
+    bgcolor=transparent
+    rankdir=LR
+
+    // Default theme: enabled
+    node[shape="rectangle" style="rounded,filled" color="#586E75" fillcolor="#ffffff" fontcolor="#586E75" fontname="Inter,Arial"]
+    edge[color="#586E75" fontcolor="#000000" fontname="Inter,Arial" fontsize=11]
+
+    Input[label="Random" color="#dddddd" fontcolor="#eeeeee"]
+    Evaluation[color="#dddddd" fontcolor="#eeeeee"]
+    Analysis[label="Property"]
+
+    Input -> Evaluation[color="#dddddd"]
+    Evaluation -> Analysis[color="#dddddd"]
+}
