@@ -1,15 +1,8 @@
 digraph {
-    bgcolor=transparent
-    rankdir=LR
-
-    // Default theme: enabled
-    node[shape="rectangle" style="rounded,filled" color="#586E75" fillcolor="#ffffff" fontcolor="#586E75" fontname="Inter,Arial"]
-    edge[color="#586E75" fontcolor="#000000" fontname="Inter,Arial" fontsize=11]
-
     Input[label="Random"]
-    Evaluation[color="#dddddd" fontcolor="#eeeeee"]
-    Analysis[label="Invariant" color="#dddddd" fontcolor="#eeeeee"]
+    Evaluation[class="disabled"]
+    Analysis[label="Invariant" class="disabled"]
 
-    Input -> Evaluation[color="#dddddd"]
-    Evaluation -> Analysis[color="#dddddd"]
+    Input -> Evaluation[class="disabled"]
+    Evaluation -> Analysis[class="disabled"]
 }

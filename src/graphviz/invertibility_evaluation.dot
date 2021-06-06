@@ -1,20 +1,11 @@
 digraph {
-    bgcolor=transparent
-    rankdir=LR
-
-    // Default theme: enabled
-    node[shape="rectangle" style="rounded,filled" color="#586E75" fillcolor="#ffffff" fontcolor="#586E75" fontname="Inter,Arial"]
-    edge[color="#586E75" fontcolor="#000000" fontname="Inter,Arial" fontsize=11]
-
     subgraph cluster_0 {
-        color=transparent
-        Input[label="Random" color="#dddddd" fontcolor="#eeeeee"]
+        Input[label="Random" class="disabled"]
         Evaluation
         Analysis[label="Property"]
     }
 
     subgraph cluster_1 {
-        color=transparent
         Invis[style=invis]
         Inverse
     }
@@ -22,7 +13,7 @@ digraph {
     Input -> Invis[constraint=false style=invis]
     Invis -> Inverse[style=invis]
 
-    Input -> Evaluation[color="#dddddd"]
+    Input -> Evaluation[class="disabled"]
     Evaluation -> Analysis
     Evaluation -> Inverse[constraint=false style=invis]
     Inverse -> Analysis[style=invis]
