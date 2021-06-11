@@ -1,40 +1,22 @@
 digraph {
-    compound=true
-    bgcolor=transparent
-    rankdir=LR
-
-    // Default theme: enabled
-    node[shape="rectangle" style="rounded,filled" color="#586E75" fillcolor="#ffffff" fontcolor="#586E75" fontname="Inter,Arial"]
-    edge[color="#586E75" fontcolor="#586E75" fontname="Inter,Arial" fontsize=11]
-
     subgraph cluster_0 {
-        color="#dddddd"
-        style=rounded
-        fontcolor="#dddddd"
-        fontname="Inter,Arial"
-        fontsize=10
-        labeljust=l
+        class="rounded,disabled"
         label=Query
 
-        Maiden[label="artist: Iron Maiden" color="#dddddd" fontcolor="#eeeeee"]
+        Maiden[label="artist: Iron Maiden" class="disabled"]
     }
 
     subgraph cluster_1 {
-        color="#dddddd"
-        style=rounded
-        fontcolor="#dddddd"
-        fontname="Inter,Arial"
-        fontsize=10
-        labeljust=l
+        class="rounded,disabled"
         label=Results
 
-        Maiden1[label="Iron Maiden" color="#dddddd" fontcolor="#eeeeee"]
-        Maiden2[label="Iron Maiden" color="#dddddd" fontcolor="#eeeeee"]
+        Maiden1[label="Iron Maiden" class="disabled"]
+        Maiden2[label="Iron Maiden" class="disabled"]
         Metallica[label="Metallica" color="#d52029" fontcolor="#d52029"]
-        Maiden3[label="Iron Maiden" color="#dddddd" fontcolor="#eeeeee"]
-        Maiden4[label="Iron Maiden" color="#dddddd" fontcolor="#eeeeee"]
+        Maiden3[label="Iron Maiden" class="disabled"]
+        Maiden4[label="Iron Maiden" class="disabled"]
 
     }
 
-    Maiden -> Maiden1[label="search" lhead=cluster_1 ltail=cluster_0 color="#dddddd" fontcolor="#dddddd"]
+    Maiden -> Maiden1[label="search" ltail=cluster_0 lhead=cluster_1 color="#dddddd" fontcolor="#dddddd"]
 }
