@@ -9,10 +9,10 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
 <title>%3</title>
 <!-- Input -->
-<g id="node1" class="node">
+<g id="node1" class="node disabled">
 <title>Input</title>
-<path fill="#ffffff" stroke="#dddddd" d="M71,-36C71,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 71,0 71,0 77,0 83,-6 83,-12 83,-12 83,-24 83,-24 83,-30 77,-36 71,-36"/>
-<text text-anchor="middle" x="41.5" y="-14.3" font-family="Inter,Arial" font-size="14.00" fill="#eeeeee">Test Case</text>
+<path fill="#ffffff" stroke="#d0dce3" d="M71,-36C71,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 71,0 71,0 77,0 83,-6 83,-12 83,-12 83,-24 83,-24 83,-30 77,-36 71,-36"/>
+<text text-anchor="middle" x="41.5" y="-14.3" font-family="Inter,Arial" font-size="14.00" fill="#d0dce3">Test Case</text>
 </g>
 <!-- Evaluation -->
 <g id="node2" class="node">
@@ -21,22 +21,22 @@
 <text text-anchor="middle" x="161.5" y="-14.3" font-family="Inter,Arial" font-size="14.00" fill="#586e75">Evaluation</text>
 </g>
 <!-- Input&#45;&gt;Evaluation -->
-<g id="edge1" class="edge">
+<g id="edge1" class="edge disabled">
 <title>Input&#45;&gt;Evaluation</title>
-<path fill="none" stroke="#dddddd" d="M83.11,-18C91.26,-18 99.93,-18 108.41,-18"/>
-<polygon fill="#dddddd" stroke="#dddddd" points="108.61,-21.5 118.61,-18 108.61,-14.5 108.61,-21.5"/>
+<path fill="none" stroke="#d0dce3" d="M83.11,-18C91.26,-18 99.93,-18 108.41,-18"/>
+<polygon fill="#d0dce3" stroke="#d0dce3" points="108.61,-21.5 118.61,-18 108.61,-14.5 108.61,-21.5"/>
 </g>
 <!-- Analysis -->
-<g id="node3" class="node">
+<g id="node3" class="node disabled">
 <title>Analysis</title>
-<path fill="#ffffff" stroke="#dddddd" d="M349,-36C349,-36 252,-36 252,-36 246,-36 240,-30 240,-24 240,-24 240,-12 240,-12 240,-6 246,0 252,0 252,0 349,0 349,0 355,0 361,-6 361,-12 361,-12 361,-24 361,-24 361,-30 355,-36 349,-36"/>
-<text text-anchor="middle" x="300.5" y="-14.3" font-family="Inter,Arial" font-size="14.00" fill="#eeeeee">Output Analysis</text>
+<path fill="#ffffff" stroke="#d0dce3" d="M349,-36C349,-36 252,-36 252,-36 246,-36 240,-30 240,-24 240,-24 240,-12 240,-12 240,-6 246,0 252,0 252,0 349,0 349,0 355,0 361,-6 361,-12 361,-12 361,-24 361,-24 361,-30 355,-36 349,-36"/>
+<text text-anchor="middle" x="300.5" y="-14.3" font-family="Inter,Arial" font-size="14.00" fill="#d0dce3">Output Analysis</text>
 </g>
 <!-- Evaluation&#45;&gt;Analysis -->
-<g id="edge2" class="edge">
+<g id="edge2" class="edge disabled">
 <title>Evaluation&#45;&gt;Analysis</title>
-<path fill="none" stroke="#dddddd" d="M204.35,-18C212.38,-18 220.99,-18 229.63,-18"/>
-<polygon fill="#dddddd" stroke="#dddddd" points="229.75,-21.5 239.75,-18 229.75,-14.5 229.75,-21.5"/>
+<path fill="none" stroke="#d0dce3" d="M204.35,-18C212.38,-18 220.99,-18 229.63,-18"/>
+<polygon fill="#d0dce3" stroke="#d0dce3" points="229.75,-21.5 239.75,-18 229.75,-14.5 229.75,-21.5"/>
 </g>
 </g>
 </svg>

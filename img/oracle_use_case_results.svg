@@ -8,12 +8,12 @@
  viewBox="0.00 0.00 377.00 174.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 170)">
 <title>%3</title>
-<g id="clust1" class="cluster">
+<g id="clust1" class="cluster rounded">
 <title>cluster_0</title>
 <path fill="transparent" stroke="#586e75" d="M96,-87C96,-87 275,-87 275,-87 281,-87 287,-93 287,-99 287,-99 287,-146 287,-146 287,-152 281,-158 275,-158 275,-158 96,-158 96,-158 90,-158 84,-152 84,-146 84,-146 84,-99 84,-99 84,-93 90,-87 96,-87"/>
 <text text-anchor="middle" x="104" y="-146" font-family="Inter,Arial" font-size="10.00" fill="#586e75">main</text>
 </g>
-<g id="clust2" class="cluster">
+<g id="clust2" class="cluster rounded">
 <title>cluster_1</title>
 <path fill="transparent" stroke="#586e75" d="M96,-8C96,-8 275,-8 275,-8 281,-8 287,-14 287,-20 287,-20 287,-67 287,-67 287,-73 281,-79 275,-79 275,-79 96,-79 96,-79 90,-79 84,-73 84,-67 84,-67 84,-20 84,-20 84,-14 90,-8 96,-8"/>
 <text text-anchor="middle" x="101.5" y="-67" font-family="Inter,Arial" font-size="10.00" fill="#586e75">test</text>
@@ -58,22 +58,22 @@
 </g>
 <!-- Result2&#45;&gt;Relation -->
 <!-- Input -->
-<g id="node5" class="node">
+<g id="node5" class="node disabled">
 <title>Input</title>
-<path fill="#ffffff" stroke="#dddddd" d="M44,-91C44,-91 12,-91 12,-91 6,-91 0,-85 0,-79 0,-79 0,-67 0,-67 0,-61 6,-55 12,-55 12,-55 44,-55 44,-55 50,-55 56,-61 56,-67 56,-67 56,-79 56,-79 56,-85 50,-91 44,-91"/>
-<text text-anchor="middle" x="28" y="-69.3" font-family="Inter,Arial" font-size="14.00" fill="#eeeeee">Query</text>
+<path fill="#ffffff" stroke="#d0dce3" d="M44,-91C44,-91 12,-91 12,-91 6,-91 0,-85 0,-79 0,-79 0,-67 0,-67 0,-61 6,-55 12,-55 12,-55 44,-55 44,-55 50,-55 56,-61 56,-67 56,-67 56,-79 56,-79 56,-85 50,-91 44,-91"/>
+<text text-anchor="middle" x="28" y="-69.3" font-family="Inter,Arial" font-size="14.00" fill="#d0dce3">Query</text>
 </g>
 <!-- Input&#45;&gt;System -->
-<g id="edge1" class="edge">
+<g id="edge1" class="edge disabled">
 <title>Input&#45;&gt;System</title>
-<path fill="none" stroke="#dddddd" d="M56.04,-83.3C64.16,-86.39 73.35,-89.89 82.5,-93.38"/>
-<polygon fill="#dddddd" stroke="#dddddd" points="81.38,-96.7 91.97,-96.99 83.87,-90.16 81.38,-96.7"/>
+<path fill="none" stroke="#d0dce3" d="M56.04,-83.3C64.16,-86.39 73.35,-89.89 82.5,-93.38"/>
+<polygon fill="#d0dce3" stroke="#d0dce3" points="81.38,-96.7 91.97,-96.99 83.87,-90.16 81.38,-96.7"/>
 </g>
 <!-- Input&#45;&gt;System2 -->
-<g id="edge2" class="edge">
+<g id="edge2" class="edge disabled">
 <title>Input&#45;&gt;System2</title>
-<path fill="none" stroke="#dddddd" d="M56.04,-62.96C64.16,-59.94 73.35,-56.53 82.5,-53.13"/>
-<polygon fill="#dddddd" stroke="#dddddd" points="83.81,-56.37 91.97,-49.61 81.38,-49.81 83.81,-56.37"/>
+<path fill="none" stroke="#d0dce3" d="M56.04,-62.96C64.16,-59.94 73.35,-56.53 82.5,-53.13"/>
+<polygon fill="#d0dce3" stroke="#d0dce3" points="83.81,-56.37 91.97,-49.61 81.38,-49.81 83.81,-56.37"/>
 </g>
 </g>
 </svg>

@@ -19,46 +19,46 @@
 <text text-anchor="middle" x="51.5" y="-68.3" font-family="Inter,Arial" font-size="14.00" fill="#586e75">Random</text>
 </g>
 <!-- Evaluation -->
-<g id="node2" class="node">
+<g id="node2" class="node disabled">
 <title>Evaluation</title>
-<path fill="#ffffff" stroke="#dddddd" d="M196,-90C196,-90 135,-90 135,-90 129,-90 123,-84 123,-78 123,-78 123,-66 123,-66 123,-60 129,-54 135,-54 135,-54 196,-54 196,-54 202,-54 208,-60 208,-66 208,-66 208,-78 208,-78 208,-84 202,-90 196,-90"/>
-<text text-anchor="middle" x="165.5" y="-68.3" font-family="Inter,Arial" font-size="14.00" fill="#eeeeee">Evaluation</text>
+<path fill="#ffffff" stroke="#d0dce3" d="M196,-90C196,-90 135,-90 135,-90 129,-90 123,-84 123,-78 123,-78 123,-66 123,-66 123,-60 129,-54 135,-54 135,-54 196,-54 196,-54 202,-54 208,-60 208,-66 208,-66 208,-78 208,-78 208,-84 202,-90 196,-90"/>
+<text text-anchor="middle" x="165.5" y="-68.3" font-family="Inter,Arial" font-size="14.00" fill="#d0dce3">Evaluation</text>
 </g>
 <!-- Input&#45;&gt;Evaluation -->
-<g id="edge1" class="edge">
+<g id="edge1" class="edge disabled">
 <title>Input&#45;&gt;Evaluation</title>
-<path fill="none" stroke="#dddddd" d="M87.02,-72C95.15,-72 103.99,-72 112.7,-72"/>
-<polygon fill="#dddddd" stroke="#dddddd" points="112.81,-75.5 122.81,-72 112.81,-68.5 112.81,-75.5"/>
+<path fill="none" stroke="#d0dce3" d="M87.02,-72C95.15,-72 103.99,-72 112.7,-72"/>
+<polygon fill="#d0dce3" stroke="#d0dce3" points="112.81,-75.5 122.81,-72 112.81,-68.5 112.81,-75.5"/>
 </g>
 <!-- Reference -->
-<g id="node4" class="node">
+<g id="node4" class="node disabled">
 <title>Reference</title>
-<path fill="#ffffff" stroke="#dddddd" d="M195.5,-36C195.5,-36 135.5,-36 135.5,-36 129.5,-36 123.5,-30 123.5,-24 123.5,-24 123.5,-12 123.5,-12 123.5,-6 129.5,0 135.5,0 135.5,0 195.5,0 195.5,0 201.5,0 207.5,-6 207.5,-12 207.5,-12 207.5,-24 207.5,-24 207.5,-30 201.5,-36 195.5,-36"/>
-<text text-anchor="middle" x="165.5" y="-14.3" font-family="Inter,Arial" font-size="14.00" fill="#eeeeee">Reference</text>
+<path fill="#ffffff" stroke="#d0dce3" d="M195.5,-36C195.5,-36 135.5,-36 135.5,-36 129.5,-36 123.5,-30 123.5,-24 123.5,-24 123.5,-12 123.5,-12 123.5,-6 129.5,0 135.5,0 135.5,0 195.5,0 195.5,0 201.5,0 207.5,-6 207.5,-12 207.5,-12 207.5,-24 207.5,-24 207.5,-30 201.5,-36 195.5,-36"/>
+<text text-anchor="middle" x="165.5" y="-14.3" font-family="Inter,Arial" font-size="14.00" fill="#d0dce3">Reference</text>
 </g>
 <!-- Input&#45;&gt;Reference -->
-<g id="edge3" class="edge">
+<g id="edge3" class="edge disabled">
 <title>Input&#45;&gt;Reference</title>
-<path fill="none" stroke="#dddddd" d="M87.02,-55.36C96.66,-50.71 107.31,-45.57 117.54,-40.64"/>
-<polygon fill="#dddddd" stroke="#dddddd" points="119.3,-43.68 126.78,-36.18 116.26,-37.37 119.3,-43.68"/>
+<path fill="none" stroke="#d0dce3" d="M87.02,-55.36C96.66,-50.71 107.31,-45.57 117.54,-40.64"/>
+<polygon fill="#d0dce3" stroke="#d0dce3" points="119.3,-43.68 126.78,-36.18 116.26,-37.37 119.3,-43.68"/>
 </g>
 <!-- Analysis -->
-<g id="node3" class="node">
+<g id="node3" class="node disabled">
 <title>Analysis</title>
-<path fill="#ffffff" stroke="#dddddd" d="M286,-90C286,-90 256,-90 256,-90 250,-90 244,-84 244,-78 244,-78 244,-66 244,-66 244,-60 250,-54 256,-54 256,-54 286,-54 286,-54 292,-54 298,-60 298,-66 298,-66 298,-78 298,-78 298,-84 292,-90 286,-90"/>
-<text text-anchor="middle" x="271" y="-68.3" font-family="Inter,Arial" font-size="14.00" fill="#eeeeee">=</text>
+<path fill="#ffffff" stroke="#d0dce3" d="M286,-90C286,-90 256,-90 256,-90 250,-90 244,-84 244,-78 244,-78 244,-66 244,-66 244,-60 250,-54 256,-54 256,-54 286,-54 286,-54 292,-54 298,-60 298,-66 298,-66 298,-78 298,-78 298,-84 292,-90 286,-90"/>
+<text text-anchor="middle" x="271" y="-68.3" font-family="Inter,Arial" font-size="14.00" fill="#d0dce3">=</text>
 </g>
 <!-- Evaluation&#45;&gt;Analysis -->
-<g id="edge2" class="edge">
+<g id="edge2" class="edge disabled">
 <title>Evaluation&#45;&gt;Analysis</title>
-<path fill="none" stroke="#dddddd" d="M208,-72C216.54,-72 225.47,-72 233.81,-72"/>
-<polygon fill="#dddddd" stroke="#dddddd" points="233.97,-75.5 243.97,-72 233.97,-68.5 233.97,-75.5"/>
+<path fill="none" stroke="#d0dce3" d="M208,-72C216.54,-72 225.47,-72 233.81,-72"/>
+<polygon fill="#d0dce3" stroke="#d0dce3" points="233.97,-75.5 243.97,-72 233.97,-68.5 233.97,-75.5"/>
 </g>
 <!-- Reference&#45;&gt;Analysis -->
-<g id="edge4" class="edge">
+<g id="edge4" class="edge disabled">
 <title>Reference&#45;&gt;Analysis</title>
-<path fill="none" stroke="#dddddd" d="M201.25,-36.13C211.97,-41.72 223.79,-47.89 234.55,-53.5"/>
-<polygon fill="#dddddd" stroke="#dddddd" points="233.2,-56.75 243.69,-58.27 236.44,-50.54 233.2,-56.75"/>
+<path fill="none" stroke="#d0dce3" d="M201.25,-36.13C211.97,-41.72 223.79,-47.89 234.55,-53.5"/>
+<polygon fill="#d0dce3" stroke="#d0dce3" points="233.2,-56.75 243.69,-58.27 236.44,-50.54 233.2,-56.75"/>
 </g>
 </g>
 </svg>

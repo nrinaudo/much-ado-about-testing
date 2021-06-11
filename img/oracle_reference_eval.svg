@@ -43,16 +43,16 @@
 <polygon fill="#586e75" stroke="#586e75" points="119.3,-43.68 126.78,-36.18 116.26,-37.37 119.3,-43.68"/>
 </g>
 <!-- Analysis -->
-<g id="node3" class="node">
+<g id="node3" class="node disabled">
 <title>Analysis</title>
-<path fill="#ffffff" stroke="#dddddd" d="M306,-90C306,-90 256,-90 256,-90 250,-90 244,-84 244,-78 244,-78 244,-66 244,-66 244,-60 250,-54 256,-54 256,-54 306,-54 306,-54 312,-54 318,-60 318,-66 318,-66 318,-78 318,-78 318,-84 312,-90 306,-90"/>
-<text text-anchor="middle" x="281" y="-68.3" font-family="Inter,Arial" font-size="14.00" fill="#eeeeee">Property</text>
+<path fill="#ffffff" stroke="#d0dce3" d="M306,-90C306,-90 256,-90 256,-90 250,-90 244,-84 244,-78 244,-78 244,-66 244,-66 244,-60 250,-54 256,-54 256,-54 306,-54 306,-54 312,-54 318,-60 318,-66 318,-66 318,-78 318,-78 318,-84 312,-90 306,-90"/>
+<text text-anchor="middle" x="281" y="-68.3" font-family="Inter,Arial" font-size="14.00" fill="#d0dce3">Property</text>
 </g>
 <!-- Evaluation&#45;&gt;Analysis -->
-<g id="edge2" class="edge">
+<g id="edge2" class="edge disabled">
 <title>Evaluation&#45;&gt;Analysis</title>
-<path fill="none" stroke="#dddddd" d="M208.12,-72C216.48,-72 225.32,-72 233.83,-72"/>
-<polygon fill="#dddddd" stroke="#dddddd" points="234,-75.5 244,-72 234,-68.5 234,-75.5"/>
+<path fill="none" stroke="#d0dce3" d="M208.12,-72C216.48,-72 225.32,-72 233.83,-72"/>
+<polygon fill="#d0dce3" stroke="#d0dce3" points="234,-75.5 244,-72 234,-68.5 234,-75.5"/>
 </g>
 <!-- Reference&#45;&gt;Analysis -->
 </g>

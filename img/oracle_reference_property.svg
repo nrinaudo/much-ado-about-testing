@@ -13,10 +13,10 @@
 <polygon fill="transparent" stroke="transparent" points="8,-46 8,-98 326,-98 326,-46 8,-46"/>
 </g>
 <!-- Input -->
-<g id="node1" class="node">
+<g id="node1" class="node disabled">
 <title>Input</title>
-<path fill="#ffffff" stroke="#dddddd" d="M75,-90C75,-90 28,-90 28,-90 22,-90 16,-84 16,-78 16,-78 16,-66 16,-66 16,-60 22,-54 28,-54 28,-54 75,-54 75,-54 81,-54 87,-60 87,-66 87,-66 87,-78 87,-78 87,-84 81,-90 75,-90"/>
-<text text-anchor="middle" x="51.5" y="-68.3" font-family="Inter,Arial" font-size="14.00" fill="#eeeeee">Random</text>
+<path fill="#ffffff" stroke="#d0dce3" d="M75,-90C75,-90 28,-90 28,-90 22,-90 16,-84 16,-78 16,-78 16,-66 16,-66 16,-60 22,-54 28,-54 28,-54 75,-54 75,-54 81,-54 87,-60 87,-66 87,-66 87,-78 87,-78 87,-84 81,-90 75,-90"/>
+<text text-anchor="middle" x="51.5" y="-68.3" font-family="Inter,Arial" font-size="14.00" fill="#d0dce3">Random</text>
 </g>
 <!-- Evaluation -->
 <g id="node2" class="node">
@@ -25,10 +25,10 @@
 <text text-anchor="middle" x="165.5" y="-68.3" font-family="Inter,Arial" font-size="14.00" fill="#586e75">Evaluation</text>
 </g>
 <!-- Input&#45;&gt;Evaluation -->
-<g id="edge1" class="edge">
+<g id="edge1" class="edge disabled">
 <title>Input&#45;&gt;Evaluation</title>
-<path fill="none" stroke="#dddddd" d="M87.02,-72C95.15,-72 103.99,-72 112.7,-72"/>
-<polygon fill="#dddddd" stroke="#dddddd" points="112.81,-75.5 122.81,-72 112.81,-68.5 112.81,-75.5"/>
+<path fill="none" stroke="#d0dce3" d="M87.02,-72C95.15,-72 103.99,-72 112.7,-72"/>
+<polygon fill="#d0dce3" stroke="#d0dce3" points="112.81,-75.5 122.81,-72 112.81,-68.5 112.81,-75.5"/>
 </g>
 <!-- Reference -->
 <g id="node4" class="node">
@@ -37,10 +37,10 @@
 <text text-anchor="middle" x="165.5" y="-14.3" font-family="Inter,Arial" font-size="14.00" fill="#586e75">Reference</text>
 </g>
 <!-- Input&#45;&gt;Reference -->
-<g id="edge3" class="edge">
+<g id="edge3" class="edge disabled">
 <title>Input&#45;&gt;Reference</title>
-<path fill="none" stroke="#dddddd" d="M87.02,-55.36C96.66,-50.71 107.31,-45.57 117.54,-40.64"/>
-<polygon fill="#dddddd" stroke="#dddddd" points="119.3,-43.68 126.78,-36.18 116.26,-37.37 119.3,-43.68"/>
+<path fill="none" stroke="#d0dce3" d="M87.02,-55.36C96.66,-50.71 107.31,-45.57 117.54,-40.64"/>
+<polygon fill="#d0dce3" stroke="#d0dce3" points="119.3,-43.68 126.78,-36.18 116.26,-37.37 119.3,-43.68"/>
 </g>
 <!-- Analysis -->
 <g id="node3" class="node">

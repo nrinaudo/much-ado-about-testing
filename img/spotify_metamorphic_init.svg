@@ -8,12 +8,12 @@
  viewBox="0.00 0.00 345.00 311.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 307)">
 <title>%3</title>
-<g id="clust1" class="cluster">
+<g id="clust1" class="cluster rounded">
 <title>cluster_0</title>
 <path fill="transparent" stroke="#586e75" d="M20,-224C20,-224 150,-224 150,-224 156,-224 162,-230 162,-236 162,-236 162,-283 162,-283 162,-289 156,-295 150,-295 150,-295 20,-295 20,-295 14,-295 8,-289 8,-283 8,-283 8,-236 8,-236 8,-230 14,-224 20,-224"/>
 <text text-anchor="middle" x="30.5" y="-283" font-family="Inter,Arial" font-size="10.00" fill="#586e75">Query</text>
 </g>
-<g id="clust2" class="cluster">
+<g id="clust2" class="cluster rounded">
 <title>cluster_1</title>
 <path fill="transparent" stroke="#586e75" d="M230,-8C230,-8 317,-8 317,-8 323,-8 329,-14 329,-20 329,-20 329,-283 329,-283 329,-289 323,-295 317,-295 317,-295 230,-295 230,-295 224,-295 218,-289 218,-283 218,-283 218,-20 218,-20 218,-14 224,-8 230,-8"/>
 <text text-anchor="middle" x="243.5" y="-283" font-family="Inter,Arial" font-size="10.00" fill="#586e75">Results</text>
