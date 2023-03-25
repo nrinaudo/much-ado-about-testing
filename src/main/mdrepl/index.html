@@ -11,7 +11,7 @@ class: center, middle
 
 # Much ado about testing
 
-Nicolas Rinaudo • [@NicolasRinaudo] • [Besedo]
+Nicolas Rinaudo • [@NicolasRinaudo]
 
 ---
 
@@ -57,15 +57,14 @@ class: center, middle
 >
 > But for multiples of three print `Fizz` instead of the number and for the multiples of  five print `Buzz`.
 
-```tut:silent
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
+```scala repl
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-def fizzBuzz(i: Int): String = {
-  if(mult3(i))      "Fizz"
-  else if(mult5(i)) "Buzz"
-  else             i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then      "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 
 ---
@@ -77,14 +76,13 @@ def fizzBuzz(i: Int): String = {
 > But for multiples of three print `Fizz` instead of the number and for the multiples of five print `Buzz`.
 
 ```scala
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-def fizzBuzz(`i: Int`): String = {
-  if(mult3(i))      "Fizz"
-  else if(mult5(i)) "Buzz"
-  else             i.toString
-}
+def fizzBuzz(`i: Int`) =
+  if mult3(i) then      "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 
 ---
@@ -96,14 +94,13 @@ def fizzBuzz(`i: Int`): String = {
 > But for multiples of three print `Fizz` instead of the number and for the multiples of five print `Buzz`.
 
 ```scala
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-def fizzBuzz(i: Int): String = {
-  if(mult3(i))      "Fizz"
-  else if(mult5(i)) "Buzz"
-  else             `i.toString`
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then      "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  `i.toString`
 ```
 
 ---
@@ -115,14 +112,13 @@ def fizzBuzz(i: Int): String = {
 > But for .highlight[multiples of three] print `Fizz` instead of the number and for the multiples of five print `Buzz`.
 
 ```scala
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-def fizzBuzz(i: Int): String = {
-  if(`mult3(i)`)      "Fizz"
-  else if(mult5(i)) "Buzz"
-  else             i.toString
-}
+def fizzBuzz(i: Int) =
+  if `mult3(i)` then      "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 
 ---
@@ -134,14 +130,13 @@ def fizzBuzz(i: Int): String = {
 > But for multiples of three print .highlight[`Fizz`] instead of the number and for the multiples of five print `Buzz`.
 
 ```scala
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-def fizzBuzz(i: Int): String = {
-  if(mult3(i))      `"Fizz"`
-  else if(mult5(i)) "Buzz"
-  else             i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then      `"Fizz"`
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 
 ---
@@ -153,14 +148,13 @@ def fizzBuzz(i: Int): String = {
 > But for multiples of three print `Fizz` instead of the number and for the .highlight[multiples of five] print `Buzz`.
 
 ```scala
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-def fizzBuzz(i: Int): String = {
-  if(mult3(i))      "Fizz"
-  else if(`mult5(i)`) "Buzz"
-  else             i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then      "Fizz"
+  else if `mult5(i)` then "Buzz"
+  else                  i.toString
 ```
 
 ---
@@ -172,14 +166,13 @@ def fizzBuzz(i: Int): String = {
 > But for multiples of three print `Fizz` instead of the number and for the multiples of five print .highlight[`Buzz`].
 
 ```scala
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-def fizzBuzz(i: Int): String = {
-  if(mult3(i))      "Fizz"
-  else if(mult5(i)) `"Buzz"`
-  else             i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then      "Fizz"
+  else if mult5(i) then `"Buzz"`
+  else                  i.toString
 ```
 
 ---
@@ -228,19 +221,21 @@ class: center, middle
 
 ## Overview
 
-```tut:invisible
+```scala repl:invisible
 import org.scalatest.funsuite.AnyFunSuite
+import org.scalacheck.*
 import scala.util.Try
+
+implicit def arbList[A](using arb: Arbitrary[A]): Arbitrary[List[A]] = Arbitrary(Gen.listOf(arb.arbitrary))
 ```
 
 .center[![Testing](img/ebt.svg)]
 
-```tut:silent
-class ListTests extends AnyFunSuite {
+```scala repl:silent
+class ListTests extends AnyFunSuite:
   test("List(3, 2, 1) should sort to List(1, 2, 3)") {
     assert(List(3, 2, 1).sorted == List(1, 2, 3))
   }
-}
 ```
 
 ---
@@ -250,11 +245,10 @@ class ListTests extends AnyFunSuite {
 .center[![Testing](img/ebt_input_focus.svg)]
 
 ```scala
-class ListTests extends AnyFunSuite {
+class ListTests extends AnyFunSuite:
   test("List(3, 2, 1) should sort to List(1, 2, 3)") {
     assert(`List(3, 2, 1)`.sorted == List(1, 2, 3))
   }
-}
 ```
 
 ---
@@ -264,11 +258,10 @@ class ListTests extends AnyFunSuite {
 .center[![Testing](img/ebt_eval_focus.svg)]
 
 ```scala
-class ListTests extends AnyFunSuite {
+class ListTests extends AnyFunSuite:
   test("List(3, 2, 1) should sort to List(1, 2, 3)") {
     assert(List(3, 2, 1)`.sorted` == List(1, 2, 3))
   }
-}
 ```
 
 ---
@@ -278,19 +271,18 @@ class ListTests extends AnyFunSuite {
 .center[![Testing](img/ebt_output_focus.svg)]
 
 ```scala
-class ListTests extends AnyFunSuite {
+class ListTests extends AnyFunSuite:
   test("List(3, 2, 1) should sort to List(1, 2, 3)") {
     assert(List(3, 2, 1).sorted == `List(1, 2, 3)`)
   }
-}
 ```
 
 ---
 
 ## FizzBuzz test suite
 
-```tut:silent
-class FizzBuzzSuite extends AnyFunSuite {
+```scala repl:silent
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -302,7 +294,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of neither 3 or 5 outputs n") {
     assert(fizzBuzz(7) == "7")
   }
-}
 ```
 
 ---
@@ -310,7 +301,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## FizzBuzz test suite
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test(`"n multiple of 3 outputs Fizz"`) {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -322,7 +313,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test(`"n multiple of neither 3 or 5 outputs n"`) {
     assert(fizzBuzz(7) == "7")
   }
-}
 ```
 
 ---
@@ -330,7 +320,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## FizzBuzz test suite
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(`3`) == "Fizz")
   }
@@ -342,7 +332,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of neither 3 or 5 outputs n") {
     assert(fizzBuzz(`7`) == "7")
   }
-}
 ```
 
 ---
@@ -350,7 +339,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## FizzBuzz test suite
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(`fizzBuzz`(3) == "Fizz")
   }
@@ -362,7 +351,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of neither 3 or 5 outputs n") {
     assert(`fizzBuzz`(7) == "7")
   }
-}
 ```
 
 ---
@@ -370,7 +358,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## FizzBuzz test suite
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == `"Fizz"`)
   }
@@ -382,7 +370,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of neither 3 or 5 outputs n") {
     assert(fizzBuzz(7) == `"7"`)
   }
-}
 ```
 
 ---
@@ -390,7 +377,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## FizzBuzz test suite
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test(`"n multiple of 3 outputs Fizz"`) {
     assert(`fizzBuzz(3) == "Fizz"`)
   }
@@ -402,7 +389,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of neither 3 or 5 outputs n") {
     assert(fizzBuzz(7) == "7")
   }
-}
 ```
 
 ---
@@ -410,7 +396,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## FizzBuzz test suite
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -422,7 +408,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of neither 3 or 5 outputs n") {
     assert(fizzBuzz(7) == "7")
   }
-}
 ```
 
 ---
@@ -430,7 +415,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## FizzBuzz test suite
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -442,7 +427,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test(`"n multiple of neither 3 or 5 outputs n"`) {
     assert(`fizzBuzz(7) == "7"`)
   }
-}
 ```
 
 ---
@@ -457,7 +441,7 @@ new FizzBuzzSuite().execute()
 
 ## FizzBuzz test suite
 
-```tut:book
+```scala repl
 new FizzBuzzSuite().execute()
 ```
 
@@ -473,7 +457,7 @@ fizzBuzz(15)
 
 ## Client Demo
 
-```tut:book
+```scala repl
 fizzBuzz(15)
 ```
 
@@ -562,31 +546,15 @@ fizzBuzz(15)
 
 ## Fixing FizzBuzz
 
-```tut:silent
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i))      "Fizz"
-  else if(mult5(i)) "Buzz"
-  else             i.toString
-}
-```
-
----
-
-## Fixing FizzBuzz
-
 .diff-rm[
 ```scala
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-def fizzBuzz(i: Int): String = {
-* if(mult3(i))`      "Fizz"`
-  else if(mult5(i)) "Buzz"
-  else             i.toString
-}
+def fizzBuzz(i: Int) =
+* if mult3(i) then      `"Fizz"`
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 ]
 
@@ -596,17 +564,15 @@ def fizzBuzz(i: Int): String = {
 
 .diff-add[
 ```scala
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-def fizzBuzz(i: Int): String = {
-* if(mult3(i)) `{`
-* `  if(mult5(i)) "FizzBuzz"`
-* `  else         "Fizz"`
-* `}`
-  else if(mult5(i)) "Buzz"
-  else             i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+* `  if mult5(i) then    "FizzBuzz"`
+* `  else                "Fizz"`
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 ]
 
@@ -615,17 +581,15 @@ def fizzBuzz(i: Int): String = {
 ## Fixing FizzBuzz
 
 ```scala
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-def fizzBuzz(i: Int): String = {
-  if(`mult3(i)`) {
-    if(`mult5(i)`) `"FizzBuzz"`
-    else         "Fizz"
-  }
-  else if(mult5(i)) "Buzz"
-  else             i.toString
-}
+def fizzBuzz(i: Int) =
+  if `mult3(i)` then
+    if `mult5(i)` then    `"FizzBuzz"`
+    else                "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 
 ---
@@ -633,55 +597,24 @@ def fizzBuzz(i: Int): String = {
 ## Fixing FizzBuzz
 
 ```scala
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-def fizzBuzz(i: Int): String = {
-  if(`mult3(i)`) {
-    if(mult5(i)) "FizzBuzz"
-    else         `"Fizz"`
-  }
-  else if(mult5(i)) "Buzz"
-  else             i.toString
-}
+def fizzBuzz(i: Int) =
+  if `mult3(i)` then
+    if mult5(i) then    "FizzBuzz"
+    else                `"Fizz"`
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 
----
-
-## Fixing FizzBuzz
-
-```tut:silent
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-    else         "Fizz"
-  }
-  else if(mult5(i)) "Buzz"
-  else             i.toString
-}
-```
-
----
-
-## Fixing tests
-
-```tut:silent
-class FizzBuzzSuite extends AnyFunSuite {
-  test("n multiple of 3 outputs Fizz") {
-    assert(fizzBuzz(3) == "Fizz")
-  }
-
-  test("n multiple of 5 outputs Buzz") {
-    assert(fizzBuzz(5) == "Buzz")
-  }
-
-  test("n multiple of neither 3 or 5 outputs n") {
-    assert(fizzBuzz(7) == "7")
-  }
-}
+```scala repl:invisible
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+    if mult5(i) then    "FizzBuzz"
+    else                "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 
 ---
@@ -690,7 +623,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 
 .diff-add[
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -706,7 +639,6 @@ class FizzBuzzSuite extends AnyFunSuite {
 * `test("n multiple of 3 and 5 outputs FizzBuzz") {`
 * `  assert(fizzBuzz(15) == "FizzBuzz")`
 * `}`
-}
 ```
 ]
 
@@ -715,7 +647,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## Fixing tests
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -731,7 +663,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(`15`) == "FizzBuzz")
   }
-}
 ```
 
 ---
@@ -739,7 +670,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## Fixing tests
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -755,7 +686,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(`fizzBuzz`(15) == "FizzBuzz")
   }
-}
 ```
 
 ---
@@ -763,7 +693,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## Fixing tests
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -779,15 +709,10 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == `"FizzBuzz"`)
   }
-}
 ```
 
----
-
-## Fixing tests
-
-```tut:silent
-class FizzBuzzSuite extends AnyFunSuite {
+```scala repl:invisible
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -803,7 +728,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
-}
 ```
 
 ---
@@ -814,11 +738,12 @@ class FizzBuzzSuite extends AnyFunSuite {
 new FizzBuzzSuite().execute()
 ```
 
+
 ---
 
 ## Fixing tests
 
-```tut:book
+```scala repl
 new FizzBuzzSuite().execute()
 ```
 
@@ -834,7 +759,7 @@ fizzBuzz(-3)
 
 ## Client Demo
 
-```tut:book
+```scala repl
 fizzBuzz(-3)
 ```
 
@@ -910,33 +835,25 @@ class: center, middle
 
 ---
 
-## Property-Based Testing
-
-```tut:invisible
+```scala repl:invisible
 import org.scalacheck._
 import org.scalacheck.Prop.{forAll, propBoolean}
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.Gen.const
 
 implicit val arbInt: Arbitrary[Int] = Arbitrary(Gen.choose(-100, 100))
-```
 
-.center[![Testing](img/pbt.svg)]
-
-```tut:silent
 forAll { (is: List[Int]) =>
   is.sorted.diff(is).isEmpty
 }
 ```
-
----
 
 ## Property-Based Testing
 
 .center[![Testing](img/pbt_input_focus.svg)]
 
 ```scala
-&#x200B`forAll { (is: List[Int])` =>
+forAll { `(is: List[Int])` =>
   is.sorted.diff(is).isEmpty
 }
 ```
@@ -969,29 +886,13 @@ forAll { (is: List[Int]) =>
 
 ## Property-Based Testing
 
-```tut:silent
-val propFizzBuzz = forAll { (i: Int) =>
-  if(mult3(i)) {
-    if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
-    else         fizzBuzz(i) == "Fizz"
-  }
-  else if(mult5(i)) fizzBuzz(i) == "Buzz"
-  else              fizzBuzz(i) == i.toString
-}
-```
-
----
-
-## Property-Based Testing
-
 ```scala
-val propFizzBuzz = `forAll { (i: Int)` =>
-  if(mult3(i)) {
-    if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
-    else         fizzBuzz(i) == "Fizz"
-  }
-  else if(mult5(i)) fizzBuzz(i) == "Buzz"
-  else              fizzBuzz(i) == i.toString
+val propFizzBuzz = forAll { `(i: Int)` =>
+  if mult3(i) then
+    if mult5(i) then    fizzBuzz(i) == "FizzBuzz"
+    else                fizzBuzz(i) == "Fizz"
+  else if mult5(i) then fizzBuzz(i) == "Buzz"
+  else                  fizzBuzz(i) == i.toString
 }
 ```
 
@@ -1001,12 +902,11 @@ val propFizzBuzz = `forAll { (i: Int)` =>
 
 ```scala
 val propFizzBuzz = forAll { (i: Int) =>
-  if(`mult3(i)`) {
-    if(`mult5(i)`) fizzBuzz(i) == `"FizzBuzz"`
-    else         fizzBuzz(i) == "Fizz"
-  }
-  else if(mult5(i)) fizzBuzz(i) == "Buzz"
-  else              fizzBuzz(i) == i.toString
+  if `mult3(i)` then
+    if `mult5(i)` then    fizzBuzz(i) == `"FizzBuzz"`
+    else                fizzBuzz(i) == "Fizz"
+  else if mult5(i) then fizzBuzz(i) == "Buzz"
+  else                  fizzBuzz(i) == i.toString
 }
 ```
 
@@ -1016,12 +916,11 @@ val propFizzBuzz = forAll { (i: Int) =>
 
 ```scala
 val propFizzBuzz = forAll { (i: Int) =>
-  if(`mult3(i)`) {
-    if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
-    else         fizzBuzz(i) == `"Fizz"`
-  }
-  else if(mult5(i)) fizzBuzz(i) == "Buzz"
-  else              fizzBuzz(i) == i.toString
+  if `mult3(i)` then
+    if mult5(i) then    fizzBuzz(i) == "FizzBuzz"
+    else                fizzBuzz(i) == `"Fizz"`
+  else if mult5(i) then fizzBuzz(i) == "Buzz"
+  else                  fizzBuzz(i) == i.toString
 }
 ```
 
@@ -1031,12 +930,11 @@ val propFizzBuzz = forAll { (i: Int) =>
 
 ```scala
 val propFizzBuzz = forAll { (i: Int) =>
-  if(mult3(i)) {
-    if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
-    else         fizzBuzz(i) == "Fizz"
-  }
-  else if(`mult5(i)`) fizzBuzz(i) == `"Buzz"`
-  else              fizzBuzz(i) == i.toString
+  if mult3(i) then
+    if mult5(i) then    fizzBuzz(i) == "FizzBuzz"
+    else                fizzBuzz(i) == "Fizz"
+  else if `mult5(i)` then fizzBuzz(i) == `"Buzz"`
+  else                  fizzBuzz(i) == i.toString
 }
 ```
 
@@ -1046,14 +944,24 @@ val propFizzBuzz = forAll { (i: Int) =>
 
 ```scala
 val propFizzBuzz = forAll { (i: Int) =>
-  if(mult3(i)) {
-    if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
-    else         fizzBuzz(i) == "Fizz"
-  }
-  else if(mult5(i)) fizzBuzz(i) == "Buzz"
-  else              fizzBuzz(i) == `i.toString`
+  if mult3(i) then
+    if mult5(i) then    fizzBuzz(i) == "FizzBuzz"
+    else                fizzBuzz(i) == "Fizz"
+  else if mult5(i) then fizzBuzz(i) == "Buzz"
+  else                  fizzBuzz(i) == `i.toString`
 }
 ```
+
+```scala repl:invisible
+val propFizzBuzz = forAll { (i: Int) =>
+  if mult3(i) then
+    if mult5(i) then    fizzBuzz(i) == "FizzBuzz"
+    else                fizzBuzz(i) == "Fizz"
+  else if mult5(i) then fizzBuzz(i) == "Buzz"
+  else                  fizzBuzz(i) == i.toString
+}
+```
+
 
 ---
 
@@ -1067,7 +975,7 @@ propFizzBuzz.check()
 
 ## Property-Based Testing
 
-```tut:book
+```scala repl
 propFizzBuzz.check()
 ```
 
@@ -1077,12 +985,11 @@ propFizzBuzz.check()
 
 ```scala
 val propFizzBuzz = forAll { (i: Int) =>
-* if(mult3(i)) {
-*   if(mult5(i)) fizzBuzz(i) == "FizzBuzz"
-*   else         fizzBuzz(i) == "Fizz"
-* }
-* else if(mult5(i)) fizzBuzz(i) == "Buzz"
-* else              fizzBuzz(i) == i.toString
+* if mult3(i) then
+*   if mult5(i) then    fizzBuzz(i) == "FizzBuzz"
+*   else                fizzBuzz(i) == "Fizz"
+* else if mult5(i) then fizzBuzz(i) == "Buzz"
+* else                  fizzBuzz(i) == `i.toString`
 }
 ```
 
@@ -1122,17 +1029,10 @@ val propFizzBuzz = forAll { (i: Int) =>
 
 .center[![Oracle](img/oracle_equality_2.svg)]
 
----
 
-## Test oracle
-
-.center[![Oracle](img/oracle_equality.svg)]
-
-```tut:invisible
+```scala repl:invisible
 def fastSort[A: Ordering](as: List[A]): List[A] = ???
-```
 
-```tut:silent
 forAll { (is: List[Int]) =>
   fastSort(is) == is.sorted
 }
@@ -1145,7 +1045,7 @@ forAll { (is: List[Int]) =>
 .center[![Oracle](img/oracle_input.svg)]
 
 ```scala
-&#x200B`forAll { (is: List[Int])` =>
+forAll { `(is: List[Int])` =>
   fastSort(is) == is.sorted
 }
 ```
@@ -1256,13 +1156,8 @@ forAll { (is: List[Int]) =>
 
 .center[![Validity](img/validity_property.svg)]
 
----
 
-## Validity
-
-.center[![Validity](img/validity.svg)]
-
-```tut:silent
+```scala repl:invisible
 forAll { (i: Int) =>
   math.abs(i) >= 0
 }
@@ -1275,7 +1170,7 @@ forAll { (i: Int) =>
 .center[![Validity](img/validity_input.svg)]
 
 ```scala
-&#x200B`forAll { (i: Int)` =>
+forAll { `(i: Int)` =>
   math.abs(i) >= 0
 }
 ```
@@ -1332,17 +1227,11 @@ forAll { (i: Int) =>
 
 .foreground[![Fail](img/fail.png)]
 
----
-
-## Validity: fizzBuzz
-
-```tut:invisible
+```scala repl:invisible
 implicit class IsIn[A](value: A) {
   def in(as: Set[A]) = as.contains(value)
 }
-```
 
-```tut:silent
 val propValidFizzBuzz = forAll { (i: Int) =>
   fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
 }
@@ -1353,7 +1242,7 @@ val propValidFizzBuzz = forAll { (i: Int) =>
 ## Validity: fizzBuzz
 
 ```scala
-val propValidFizzBuzz = `forAll { (i: Int)` =>
+val propValidFizzBuzz = forAll { `(i: Int)` =>
   fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
 }
 ```
@@ -1390,7 +1279,7 @@ propValidFizzBuzz.check()
 
 ## Validity: fizzBuzz
 
-```tut:book
+```scala repl
 propValidFizzBuzz.check()
 ```
 
@@ -1436,13 +1325,8 @@ propValidFizzBuzz.check()
 
 .center[![Involutivity](img/invertibility_equality.svg)]
 
----
 
-## Involutivity
-
-.center[![Involutivity](img/invertibility.svg)]
-
-```tut:silent
+```scala repl:invisible
 forAll { (i: Int) =>
   i.toString.toInt == i
 }
@@ -1455,7 +1339,7 @@ forAll { (i: Int) =>
 .center[![Involutivity](img/invertibility_input.svg)]
 
 ```scala
-&#x200B`forAll { (i: Int)` =>
+forAll { `(i: Int)` =>
   i.toString.toInt == i
 }
 ```
@@ -1500,11 +1384,11 @@ forAll { (i: Int) =>
 
 ## Involutivity: use case
 
-```tut:invisible
+```scala repl:invisible
 case class Track(artist: String, year: Int, album: String, name: String)
 ```
 
-```tut:silent
+```scala repl:silent
 Track(
    artist  = "Iron Maiden",
    year    = 1982,
@@ -1517,26 +1401,26 @@ Track(
 
 ## Involutivity: use case
 
-```json
-{
-  "artist" : "Iron Maiden",
-  "year"   : 1982,
-  "album"  : "The Number of the Beast",
-  "name"   : "Children of the Damned"
-}
+```scala
+Track(
+   artist  = "Iron Maiden",
+   year    = `1982`,
+   album   = "The Number of the Beast",
+   name    = "Children of the Damned"
+)
 ```
 
 ---
 
 ## Involutivity: use case
 
-```tut:silent
-Track(
-   artist  = "Iron Maiden",
-   year    = 1970,
-   album   = "The Number of the Beast",
-   name    = "Children of the Damned"
-)
+```json
+{
+  "artist" : "Iron Maiden",
+  "year"   : `1982`,
+  "album"  : "The Number of the Beast",
+  "name"   : "Children of the Damned"
+}
 ```
 
 ---
@@ -1556,11 +1440,7 @@ Track(
 
 .foreground[![Fail](img/fail.png)]
 
----
-
-## Involutivity: fizzBuzz
-
-```tut:silent
+```scala repl:invisible
 val propInvolutiveFizzBuzz = forAll { (i: Int) =>
   !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
 }
@@ -1571,7 +1451,7 @@ val propInvolutiveFizzBuzz = forAll { (i: Int) =>
 ## Involutivity: fizzBuzz
 
 ```scala
-val propInvolutiveFizzBuzz = `forAll { (i: Int)` =>
+val propInvolutiveFizzBuzz = forAll { `(i: Int)` =>
   !(mult3(i) || mult5(i)) ==> (fizzBuzz(i).toInt == i)
 }
 ```
@@ -1637,7 +1517,7 @@ propInvolutiveFizzBuzz.check()
 
 ## Involutivity: fizzBuzz
 
-```tut:book
+```scala repl
 propInvolutiveFizzBuzz.check()
 ```
 
@@ -1671,13 +1551,7 @@ propInvolutiveFizzBuzz.check()
 
 .center[![Idempotence](img/idempotence_equality.svg)]
 
----
-
-## Idempotence
-
-.center[![Idempotence](img/idempotence.svg)]
-
-```tut:silent
+```scala repl:invisible
 forAll { (is: List[Int]) =>
   is.sorted == is.sorted.sorted
 }
@@ -1690,7 +1564,7 @@ forAll { (is: List[Int]) =>
 .center[![Idempotence](img/idempotence_input.svg)]
 
 ```scala
-&#x200B`forAll { (is: List[Int])` =>
+forAll { `(is: List[Int])` =>
   is.sorted == is.sorted.sorted
 }
 ```
@@ -1810,13 +1684,8 @@ db.delete(
 
 .center[![Invariance](img/invariance_invariant.svg)]
 
----
 
-## Invariance
-
-.center[![Invariance](img/invariance.svg)]
-
-```tut:silent
+```scala repl:invisible
 forAll { (is: List[Int]) =>
   is.sorted.diff(is).isEmpty
 }
@@ -1829,7 +1698,7 @@ forAll { (is: List[Int]) =>
 .center[![Invariance](img/invariance_input.svg)]
 
 ```scala
-&#x200B`forAll { (is: List[Int])` =>
+forAll { `(is: List[Int])` =>
   is.sorted.diff(is).isEmpty
 }
 ```
@@ -1875,23 +1744,6 @@ Iron Maiden   | 1982        | The Number of the Beast | Invaders
 --------------|-------------|--------------------------------------------------
 İ̵̺͝ṛ̸̣͕̐͜o̴̢̎̿̓̌n̸̥͙̬̣̾́͛̾̌͘ͅ ̶̻͂M̷̗̣̠̠̎̀ȧ̸̛͔͇̐͘į̵̗̞̩̯̫̇̔̾̋̕͝d̵̟͓͆̅̇̋̐̚ͅe̷̯̪̙̼̩̩͐n̴̛̗̟͈͇̖̎̈̕   | 1̶͍͓̣̔̍́̒̒̅͘͜9̷̬̖̹̗̻͍̋͗̈́͠8̶͓̫̹̹̍2̸̨̲̝̏͌        | T̸̜̟͕̩̘̃̇͂͠h̶̦̓͋̇͝e̴̢̝̱̦͎͗͂̅̓͜ͅ ̶̝̬͠͝Ǹ̵̛̘̺̯̃̈́̍ù̷̱̖m̷̗͙̱̥͇̹͑̎̂͊̈́́̌b̸̢̦̪̽̅̂̑e̴̤̫̝̎̈́̇r̵͇̥̃̃̈͋̎̋͗͜ ̴͇̖̼͙̥̲̹̄̀ò̷͉̠̒f̶̲͇̳͛̔̃̽ ̸͍̉̚͝t̶̼̗̬̞̣̂͗͠͠͝h̴̰͒̾̑͐́͝ě̷̠̤͎̳͍̿͆́̕͝ ̸̭̬̊̐̾̍B̷̨̑é̴̡̟͔͖̏̃̔̓͝͠ą̷͉̫͇̫̈́̍̄́̃s̵͍̀̅͂͂͑̌ẗ̷̡̪̙͉͔́͑͗̇̋̑ | C̵͚̣̬̠̞̝̰̐̍̃h̷̥͛͂͋̚̚ï̴̤l̴͉̳̘̝͖̤͋͝d̴̢̲̫̯͙̺̮́̈́̕r̸̢̗̥͇̻͓͗̋̆́ȇ̸̲̉̆n̵̞̙͎̠̲͕̭̅̃̉̂ ̵͔̦͙̯̎͂̑̚͝õ̷̳̱͈̻̤̠̫̽̓̑̊͒f̸̦͋ͅ ̴̹̖̌ṫ̷̻̼͖͗̉̀̑h̴̹͎̰̬̟͊̍ͅe̸̤̱͛́͑ ̸̞̾͊͠D̵̢̜̬̳̍̑͛̄͆̀̅a̴͙̼̤̤͓͇̟̒̈́͋m̷̡̞̬̞̬͆̔̿n̴̨̢̖͉͓̥̂̄͘ë̴̬͚͎̭̭ͅd̸̢͕̼̗̠̂
 Ì̷̧̺͓͕̘͓̯̗̬͈̤̗̝̰͜ȓ̵̨̜̟̱̘̟̬̙̯̱͍̩̭̈̆̅̍̌̿́̈́́̚͜͝ͅo̴̡͗͗͛̑̿̾͒͂̎̆n̶͖̳͖͉̗͕̱͔̱̖̫̽̎͜ͅ ̸̢̨̛͇͚͔̘̦̘̱̮̖̿͑̒̉̽̎́̑̚̚̕M̷̜͖̊͗̅̆̏̈́͛̍̂̉́̃̚̕͝ả̷̡̛̫͔̳̞̻͔͉̜̍̅̈́̆͛͒̋̑͠i̵̢̡͎̯̙͇͍̇͊̃̓̚͜ͅd̸̟̤̼̲̈́̎̑͜ͅȩ̸͓̝̘̙͉̼̺̖̳͓̩̽̕ͅn̴͈̈̃̿͝   | 1̴̛͈̣̲̹͗̾͂͆̒̓͛̋͝9̵̨̢̨̻̲̬͕̲͔͖̘̀̿͝ͅ8̷̩̹̣̦̙͖͚̞̮́̉̑̓̉͑̈̾́͊̀̽͛͘̚2̵̡̘̠̼͙̅̇͛̽͒̀̄̾́̋̎͐͛͝        | T̷̢̟̙̥̬̰͎͚͈͕̬͆̋͊͛̂̓̈́͊̌̀͆̅̐͘͝ȟ̴̛̹̝͕͒͗è̵̛̩͇͎̤̪͍͎̳̺͔̖̝͖͊̏̀̽͝ ̵͕͇͌͌́͛̑̏͊̈̔̿̚̕͠͝N̴̤̥̖̠͍̻̤̣͈̩̞̾̍̉͐͋̇̈̈́̓̈́̚ͅu̵̲̹̙̦̞̎̏͗͋̌͐̈́͘͜͝͝m̶̡̙̖̳̖͇̻̰̼̝̖̎̈̈̄́̀̽̈́͘͜͝b̸̡̙͚̙̮̀̀̅́̔́̿̑͆̂͒̕è̷̫͕̗̰̌̈́̏͗͆͂r̶̡̢̨̛̛̙̖̲͔̥̲͕̈́̀͆̀̅̀̔̃̿̉̽͝͝ ̵̨͍͎͈̹̺̟̠̪̼̟̟͔̜̆̈́̈́o̶̡̧̯̠̜̤͊̒̀͆̒̀̋̅̽̕͜͝ͅf̸͓̥̻͚̘̹͈͉̱̆̅̊̿͑͛́͆̽̋͘͜͜ ̶̣̭͙̯͇̦͂̋͆͆̕ţ̴̡̨̭̭̺̣̲̤͎̩̮̮̥̿́̔́̂͂h̵͉̤͛͊͛͐͒͒ė̶̜̰͓̤̼̖̜̣͎̫̑̍̌́̂̈̌͆̍ ̴̘̞̖̳͕̳͑̀̆̑͜B̷̨͈̹̣̘̰͕͉̰̹͗̔ȩ̷̡̠̙̖̱̜̲̤͚̼͓̠͛̾̓͆̅̒͂̅̀̿͘͘ạ̶̢̨̮̩͇͚͓̀̄̐̈́̇̇͊̄̾̕͝͝s̵̡̛͚̭̞͌̋̐̑͑̓̒̋͊͊͌̈̎̚ṱ̴̫̤̩͂͒̅̋̓̓̿̅̈́̎ | I̴̢̦̠͈̊̆͌͝͝ͅn̶̛͈̺̜͇̲̭͓͉̎̽̓̊̈̈́̾̔́̽̇͘v̷͈̘̞̬̼̲̍͊͊̋̓̕ą̷̰͙͙̖̖̤̬͙̃d̷̠̀́̓͆̽̽̽̓͘ȩ̵̤̱͓̫̻̫̯̪̎͌̇̆̄̓ͅr̴̗̹̪̬̘̪̝̰͆̒͆̋̃̃̏̈͑̅͝ş̴͎̭̻͔̘͈͉̟̻͈̯̩͓̔̐
----
-
-## Invariance: use case
-
-`artist`     | `year`     | `album`                 | `name`
---------------|-------------|--------------------------------------------------
-Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
-Iron Maiden   | 1982        | The Number of the Beast | Invaders
-
-```scala
-forAll { (cmds: List[Command]) =>
-  cmds.exists { cmd =>
-    db.execute(cmd)
-    notCorrupt(db)
-  }
-}
-```
 
 ---
 
@@ -1903,8 +1755,8 @@ Iron Maiden   | 1982        | The Number of the Beast | Children of the Damned
 Iron Maiden   | 1982        | The Number of the Beast | Invaders
 
 ```scala
-&#x200B`forAll { (cmds: List[Command])` =>
-  cmds.exists { cmd =>
+forAll { `(cmds: List[Command])` =>
+  cmds.forall { cmd =>
     db.execute(cmd)
     notCorrupt(db)
   }
@@ -1922,7 +1774,7 @@ Iron Maiden   | 1982        | The Number of the Beast | Invaders
 
 ```scala
 forAll { (cmds: List[Command]) =>
-  cmds.exists { cmd =>
+  cmds.forall { cmd =>
     `db.execute(cmd)`
     notCorrupt(db)
   }
@@ -1940,7 +1792,7 @@ Iron Maiden   | 1982        | The Number of the Beast | Invaders
 
 ```scala
 forAll { (cmds: List[Command]) =>
-  cmds.exists { cmd =>
+  cmds.forall { cmd =>
     db.execute(cmd)
     `notCorrupt(db)`
   }
@@ -1968,11 +1820,7 @@ forAll { (cmds: List[Command]) =>
 
 .foreground[![Fail](img/fail.png)]
 
----
-
-## Invariance: fizzBuzz
-
-```tut:silent
+```scala repl:invisible
 val propSafeFizzBuzz = forAll { (i: Int) =>
   Try(fizzBuzz(i)).isSuccess
 }
@@ -1983,7 +1831,7 @@ val propSafeFizzBuzz = forAll { (i: Int) =>
 ## Invariance: fizzBuzz
 
 ```scala
-val propSafeFizzBuzz = `forAll { (i: Int)` =>
+val propSafeFizzBuzz = forAll { `(i: Int)` =>
   Try(fizzBuzz(i)).isSuccess
 }
 ```
@@ -2020,7 +1868,7 @@ propSafeFizzBuzz.check()
 
 ## Invariance: fizzBuzz
 
-```tut:book
+```scala repl
 propSafeFizzBuzz.check()
 ```
 
@@ -2060,13 +1908,7 @@ propSafeFizzBuzz.check()
 
 .center[![Metamorphic Relation](img/metamorphic_relation.svg)]
 
----
-
-## Metamorphic relation
-
-.center[![Metamorphic Relation](img/metamorphic.svg)]
-
-```tut:silent
+```scala repl:invisible
 forAll { (i: Int) =>
   mult3(i) == mult3(-i)
 }
@@ -2079,7 +1921,7 @@ forAll { (i: Int) =>
 .center[![Metamorphic Relation](img/metamorphic_input.svg)]
 
 ```scala
-&#x200B`forAll { (i: Int)` =>
+forAll { `(i: Int)` =>
   mult3(i) == mult3(-i)
 }
 ```
@@ -2182,11 +2024,7 @@ _[Metamorphic testing of RESTful web apis](http://www.lsi.us.es/~segura/files/pa
 
 * 8 new unique YouTube bugs.
 
----
-
-## Metamorphic relation: fizzBuzz
-
-```tut:silent
+```scala repl:invisible
 val propStableFizz = forAll { (i: Int) =>
   fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
 }
@@ -2197,7 +2035,7 @@ val propStableFizz = forAll { (i: Int) =>
 ## Metamorphic relation: fizzBuzz
 
 ```scala
-val propStableFizz = `forAll { (i: Int)` =>
+val propStableFizz = forAll { `(i: Int)` =>
   fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
 }
 ```
@@ -2274,72 +2112,20 @@ propStableFizz.check()
 
 ## Metamorphic relation: fizzBuzz
 
-```tut:book
+```scala repl
 propStableFizz.check()
 ```
 
----
+```scala repl:invisible
+def mult3(i: Int) = !(i % 3 > 0)
+def mult5(i: Int) = !(i % 5 > 0)
 
-## Fixing `fizzBuzz`
-
-```tut:silent
-def mult3(i: Int): Boolean = !(i % 3 > 0)
-def mult5(i: Int): Boolean = !(i % 5 > 0)
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-    else         "Fizz"
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
-```
-
----
-
-## Fixing `fizzBuzz`
-
-```scala
-def mult3(i: Int): Boolean = `!(i % 3 > 0)`
-def mult5(i: Int): Boolean = `!(i % 5 > 0)`
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-    else         "Fizz"
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
-```
-
----
-
-## Fixing `fizzBuzz`
-
-```tut:silent
-val propMult3 = forAll { (i: Int) =>
-  mult3(i) == mult3(-i)
-}
-```
-
-```scala
-propMult3.check()
-```
-
----
-
-## Fixing `fizzBuzz`
-
-```tut:silent
-val propMult3 = forAll { (i: Int) =>
-  mult3(i) == mult3(-i)
-}
-```
-
-```tut:book
-propMult3.check()
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+    if mult5(i) then    "FizzBuzz"
+    else                "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 
 ---
@@ -2348,17 +2134,15 @@ propMult3.check()
 
 .diff-rm[
 ```scala
-*def mult3(i: Int): Boolean = `!(i % 3 > 0)`
-*def mult5(i: Int): Boolean = `!(i % 5 > 0)`
+*def mult3(i: Int) = `!(i % 3 > 0)`
+*def mult5(i: Int) = `!(i % 5 > 0)`
 
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-    else         "Fizz"
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+    if mult5(i) then    "FizzBuzz"
+    else                "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 ]
 
@@ -2368,71 +2152,39 @@ def fizzBuzz(i: Int): String = {
 
 .diff-add[
 ```scala
-*def mult3(i: Int): Boolean = `i % 3 == 0`
-*def mult5(i: Int): Boolean = `i % 5 == 0`
+*def mult3(i: Int) = `i % 3 == 0`
+*def mult5(i: Int) = `i % 5 == 0`
 
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-    else         "Fizz"
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+    if mult5(i) then    "FizzBuzz"
+    else                "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 ]
 
----
+```scala repl:invisible
+def mult3(i: Int) = i % 3 == 0
+def mult5(i: Int) = i % 5 == 0
 
-## Fixing `fizzBuzz`
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+    if mult5(i) then    "FizzBuzz"
+    else                "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 
-```tut:silent
-def mult3(i: Int): Boolean = i % 3 == 0
-def mult5(i: Int): Boolean = i % 5 == 0
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-    else         "Fizz"
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
-```
-
----
-
-## Fixing `fizzBuzz`
-
-```tut:silent
 val propMult3 = forAll { (i: Int) =>
   mult3(i) == mult3(-i)
 }
 ```
 
-```scala
-propMult3.check()
-```
-
 ---
 
 ## Fixing `fizzBuzz`
 
-```tut:silent
-val propMult3 = forAll { (i: Int) =>
-  mult3(i) == mult3(-i)
-}
-```
-
-```tut:book
-propMult3.check()
-```
-
----
-
-## Fixing `fizzBuzz`
-
-```tut:silent
+```scala repl:invisible
 val propStableFizz = forAll { (i: Int) =>
   fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
 }
@@ -2446,13 +2198,7 @@ propStableFizz.check()
 
 ## Fixing `fizzBuzz`
 
-```tut:silent
-val propStableFizz = forAll { (i: Int) =>
-  fizzBuzz(i).contains("Fizz") ==> fizzBuzz(-i).contains("Fizz")
-}
-```
-
-```tut:book
+```scala repl
 propStableFizz.check()
 ```
 
@@ -2460,8 +2206,8 @@ propStableFizz.check()
 
 ## Challenging properties
 
-```tut:silent
-class FizzBuzzProps extends Properties("FizzBuzz") {
+```scala repl:silent
+class FizzBuzzProps extends Properties("FizzBuzz"):
 
   property("validity") = forAll { (i: Int) =>
     fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
@@ -2478,7 +2224,6 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
   property("invariant") = forAll { (i: Int) =>
     Try(fizzBuzz(i)).isSuccess
   }
-}
 ```
 
 ---
@@ -2486,7 +2231,7 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
 ## Challenging properties
 
 ```scala
-class FizzBuzzProps extends Properties("FizzBuzz") {
+class FizzBuzzProps extends Properties("FizzBuzz"):
 
 * property("validity") = forAll { (i: Int) =>
 *   fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
@@ -2503,7 +2248,6 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
   property("invariant") = forAll { (i: Int) =>
     Try(fizzBuzz(i)).isSuccess
   }
-}
 ```
 
 ---
@@ -2511,7 +2255,7 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
 ## Challenging properties
 
 ```scala
-class FizzBuzzProps extends Properties("FizzBuzz") {
+class FizzBuzzProps extends Properties("FizzBuzz"):
 
   property("validity") = forAll { (i: Int) =>
     fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
@@ -2528,7 +2272,6 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
   property("invariant") = forAll { (i: Int) =>
     Try(fizzBuzz(i)).isSuccess
   }
-}
 ```
 
 ---
@@ -2536,7 +2279,7 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
 ## Challenging properties
 
 ```scala
-class FizzBuzzProps extends Properties("FizzBuzz") {
+class FizzBuzzProps extends Properties("FizzBuzz"):
 
   property("validity") = forAll { (i: Int) =>
     fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
@@ -2553,7 +2296,6 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
   property("invariant") = forAll { (i: Int) =>
     Try(fizzBuzz(i)).isSuccess
   }
-}
 ```
 
 ---
@@ -2561,7 +2303,7 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
 ## Challenging properties
 
 ```scala
-class FizzBuzzProps extends Properties("FizzBuzz") {
+class FizzBuzzProps extends Properties("FizzBuzz"):
 
   property("validity") = forAll { (i: Int) =>
     fizzBuzz(i) in Set(i.toString, "Fizz", "Buzz", "FizzBuzz")
@@ -2578,7 +2320,6 @@ class FizzBuzzProps extends Properties("FizzBuzz") {
 * property("invariant") = forAll { (i: Int) =>
 *   Try(fizzBuzz(i)).isSuccess
 * }
-}
 ```
 
 ---
@@ -2593,23 +2334,8 @@ new FizzBuzzProps().check()
 
 ## Challenging properties
 
-```tut:book
+```scala repl
 new FizzBuzzProps().check()
-```
-
----
-
-## Challenging properties
-
-```tut:silent
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-    else         "Fizz"
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
 ```
 
 ---
@@ -2618,14 +2344,12 @@ def fizzBuzz(i: Int): String = {
 
 .diff-rm[
 ```scala
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-*   else         `"Fizz"`
-  }
-* else if(mult5(i)) `"Buzz"`
-  else              i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+    if mult5(i) then    "FizzBuzz"
+*   else                `"Fizz"`
+* else if mult5(i) then `"Buzz"`
+  else                  i.toString
 ```
 ]
 
@@ -2635,37 +2359,29 @@ def fizzBuzz(i: Int): String = {
 
 .diff-add[
 ```scala
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-*   else         `"Buzz"`
-  }
-* else if(mult5(i)) `"Fizz"`
-  else              i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+    if mult5(i) then    "FizzBuzz"
+*   else                `"Buzz"`
+* else if mult5(i) then `"Fizz"`
+  else                  i.toString
 ```
 ]
 
----
-
-## Challenging properties
-
-```tut:silent
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-    else         "Buzz"
-  }
-  else if(mult5(i)) "Fizz"
-  else              i.toString
-}
+```scala repl:invisible
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+    if mult5(i) then    "FizzBuzz"
+    else                "Buzz"
+  else if mult5(i) then "Fizz"
+  else                  i.toString
 ```
 
 ---
 
 ## Challenging properties
 
-```tut:invisible
+```scala repl:invisible
 class FizzBuzzProps extends Properties("FizzBuzz") {
 
   property("validity") = forAll { (i: Int) =>
@@ -2694,7 +2410,7 @@ new FizzBuzzProps().check()
 
 ## Challenging properties
 
-```tut:book
+```scala repl
 new FizzBuzzProps().check()
 ```
 
@@ -2706,7 +2422,7 @@ new FizzBuzzProps().check()
 
 ## Challenging properties
 
-```tut:silent
+```scala repl:silent
 val propFizz = forAll { (i: Int) =>
   fizzBuzz(i * 3).contains("Fizz")
 }
@@ -2717,7 +2433,7 @@ val propFizz = forAll { (i: Int) =>
 ## Challenging properties
 
 ```scala
-val propFizz = `forAll { (i: Int)` =>
+val propFizz = forAll { `(i: Int)` =>
   fizzBuzz(i * 3).contains("Fizz")
 }
 ```
@@ -2764,22 +2480,20 @@ propFizz.check()
 
 ## Challenging properties
 
-```tut:book
+```scala repl
 propFizz.check()
 ```
 
-```tut:invisible
-def mult3(i: Int): Boolean = i % 3 == 0
-def mult5(i: Int): Boolean = i % 5 == 0
+```scala repl:invisible
+def mult3(i: Int) = i % 3 == 0
+def mult5(i: Int) = i % 5 == 0
 
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-    else         "Fizz"
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+    if mult5(i) then    "FizzBuzz"
+    else                "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 
 ---
@@ -2810,8 +2524,8 @@ class: center, middle
 
 ## Example-Based Tests
 
-```tut:silent
-class FizzBuzzSuite extends AnyFunSuite {
+```scala repl:silent
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -2827,7 +2541,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
-}
 ```
 
 ---
@@ -2835,7 +2548,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## Example-Based Tests
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
 * test("n multiple of 3 outputs Fizz") {
 *   assert(fizzBuzz(3) == "Fizz")
 * }
@@ -2851,7 +2564,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
-}
 ```
 
 ---
@@ -2859,7 +2571,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## Example-Based Tests
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(`fizzBuzz(3) == "Fizz"`)
   }
@@ -2875,14 +2587,13 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
-}
 ```
 
 ---
 
 ## Naive property
 
-```tut:silent
+```scala repl:silent
 val propFizzBuzz3 =
   fizzBuzz(3) == "Fizz"
 ```
@@ -2957,22 +2668,7 @@ val propFizzBuzz3 =
 ```
 ]
 
----
-
-## Naive property
-
-```scala
-val propFizzBuzz3 =
-  forAll(const(3)) { i =>
-    fizzBuzz(i) == `"Fizz"`
-  }
-```
-
----
-
-## Naive property
-
-```tut:silent
+```scala repl:invisible
 val propFizzBuzz3 =
   forAll(const(3)) { i =>
     fizzBuzz(i) == "Fizz"
@@ -2990,15 +2686,11 @@ val propFizzBuzz3 =
   }
 ```
 
----
-
-## Multiples of 3
-
-```tut:silent
+```scala repl:invisible
 val genMult3: Gen[Int] =
-  arbitrary[Int].
-    map(_ * 3).
-    filter(_ % 5 != 0)
+  arbitrary[Int]
+    .map(_ * 3)
+    .filter(_ % 5 != 0)
 ```
 
 ---
@@ -3007,9 +2699,9 @@ val genMult3: Gen[Int] =
 
 ```scala
 val genMult3: Gen[Int] =
-  `arbitrary[Int]`.
-    map(_ * 3).
-    filter(_ % 5 != 0)
+  `arbitrary[Int]`
+    .map(_ * 3)
+    .filter(_ % 5 != 0)
 ```
 
 ---
@@ -3018,9 +2710,9 @@ val genMult3: Gen[Int] =
 
 ```scala
 val genMult3: Gen[Int] =
-  arbitrary[Int].
-    `map(_ * 3)`.
-    filter(_ % 5 != 0)
+  arbitrary[Int]
+    .`map(_ * 3)`
+    .filter(_ % 5 != 0)
 ```
 
 ---
@@ -3029,9 +2721,9 @@ val genMult3: Gen[Int] =
 
 ```scala
 val genMult3: Gen[Int] =
-  arbitrary[Int].
-    map(_ * 3).
-    `filter(_ % 5 != 0)`
+  arbitrary[Int]
+    .map(_ * 3)
+    .`filter(_ % 5 != 0)`
 ```
 
 ---
@@ -3060,11 +2752,7 @@ val propFizzBuzz3 =
 ```
 ]
 
----
-
-## Multiples of 3
-
-```tut:silent
+```scala repl:invisible
 val propFizzBuzz3 =
   forAll(genMult3) { i =>
     fizzBuzz(i) == "Fizz"
@@ -3184,22 +2872,14 @@ def propFizzBuzz(gen: Gen[Int], expected: String) =
 ```
 ]
 
----
-
-## Generic property
-
-```tut:silent
+```scala repl:invisible
 def propFizzBuzz(gen: Gen[Int], expected: String) =
   forAll(gen) { i =>
     fizzBuzz(i) == expected
   }
 ```
 
----
-
-## Generic property
-
-```tut:silent
+```scala repl:invisible
 val propFizzBuzz3 =
   forAll(genMult3) { i =>
     fizzBuzz(i) == "Fizz"
@@ -3257,11 +2937,8 @@ val propFizzBuzz3 =
   )
 ```
 
----
 
-## Generic property
-
-```tut:silent
+```scala repl:invisible
 val propFizzBuzz3 =
   propFizzBuzz(
     gen      = genMult3,
@@ -3274,7 +2951,7 @@ val propFizzBuzz3 =
 ## Multiples of 5
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -3290,7 +2967,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
-}
 ```
 
 ---
@@ -3298,7 +2974,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## Multiples of 5
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -3314,7 +2990,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
-}
 ```
 
 ---
@@ -3322,7 +2997,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## Multiples of 5
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -3338,18 +3013,13 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
-}
 ```
 
----
-
-## Multiples of 5
-
-```tut:silent
+```scala repl:invisible
 val genMult5: Gen[Int] =
-  arbitrary[Int].
-    map(_ * 5).
-    filter(_ % 3 != 0)
+  arbitrary[Int]
+    .map(_ * 5)
+    .filter(_ % 3 != 0)
 ```
 
 ---
@@ -3358,9 +3028,9 @@ val genMult5: Gen[Int] =
 
 ```scala
 val genMult5: Gen[Int] =
-  `arbitrary[Int]`.
-    map(_ * 5).
-    filter(_ % 3 != 0)
+  `arbitrary[Int]`
+    .map(_ * 5)
+    .filter(_ % 3 != 0)
 ```
 
 ---
@@ -3369,9 +3039,9 @@ val genMult5: Gen[Int] =
 
 ```scala
 val genMult5: Gen[Int] =
-  arbitrary[Int].
-    `map(_ * 5)`.
-    filter(_ % 3 != 0)
+  arbitrary[Int]
+    .`map(_ * 5)`
+    .filter(_ % 3 != 0)
 ```
 
 ---
@@ -3380,16 +3050,12 @@ val genMult5: Gen[Int] =
 
 ```scala
 val genMult5: Gen[Int] =
-  arbitrary[Int].
-    map(_ * 5).
-    `filter(_ % 3 != 0)`
+  arbitrary[Int]
+    .map(_ * 5)
+    .`filter(_ % 3 != 0)`
 ```
 
----
-
-## Multiples of 5
-
-```tut:silent
+```scala repl:invisible
 val propFizzBuzz5 =
   propFizzBuzz(
     gen      = genMult5,
@@ -3426,7 +3092,7 @@ val propFizzBuzz5 =
 ## Multiples of neither 3 nor 5
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -3442,7 +3108,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
-}
 ```
 
 ---
@@ -3450,7 +3115,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## Multiples of neither 3 nor 5
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -3466,7 +3131,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
-}
 ```
 
 ---
@@ -3474,7 +3138,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## Multiples of neither 3 nor 5
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -3490,18 +3154,13 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == "FizzBuzz")
   }
-}
 ```
 
----
-
-## Multiples of neither 3 nor 5
-
-```tut:silent
+```scala repl:invisible
 val genMultNone: Gen[Int] =
-  arbitrary[Int].
-    filter(_ % 5 != 0).
-    filter(_ % 3 != 0)
+  arbitrary[Int]
+    .filter(_ % 5 != 0)
+    .filter(_ % 3 != 0)
 ```
 
 ---
@@ -3510,9 +3169,9 @@ val genMultNone: Gen[Int] =
 
 ```scala
 val genMultNone: Gen[Int] =
-  `arbitrary[Int]`.
-    filter(_ % 5 != 0).
-    filter(_ % 3 != 0)
+  `arbitrary[Int]`
+    .filter(_ % 5 != 0)
+    .filter(_ % 3 != 0)
 ```
 
 ---
@@ -3521,9 +3180,9 @@ val genMultNone: Gen[Int] =
 
 ```scala
 val genMultNone: Gen[Int] =
-  arbitrary[Int].
-    `filter(_ % 5 != 0)`.
-    filter(_ % 3 != 0)
+  arbitrary[Int]
+    .`filter(_ % 5 != 0)`
+    .filter(_ % 3 != 0)
 ```
 
 ---
@@ -3532,21 +3191,9 @@ val genMultNone: Gen[Int] =
 
 ```scala
 val genMultNone: Gen[Int] =
-  arbitrary[Int].
-    filter(_ % 5 != 0).
-    `filter(_ % 3 != 0)`
-```
-
----
-
-## Multiples of neither 3 nor 5
-
-```scala
-val propFizzBuzzNone =
-  propFizzBuzz(
-    gen      = genMultNone,
-    expected = ???
-  )
+  arbitrary[Int]
+    .filter(_ % 5 != 0)
+    .`filter(_ % 3 != 0)`
 ```
 
 ---
@@ -3573,11 +3220,7 @@ val propFizzBuzzNone =
   )
 ```
 
----
-
-## Multiples of neither 3 nor 5
-
-```tut:silent
+```scala repl:invisible
 def propFizzBuzz(gen: Gen[Int], expected: String) =
   forAll(gen) { i =>
     fizzBuzz(i) == expected
@@ -3610,11 +3253,7 @@ def propFizzBuzz(gen: Gen[Int], expected: String) =
 ```
 ]
 
----
-
-## Multiples of neither 3 nor 5
-
-```tut:silent
+```scala repl:invisible
 def propFizzBuzz(gen: Gen[Int], oracle: Int => String) =
   forAll(gen) { i =>
     fizzBuzz(i) == oracle(i)
@@ -3649,11 +3288,8 @@ val propFizzBuzzNone =
 ```
 ]
 
----
 
-## Multiples of neither 3 nor 5
-
-```tut:silent
+```scala repl:invisible
 val propFizzBuzzNone =
   propFizzBuzz(
     gen      = genMultNone,
@@ -3666,7 +3302,7 @@ val propFizzBuzzNone =
 ## Multiples of 3 and 5
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -3682,7 +3318,6 @@ class FizzBuzzSuite extends AnyFunSuite {
 * test("n multiple of 3 and 5 outputs FizzBuzz") {
 *   assert(fizzBuzz(15) == "FizzBuzz")
 * }
-}
 ```
 
 ---
@@ -3690,7 +3325,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## Multiples of 3 and 5
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -3706,7 +3341,6 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(`15`) == "FizzBuzz")
   }
-}
 ```
 
 ---
@@ -3714,7 +3348,7 @@ class FizzBuzzSuite extends AnyFunSuite {
 ## Multiples of 3 and 5
 
 ```scala
-class FizzBuzzSuite extends AnyFunSuite {
+class FizzBuzzSuite extends AnyFunSuite:
   test("n multiple of 3 outputs Fizz") {
     assert(fizzBuzz(3) == "Fizz")
   }
@@ -3730,14 +3364,9 @@ class FizzBuzzSuite extends AnyFunSuite {
   test("n multiple of 3 and 5 outputs FizzBuzz") {
     assert(fizzBuzz(15) == `"FizzBuzz"`)
   }
-}
 ```
 
----
-
-## Multiples of 3 and 5
-
-```tut:silent
+```scala repl:invisible
 val genMult15: Gen[Int] =
   arbitrary[Int].
     map(_ * 3 * 5)
@@ -3763,11 +3392,7 @@ val genMult15: Gen[Int] =
     `map(_ * 3 * 5)`
 ```
 
----
-
-## Multiples of 3 and 5
-
-```tut:silent
+```scala repl:invisible
 val propFizzBuzz15 =
   propFizzBuzz(
     gen    = genMult15,
@@ -3847,7 +3472,7 @@ name: questions
 
 # Questions?
 
-Nicolas Rinaudo • [@NicolasRinaudo] • [Besedo]
+Nicolas Rinaudo • [@NicolasRinaudo]
 
 ---
 
@@ -3930,18 +3555,13 @@ name: metamorphic
 
 ## Compiler validation
 
-```tut:silent
-def mult3(i: Int): Boolean = i % 3 == 0
-def mult5(i: Int): Boolean = i % 5 == 0
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-    else         "Fizz"
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
+```scala repl:silent
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+    if mult5(i) then    "FizzBuzz"
+    else                "Fizz"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 
 ---
@@ -3964,7 +3584,7 @@ println(fizzBuzz(`5`))
 
 ## Compiler validation
 
-```tut:book
+```scala repl
 println(fizzBuzz(5))
 ```
 
@@ -3983,17 +3603,12 @@ println(fizzBuzz(5))
 
 .coverage-on[
 ```scala
-*def mult3(i: Int): Boolean = i % 3 == 0
-*def mult5(i: Int): Boolean = i % 5 == 0
-
-def fizzBuzz(i: Int): String = {
-* if(mult3(i)) {
-    if(mult5(i)) "FizzBuzz"
-    else         "Fizz"
-  }
-* else if(mult5(i)) "Buzz"
-  else              i.toString
-}
+def fizzBuzz(i: Int) =
+* if mult3(i) then
+    if mult5(i) then    "FizzBuzz"
+    else                "Fizz"
+* else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 ]
 
@@ -4003,17 +3618,12 @@ def fizzBuzz(i: Int): String = {
 
 .coverage-off[
 ```scala
-def mult3(i: Int): Boolean = i % 3 == 0
-def mult5(i: Int): Boolean = i % 5 == 0
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-*   if(mult5(i)) "FizzBuzz"
-*   else         "Fizz"
-  }
-  else if(mult5(i)) "Buzz"
-* else              i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+*   if mult5(i) then    "FizzBuzz"
+*   else                "Fizz"
+  else if mult5(i) then "Buzz"
+* else                  i.toString
 ```
 ]
 
@@ -4023,17 +3633,12 @@ def fizzBuzz(i: Int): String = {
 
 .diff-rm[
 ```scala
-def mult3(i: Int): Boolean = i % 3 == 0
-def mult5(i: Int): Boolean = i % 5 == 0
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-*   `if(mult5(i)) "FizzBuzz"`
-*   `else         "Fizz"`
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
+def fizzBuzz(i: Int) =
+  if mult3(i) then
+*   `if mult5(i) then    "FizzBuzz"`
+*   `else                "Fizz"`
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 ]
 
@@ -4043,16 +3648,10 @@ def fizzBuzz(i: Int): String = {
 
 .diff-add[
 ```scala
-def mult3(i: Int): Boolean = i % 3 == 0
-def mult5(i: Int): Boolean = i % 5 == 0
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-*   `"Fizz"`
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
+def fizzBuzz(i: Int) =
+* if mult3(i) then      `"Fizz"`
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 ]
 ---
@@ -4061,16 +3660,10 @@ def fizzBuzz(i: Int): String = {
 
 .diff-rm[
 ```scala
-def mult3(i: Int): Boolean = i % 3 == 0
-def mult5(i: Int): Boolean = i % 5 == 0
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-*   `"Fizz"`
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
+def fizzBuzz(i: Int) =
+* if mult3(i) then      `"Fizz"`
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 ]
 
@@ -4080,34 +3673,18 @@ def fizzBuzz(i: Int): String = {
 
 .diff-add[
 ```scala
-def mult3(i: Int): Boolean = i % 3 == 0
-def mult5(i: Int): Boolean = i % 5 == 0
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-*   `"Zzif"`
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
+def fizzBuzz(i: Int) =
+* if mult3(i) then      `"Zzif"`
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 ]
 
----
-
-## Compiler validation
-
-```tut:silent
-def mult3(i: Int): Boolean = i % 3 == 0
-def mult5(i: Int): Boolean = i % 5 == 0
-
-def fizzBuzz(i: Int): String = {
-  if(mult3(i)) {
-    "Zzif"
-  }
-  else if(mult5(i)) "Buzz"
-  else              i.toString
-}
+```scala repl:invisible
+def fizzBuzz(i: Int) =
+  if mult3(i) then      "Zzif"
+  else if mult5(i) then "Buzz"
+  else                  i.toString
 ```
 
 ---
@@ -4130,7 +3707,7 @@ println(fizzBuzz(`5`))
 
 ## Compiler validation
 
-```tut:book
+```scala repl
 println(fizzBuzz(5))
 ```
 
@@ -4195,9 +3772,8 @@ name: questions
 
 # Questions?
 
-Nicolas Rinaudo • [@NicolasRinaudo] • [Besedo]
+Nicolas Rinaudo • [@NicolasRinaudo]
 
-[Besedo]:https://twitter.com/besedo_official
 [@NicolasRinaudo]:https://twitter.com/NicolasRinaudo
     </textarea>
     <script src="js/remark.js" type="text/javascript">

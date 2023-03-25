@@ -16,7 +16,7 @@ digraph {
     }
 
     Input[label=Query class="disabled"]
-    Relation[label="≠"]
+    Relation[label="="]
 
     Input -> System[class="disabled"]
     Input -> System2[class="disabled"]
