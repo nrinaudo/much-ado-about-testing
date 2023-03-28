@@ -222,19 +222,6 @@ class: center, middle
 
 ## Overview
 
-.center[![Testing](img/ebt.svg)]
-
-```scala
-class ListTests extends AnyFunSuite:
-  test("List(3, 2, 1) should sort to List(1, 2, 3)") {
-    assert(List(3, 2, 1).sorted == List(1, 2, 3))
-  }
-```
-
----
-
-## Overview
-
 .center[![Testing](img/ebt_input_focus.svg)]
 
 ```scala
@@ -436,7 +423,7 @@ new FizzBuzzSuite().execute()
 
 ```scala
 new FizzBuzzSuite().execute()
-// rs$line$4$FizzBuzzSuite:
+// rs$line$3$FizzBuzzSuite:
 // - n multiple of 3 outputs Fizz
 // - n multiple of 5 outputs Buzz
 // - n multiple of neither 3 or 5 outputs n
@@ -715,7 +702,7 @@ new FizzBuzzSuite().execute()
 
 ```scala
 new FizzBuzzSuite().execute()
-// rs$line$8$FizzBuzzSuite:
+// rs$line$7$FizzBuzzSuite:
 // - n multiple of 3 outputs Fizz
 // - n multiple of 5 outputs Buzz
 // - n multiple of neither 3 or 5 outputs n
@@ -1996,9 +1983,9 @@ propStableFizz.check()
 
 ```scala
 propStableFizz.check()
-// ! Falsified after 0 passed tests.
+// ! Falsified after 1 passed tests.
 // > ARG_0: -1
-// > ARG_0_ORIGINAL: -41
+// > ARG_0_ORIGINAL: -67
 ```
 
 ---
@@ -2313,8 +2300,8 @@ propFizz.check()
 ```scala
 propFizz.check()
 // ! Falsified after 0 passed tests.
-// > ARG_0: -1
-// > ARG_0_ORIGINAL: -23
+// > ARG_0: 1
+// > ARG_0_ORIGINAL: 34
 ```
 
 ---
